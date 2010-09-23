@@ -1,3 +1,6 @@
 [submodule "system"]
 	path = system
 	url = git://github.com/kohana/core.git
+[submodule "modules/orm"]
+	path = modules/orm
+	url = git://github.com/kohana/orm.git
