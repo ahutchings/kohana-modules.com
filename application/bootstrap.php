@@ -84,6 +84,21 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('pages', '<page>',
+    array(
+        'page' => '(about)',
+    ))
+    ->defaults(array(
+        'controller' => 'website',
+        'action'     => 'page',
+    ));
+ 
+Route::set('module_show', 'module/<user>/<name>')
+    ->defaults(array(
+        'controller' => 'module',
+        'action'     => 'show',
+    ));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
     ->defaults(array(
         'controller' => 'website',

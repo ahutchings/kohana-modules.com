@@ -1,5 +1,8 @@
-<ul id="modules">
+<div id="modules">
     {{#modules}}
-    <li><strong>{{id}}:</strong> ({{name}}:{{description}})</li>
+    <div class="module">
+        <h2><a href="/module/{{user}}/{{name}}">{{name}}</a></h2>
+        <p>{{description}}</p>
+    </div>
     {{/modules}}
-</ul>
+</div>
