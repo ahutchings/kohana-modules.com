@@ -77,6 +77,7 @@ Kohana::modules(array(
     'pagination' => MODPATH.'pagination', // Paging of results
     // 'unittest'   => MODPATH.'unittest',   // Unit testing
     // 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
+    'kostache' => MODPATH.'kostache',
     ));
 
 /**
