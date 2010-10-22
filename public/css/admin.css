@@ -1,212 +1,46 @@
-html {
-    overflow-y:auto;
-}
+/*************************************
+   WELCOME TO THE CUSTOM STYLESHEET
+--------------------------------------
+              style.css
+        BlueTrip CSS Framework
+    Put your custom styles in here.
+***************************************/
 
-html, body, #container, #main {
-    height:100%;
-}
+/**************************************/
+/*           COLOR SCHEME             */
+/**************************************
+- black		#000
+- white		#fff
+-           #
+-           #
+-           #
+***************************************/
 
-header {
-    background:#333;
-    color:#FFF;
-    float:left;
-    font-size:90%;
-    width:100%;
-}
 
-header a, header a:active, header a:visited {
-    color:#7bbe33;
-    text-decoration:none;
-}
+/**************************************/
+/*              GLOBALS               */
+/**************************************/
 
-#site-links {
-    float:right;
-    padding:15px 12px 0 5px;
-}
 
-#navigation {
-    float:left;
-    list-style-type:none;
-    margin-left:0;
-    margin-top:6px;
-}
+/**************************************/
+/*              HEADER                */
+/**************************************/
 
-#navigation li:first-child {
-    margin-left:20px;
-}
 
-#navigation li {
-    float:left;
-    height:34px;
-    margin:4px 0 0 8px;
-    white-space:nowrap;
-}
 
-#navigation li.active a {
-    background:#5aa9ec;
-    color:#FFF;
-}
+/**************************************/
+/*             NAVIGATION             */
+/**************************************/
 
-#navigation a {
-    -moz-border-radius-topleft:6px;
-    -moz-border-radius-topright:6px;
-    background:#494949;
-    color:#AAA;
-    display:block;
-    font-size:1.3em;
-    font-weight:bold;
-    height:34px;
-    line-height:38px;
-    padding:0 20px;
-    position:relative;
-    text-decoration:none;
-}
 
-#main {
-    background:#edece8;
-}
 
-input[name="title"] {
-    font-size:150%;
-    padding:6px;
-    width:100%;
-}
+/**************************************/
+/*            MAIN CONTENT            */
+/**************************************/
 
-#breadcrumbs {
-    background:#5aa9ec;
-    color:#FFF;
-    float:left;
-    margin:0;
-    padding:10px 0;
-    width:100%;
-}
 
-#breadcrumbs a {
-    color:#FFF;
-    font-weight:bold;
-}
 
-#breadcrumbs li {
-    display:block;
-    float:left;
-    margin:0;
-    padding:0 0 0 0.6em;
-}
+/**************************************/
+/*               FOOTER               */
+/**************************************/
 
-#breadcrumbs li:first-child {
-    margin-left:32px;
-}
-
-#breadcrumbs li:before {
-    color:#EEE;
-    content:"» ";
-}
-
-#breadcrumbs li:first-child:before {
-    content:"";
-}
-
-ul.files {
-    list-style-type:none;
-    margin:0;
-}
-
-ul.files li ul {
-    margin-top:4px;
-}
-
-ul.files a {
-    display:block;
-    text-decoration:none;
-    outline:none;
-}
-
-ul.files li {
-    background-image:url('../images/icons/page_white.png');
-    background-repeat:no-repeat;
-    margin-bottom:4px;
-    padding-left:20px;
-}
-
-ul.files li.directory {
-    background-image:url('../images/icons/folder.png');
-}
-
-ul.files li.html, ul.files li.xml {
-    background-image:url('../images/icons/page_white_code.png');
-}
-
-ul.files li.php {
-    background-image:url('../images/icons/page_white_php.png');
-}
-
-ul.files li.txt {
-    background-image:url('../images/icons/page_white_text.png');
-}
-
-ul.files li.ajax-loading {
-    background-image:url('../images/ajax-loader.gif');
-}
-
-body {
-    min-width:600px;
-}
-
-#main {
-    padding-left:210px;
-    padding-right:208px;
-}
-
-#main .column {
-    position:relative;
-    float:left;
-}
-
-#left {
-    background:#dde4ec;
-    border-right:8px solid #dedede;
-    width:190px; /* desired width - x-padding */
-    right:210px; /* desired width + x-border */
-    margin-left:-100%;
-    padding-left:10px;
-    padding-top:16px;
-    overflow-x:scroll;
-}
-
-#middle {
-    width:100%;
-    background:#F9F9F9;
-}
-
-#right {
-    background:#dde4ec;
-    border-left:8px solid #dedede;
-    width:180px; /* desired width - x-padding */
-    margin-right:-100%;
-    padding:16px 10px;
-}
-
-#middle form {
-    height:100%;
-}
-
-#middle textarea {
-    height:100%;
-    width:100%;
-    margin:0;
-}
-
-#middle p.initial {
-    text-align:center;
-    margin-top:3em;
-}
-
-.file-context {
-    background:#EEE;
-    padding:10px 0;
-}
-
-div.bespin {
-    display:block !important;
-    margin-top:-12px !important;
-}

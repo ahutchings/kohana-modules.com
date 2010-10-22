@@ -8,14 +8,19 @@ class Controller_User extends Controller
 
         $this->request->redirect(url::site());
     }
-
+    
     public function action_login()
+    {
+        echo new View_User_Login();
+    }
+
+    public function action_process_login()
     {
         $auth = Auth::instance();
 
         if ($auth->login($_POST['username'], $_POST['password']))
         {
-            $this->request->redirect(url::site());
+            $this->request->redirect(url::base());
         }
         else
         {

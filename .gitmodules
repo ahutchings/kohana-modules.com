@@ -19,3 +19,6 @@
 [submodule "modules/notices"]
 	path = modules/notices
 	url = git://github.com/synapsestudios/kohana-notices.git
+[submodule "modules/yform"]
+	path = modules/yform
+	url = git://github.com/Zeelot/kohana-yform.git
