@@ -102,7 +102,7 @@ Route::set('pages', 'pages/<page>',
         'action'     => 'display',
     ));
  
-Route::set('modules_show', 'modules/<name>')
+Route::set('modules_show', 'modules/<user>/<name>')
     ->defaults(array(
         'controller' => 'modules',
         'action'     => 'show',

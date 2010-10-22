@@ -4,9 +4,10 @@ class View_Modules_Show extends View_Layout
 {
     public $module;
 
-    public function __construct($name)
+    public function __construct($user, $name)
     {
         $this->module = ORM::factory('module')
+            ->where('user', '=', $user)
             ->where('name', '=', $name)
             ->find()
             ->as_array();
@@ -14,6 +15,6 @@ class View_Modules_Show extends View_Layout
     
     public function title()
     {
-        return $this->module['name'].' | ';
+        return $this->module['user'].'/'.$this->module['name'].' | ';
     }
 }

@@ -2,8 +2,8 @@
 
 class Controller_Modules extends Controller
 {
-    public function action_show($name)
+    public function action_show($user, $name)
     {
-        echo new View_Modules_Show($name);
+        echo new View_Modules_Show($user, $name);
     }
 }
