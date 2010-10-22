@@ -16,3 +16,6 @@
 [submodule "modules/kostache"]
 	path = modules/kostache
 	url = git://github.com/zombor/KOstache.git
+[submodule "modules/notices"]
+	path = modules/notices
+	url = git://github.com/synapsestudios/kohana-notices.git

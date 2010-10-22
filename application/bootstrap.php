@@ -51,6 +51,7 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
  */
 Kohana::init(array(
     'base_url'   => '/',
+    'index_file' => FALSE,
 ));
 
 /**
@@ -78,15 +79,23 @@ Kohana::modules(array(
     // 'unittest'   => MODPATH.'unittest',   // Unit testing
     // 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
     'kostache' => MODPATH.'kostache',
+    'notices'  => MODPATH.'notices',
     ));
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('admin', 'admin(/<controller>(/<action>(/<id>)))')
+    ->defaults(array(
+        'directory' => 'admin',
+        'controller' => 'dashboard',
+        'action' => 'index',
+    ));
+ 
 Route::set('pages', '<page>',
     array(
-        'page' => '(about)',
+        'page' => '(about|login)',
     ))
     ->defaults(array(
         'controller' => 'website',
