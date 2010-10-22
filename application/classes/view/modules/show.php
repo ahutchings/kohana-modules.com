@@ -1,13 +1,12 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class View_Module_Show extends View_Layout
+class View_Modules_Show extends View_Layout
 {
     public $module;
 
-    public function __construct($user, $name)
+    public function __construct($name)
     {
         $this->module = ORM::factory('module')
-            ->where('user', '=', $user)
             ->where('name', '=', $name)
             ->find()
             ->as_array();
@@ -15,6 +14,6 @@ class View_Module_Show extends View_Layout
     
     public function title()
     {
-        return ' :: Module :: '.$this->module['user'].'/'.$this->module['name'];
+        return $this->module['name'].' | ';
     }
 }

@@ -93,18 +93,18 @@ Route::set('admin', 'admin(/<controller>(/<action>(/<id>)))')
         'action' => 'index',
     ));
  
-Route::set('pages', '<page>',
+Route::set('pages', 'pages/<page>',
     array(
         'page' => '(about|login)',
     ))
     ->defaults(array(
-        'controller' => 'website',
-        'action'     => 'page',
+        'controller' => 'pages',
+        'action'     => 'display',
     ));
  
-Route::set('module_show', 'module/<user>/<name>')
+Route::set('modules_show', 'modules/<name>')
     ->defaults(array(
-        'controller' => 'module',
+        'controller' => 'modules',
         'action'     => 'show',
     ));
 
