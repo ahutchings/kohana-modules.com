@@ -18,4 +18,9 @@ class Cron_Helper extends Cron
         
         return $jobs;
     }
+    
+    public static function next_run()
+    {   
+        return min(Cron::$_times);
+    }
 }
