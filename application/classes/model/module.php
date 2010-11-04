@@ -25,7 +25,13 @@ class Model_Module extends ORM
     {
         $repo = Github::instance()->getRepoApi()->show($this->username, $this->name);
 
-        $this->description = $repo['description'];
+        $this->description   = $repo['description'];
+        $this->forks         = $repo['forks'];
+        $this->watchers      = $repo['watchers'];
+        $this->fork          = $repo['fork'];
+        $this->has_wiki      = $repo['has_wiki'];
+        $this->has_issues    = $repo['has_issues'];
+        $this->has_downloads = $repo['has_downloads'];
         $this->save();
     }
 }
