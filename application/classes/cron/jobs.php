@@ -131,4 +131,25 @@ class Cron_Jobs
         
         return $return;
     }
+    
+    /**
+     * Delete search results that have been added to the module index.
+     */
+    public static function prune_search_results()
+    {
+        $modules = ORM::factory('module')->find_all();
+        
+        foreach ($modules as $module)
+        {
+            $searchresult = ORM::factory('searchresult')
+                ->where('username', '=', $module->username)
+                ->where('name', '=', $module->name)
+                ->find();
+                
+            if ($searchresult->loaded())
+            {
+                $searchresult->delete();
+            }
+        }
+    }
 }

@@ -117,6 +117,7 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 Cron::set('sync_index', array('@daily', 'Cron_Jobs::sync_index'));
 Cron::set('refresh_metadata', array('@daily', 'Cron_Jobs::refresh_metadata'));
 Cron::set('fetch_search_results', array('@weekly', 'Cron_Jobs::fetch_search_results'));
+Cron::set('prune_search_results', array('@daily', 'Cron_Jobs::prune_search_results'));
 
 /**
  * Run Cron.
