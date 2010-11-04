@@ -3,23 +3,23 @@
 <p>{{description}}</p>
 
     <div class="links">
-        {{#repository.homepage}}
-            <a href="{{repository.homepage}}">Homepage</a>
-        {{/repository.homepage}}
-        {{#repository.has_wiki}}
+        {{#homepage}}
+            <a href="{{homepage}}">Homepage</a>
+        {{/homepage}}
+        {{#has_wiki}}
             <a href="http://github.com/{{username}}/{{name}}/wiki">Wiki</a>
-        {{/repository.has_wiki}}
-        {{#repository.has_issues}}
-            <a href="http://github.com/{{username}}/{{name}}/issues">Issues ({{repository.open_issues}})</a>
-        {{/repository.has_issues}} 
+        {{/has_wiki}}
+        {{#has_issues}}
+            <a href="http://github.com/{{username}}/{{name}}/issues">Issues ({{open_issues}})</a>
+        {{/has_issues}} 
     </div>
 
     <div class="authors">
         <h4>Authors</h4>
         <a href="http://github.com/{{username}}">{{username}}</a>
         
-        {{repository.watchers}} watchers
-        {{repository.forks}} forks
+        {{watchers}} watchers
+        {{forks}} forks
     </div>
 
     <div class="versions">

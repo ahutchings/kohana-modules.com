@@ -5,7 +5,6 @@ class View_Modules_Show extends View_Layout
     protected $_pragmas = array(Kostache::PRAGMA_DOT_NOTATION => TRUE);
     
     public $module;
-    public $repository;
     public $tags;
 
     public function __construct($username, $name)
@@ -15,11 +14,6 @@ class View_Modules_Show extends View_Layout
             ->where('name', '=', $name)
             ->find()
             ->as_array();
-        
-        $this->repository = Github::instance()
-            ->getRepoApi()
-            ->show($username, $name);
-            
         
         $tags = Github::instance()->getRepoApi()->getRepoTags($username, $name);
         
