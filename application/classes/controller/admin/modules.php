@@ -12,6 +12,11 @@ class Controller_Admin_Modules extends Controller_Admin
         echo new View_Admin_Modules_Queue;
     }
     
+    public function action_pending_deletion()
+    {
+        echo new View_Admin_Modules_PendingDeletion;
+    }
+    
     public function action_add()
     {
         if (isset($_GET['username']) AND isset($_GET['name']))
