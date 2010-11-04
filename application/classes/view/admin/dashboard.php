@@ -23,8 +23,7 @@ class View_Admin_Dashboard extends View_Layout_Admin
     
     public function search_results()
     {
-        // @todo return real number
-        return 10;
+        return ORM::factory('searchresult')->count_all();
     }
     
     public function pending_deletion()
