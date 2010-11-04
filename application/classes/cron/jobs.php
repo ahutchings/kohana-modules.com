@@ -19,30 +19,32 @@ class Cron_Jobs
         preg_match_all($pattern, $data, $matches);
         
         // set flagged_for_deletion_at on all modules in database, but require manual pruning
-        $modules = ORM::factory('module');
-        $modules->flagged_for_deletion_at = time();    
-        $modules->save_all();
+        DB::update('modules')->set(array('flagged_for_deletion_at' => time()));
         
         for ($i = 0; $i < count($matches[0]); $i++)
         {
-            $module = ORM::factory('module')
+            $count = ORM::factory('module')
                 ->where('username', '=', $matches['username'][$i])
                 ->where('name', '=', $matches['name'][$i])
-                ->find();
+                ->count_all();
                 
-            if ($module->loaded())
+            if ($count == 1)
             {
                 // module exists in .gitmodules, unflag for deletion
-                $module->flagged_for_deletion_at = NULL;
+                DB::update('modules')
+                    ->set(array('flagged_for_deletion_at' => NULL))
+                    ->where('username', '=', $matches['username'][$i])
+                    ->where('name', '=', $matches['name'][$i]);
             }
             else
             {
-                // @todo fetch and merge metadata
+                $module = ORM::factory();
                 $module->username = $matches['username'][$i];
                 $module->name     = $matches['name'][$i];
+                $module->save();
+                
+                $module->refresh_github_metadata();
             }
-            
-            $module->save();
         }
     }
     
@@ -51,10 +53,11 @@ class Cron_Jobs
      */
     public static function refresh_metadata()
     {
-        // select 60 jobs with oldest metadata
+        // select 30 jobs with oldest metadata
         $modules = ORM::factory('module')
             ->where('updated_at', '<', time() - Date::WEEK)
-            ->limit(60)
+            ->order_by('updated_at', 'ASC')
+            ->limit(30)
             ->find_all();
 
         foreach ($modules as $module)
