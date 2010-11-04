@@ -65,4 +65,70 @@ class Cron_Jobs
             $module->refresh_github_metadata();
         }
     }
+    
+    /**
+     * Fetches search results from GitHub and stores them locally.
+     */
+    public static function fetch_search_results()
+    {
+        $repositories = Github::instance()
+            ->getRepoApi()
+            ->search('kohana');
+        
+        $modules = DB::select('username', 'name')
+            ->from('modules')
+            ->execute();
+        
+        $results = self::filter_existing($repositories, $modules);
+        
+        // truncate existing database
+        ORM::factory('searchresult')->delete_all();
+        
+        // insert new rows
+        foreach ($results as $result)
+        {
+            $searchresult = ORM::factory('searchresult');
+            $searchresult->values($result);
+            $searchresult->save();
+        }
+    }
+    
+    private static function filter_existing($repositories, $modules)
+    {
+        $repositories_nonassoc = array();
+        $modules_nonassoc = array();
+        
+        foreach ($repositories as $repository)
+        {
+            $repositories_nonassoc[$repository['username'].'/'.$repository['name']] = $repository['description'];
+        }
+        
+        foreach ($modules as $module)
+        {
+            $modules_nonassoc[$module['username'].'/'.$module['name']] = '';
+        }
+        
+        $filtered = array_diff_key($repositories_nonassoc, $modules_nonassoc);
+        
+        return self::reassoc($filtered);
+    }
+    
+    private static function reassoc($array)
+    {
+        $return = array();
+        
+        foreach ($array as $k => $description)
+        {
+            list($username, $name) = explode('/', $k);
+            
+            $return[] = array
+            (
+                'username'    => $username,
+                'name'        => $name,
+                'description' => $description,
+            );
+        }
+        
+        return $return;
+    }
 }
