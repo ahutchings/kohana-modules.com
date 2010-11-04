@@ -11,6 +11,8 @@ class Cron_Helper extends Cron
             $jobs[] = array
             (
                 'name' => $name,
+                'time' => Cron::$_times[$name],
+                'time_span' => Date::span(Cron::$_times[$name], NULL, 'hours,minutes,seconds'),
             );
         }
         
