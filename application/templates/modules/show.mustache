@@ -25,9 +25,9 @@
     <div class="versions">
         <h4>Versions</h4>
         <ul>
-        {{#tags}}
-            <li><a href="{{url}}">{{name}}</a></li>
-        {{/tags}}
+        {{#tags_array}}
+            <li><a href="http://github.com/{{username}}/{{name}}/tree/{{.}}">{{.}}</a></li>
+        {{/tags_array}}
         </ul>
     </div>
 

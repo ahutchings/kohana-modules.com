@@ -18,6 +18,16 @@ class Model_Module extends ORM
         TRUE => array('trim' => array()),
     );
     
+    public function __get($name)
+    {
+        if ($name == 'tags_array')
+        {
+            return explode(':', $this->tags);
+        }
+        
+        return parent::__get($name);
+    }
+
     /**
      * Refreshes the module's GitHub repository metadata locally.
      */
@@ -34,6 +44,12 @@ class Model_Module extends ORM
         $this->has_issues    = $repo['has_issues'];
         $this->has_downloads = $repo['has_downloads'];
         $this->open_issues   = $repo['open_issues'];
+        
+        $repo_tags = Github::instance()->getRepoApi()->getRepoTags($this->username, $this->name);
+        $tags = array_keys($repo_tags);
+        
+        $this->tags = empty($tags) ? NULL : implode(':', $tags);
+        
         $this->save();
     }
 }

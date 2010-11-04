@@ -14,18 +14,6 @@ class View_Modules_Show extends View_Layout
             ->where('name', '=', $name)
             ->find()
             ->as_array();
-        
-        $tags = Github::instance()->getRepoApi()->getRepoTags($username, $name);
-        
-        foreach ($tags as $k => $v)
-        {
-            $this->tags[] = array
-            (
-                'name' => $k,
-                'hash' => $v,
-                'url'  => "http://github.com/$username/$name/tree/$k",
-            );
-        }
     }
     
     public function title()
