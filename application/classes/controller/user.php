@@ -11,7 +11,7 @@ class Controller_User extends Controller
     
     public function action_login()
     {
-        echo new View_User_Login();
+        echo new View_User_Login;
     }
 
     public function action_process_login()
@@ -20,7 +20,7 @@ class Controller_User extends Controller
 
         if ($auth->login($_POST['username'], $_POST['password']))
         {
-            $this->request->redirect(url::base());
+            $this->request->redirect('admin');
         }
         else
         {

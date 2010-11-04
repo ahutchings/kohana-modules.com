@@ -31,23 +31,39 @@
 </head>
 
 <body>
-  <div class="container showgrid">
+  <div class="container">
       
-    <div id="header" class="span-24 last">
+    <div id="header" class="span-24">
         <h1><a href="/">Kohana Modules</a></h1>
+        <form action="/search">
+            <input type="text" id="query" name="query" />
+        </form>
     </div><!-- end #header -->
     
-    <div id="main" class="span-24 last">
+    <div id="main" class="span-24">
         {{>body}}
     </div><!-- end #main -->
    
-    <div id="footer" class="span-24 last center">
+    <div id="footer" class="span-24">
         <ul id="primary-nav">
             <li><a href="/pages/about">About</a></li>
+            <li><a href="http://github.com/ahutchings/kohana-modules">Code</a></li>
+            <li><a href="http://twitter.com/kohana-modules">Status</a></li>
+            <li><a href="/pages/suggest">Suggest a Module</a></li>
+            <li><a href="/pages/feedback">Feedback</a></li>
         </ul>
     </div><!-- end #footer -->
 
   </div> <!-- end .container -->
+
+  <script type="text/javascript">
+  var disqus_shortname = 'kohana-modules';
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.src = 'http://disqus.com/forums/kohana-modules/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+  </script>
 
 </body>
 </html>

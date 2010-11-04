@@ -2,7 +2,7 @@
 
 class View_Website_Index extends View_Layout
 {
-    public $title = ' :: Punchy tagline here!';
+    public $title = '';
 
     public function modules()
     {

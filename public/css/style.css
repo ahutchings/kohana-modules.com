@@ -31,7 +31,23 @@
 /**************************************/
 /*             NAVIGATION             */
 /**************************************/
+#primary-nav {
+	margin-left:0;
+	font-size:120%;
+	font-weight:bold;
+}
 
+#primary-nav a {
+	text-decoration:none;
+}
+
+#primary-nav li {
+	display:inline;
+}
+
+#primary-nav li:first-child {
+	margin-left:0;
+}
 
 
 /**************************************/

@@ -22,3 +22,9 @@
 [submodule "modules/yform"]
 	path = modules/yform
 	url = git://github.com/Zeelot/kohana-yform.git
+[submodule "modules/github"]
+	path = modules/github
+	url = git://github.com/ahutchings/kohana-github.git
+[submodule "modules/cron"]
+	path = modules/cron
+	url = git://github.com/cbandy/kohana-cron.git

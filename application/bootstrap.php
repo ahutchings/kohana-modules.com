@@ -75,6 +75,8 @@ Kohana::modules(array(
     'kostache' => MODPATH.'kostache',
     'notices'  => MODPATH.'notices',
     'yform'    => MODPATH.'yform',
+    'github'   => MODPATH.'github',
+    'cron'     => MODPATH.'cron',
     ));
 
 /**
@@ -90,14 +92,14 @@ Route::set('admin', 'admin(/<controller>(/<action>(/<id>)))')
  
 Route::set('pages', 'pages/<page>',
     array(
-        'page' => '(about|login)',
+        'page' => '(about|feedback|suggest)',
     ))
     ->defaults(array(
         'controller' => 'pages',
         'action'     => 'display',
     ));
  
-Route::set('modules_show', 'modules/<user>/<name>')
+Route::set('modules_show', 'modules/<username>/<name>')
     ->defaults(array(
         'controller' => 'modules',
         'action'     => 'show',
@@ -108,6 +110,11 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
         'controller' => 'website',
         'action'     => 'index',
     ));
+
+/**
+ * Execute Cron jobs
+ */
+Cron::run();
 
 if ( ! defined('SUPPRESS_REQUEST'))
 {

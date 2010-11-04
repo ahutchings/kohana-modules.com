@@ -18,12 +18,19 @@
 
 <body>
 
-  <div class="container showgrid">
+  <div class="container">
       
-    <div id="header" class="span-24 last">
+    <div id="header" class="span-24">
       <ul id="navigation">
-          <li><a href="/admin/dashboard">Dashboard</a>
-          <li class="active"><a href="/admin/modules">Modules</a></li>
+          <li><a href="/admin/dashboard">Dashboard</a></li>
+          <li class="active">
+              <a href="/admin/modules">Modules</a>
+              <ul>
+                  <li><a href="/admin/modules/queue">Approval Queue</a></li>
+                  <li><a href="/admin/modules/ignored">Ignored</a></li>
+              </ul>
+          </li>
+          <li><a href="/admin/cron">Cron</a></li>
       </ul>
       
       <div id="site-links">
@@ -36,8 +43,8 @@
       </ul>
     </div><!-- end #header -->
     
-    <div id="main" class="span-24 last">
-        {{content}}
+    <div id="main" class="span-24">
+        {{>body}}
     </div><!-- end #main -->
 
   </div> <!-- end .container -->

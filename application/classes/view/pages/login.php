@@ -2,5 +2,5 @@
 
 class View_Pages_Login extends View_Layout
 {
-    public $title = ' :: Login';
+    public $title = 'Login | ';
 }

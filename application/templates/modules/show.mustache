@@ -1,5 +1,49 @@
 {{#module}}
 <h2>{{name}}</h2>
-<div>by {{user}}</div>
 <p>{{description}}</p>
+
+    <div class="links">
+        {{#repository.homepage}}
+            <a href="{{repository.homepage}}">Homepage</a>
+        {{/repository.homepage}}
+        {{#repository.has_wiki}}
+            <a href="http://github.com/{{username}}/{{name}}/wiki">Wiki</a>
+        {{/repository.has_wiki}}
+        {{#repository.has_issues}}
+            <a href="http://github.com/{{username}}/{{name}}/issues">Issues ({{repository.open_issues}})</a>
+        {{/repository.has_issues}} 
+    </div>
+
+    <div class="authors">
+        <h4>Authors</h4>
+        <a href="http://github.com/{{username}}">{{username}}</a>
+        
+        {{repository.watchers}} watchers
+        {{repository.forks}} forks
+    </div>
+
+    <div class="versions">
+        <h4>Versions</h4>
+        <ul>
+        {{#tags}}
+            <li><a href="{{url}}">{{name}}</a></li>
+        {{/tags}}
+        </ul>
+    </div>
+
 {{/module}}
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
+    */
+  var disqus_developer = true;
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://kohana-modules.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=kohana-modules">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>

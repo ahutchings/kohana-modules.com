@@ -2,5 +2,5 @@
 
 class View_Pages_About extends View_Layout
 {
-    public $title = ' :: About';
+    public $title = 'About | ';
 }
