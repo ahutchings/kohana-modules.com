@@ -17,4 +17,15 @@ class Model_Module extends ORM
     (
         TRUE => array('trim' => array()),
     );
+    
+    /**
+     * Refreshes the module's GitHub repository metadata locally.
+     */
+    public function refresh_github_metadata()
+    {
+        $repo = Github::instance()->getRepoApi()->show($this->username, $this->name);
+
+        $this->description = $repo['description'];
+        $this->save();
+    }
 }

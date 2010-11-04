@@ -112,7 +112,13 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
     ));
 
 /**
- * Execute Cron jobs
+ * Define Crontab listings.
+ */
+Cron::set('sync_index', array('@daily', 'Cron_Jobs::sync_index'));
+Cron::set('refresh_metadata', array('@daily', 'Cron_Jobs::refresh_metadata'));
+
+/**
+ * Run Cron.
  */
 Cron::run();
 
