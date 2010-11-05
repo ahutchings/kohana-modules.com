@@ -38,7 +38,7 @@ class Cron_Jobs
             }
             else
             {
-                $module = ORM::factory();
+                $module = ORM::factory('module');
                 $module->username = $matches['username'][$i];
                 $module->name     = $matches['name'][$i];
                 $module->save();
