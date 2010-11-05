@@ -34,24 +34,104 @@
   <div class="container">
       
     <div id="header" class="span-24">
-        <h1><a href="/">Kohana Modules</a></h1>
+        <h1><a href="/">KohanaModules.com</a></h1>
         <form action="/search">
             <input type="text" id="query" name="query" />
+            <button type="submit">Search Modules</button>
         </form>
     </div><!-- end #header -->
     
-    <div id="main" class="span-24">
+    <div id="main" class="span-19 colborder">
         {{>body}}
     </div><!-- end #main -->
+    
+    <div id="sidebar" class="span-4 last">
+        
+        <div id="popular-tags">
+            <h3>Popular Tags</h3>
+        
+            <ul>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+                <li><a href="#">tag1 (1231)</a></li>
+            </ul>
+        </div>
+    </div>
+   
+   
+    <div id="" class="span-24">
+        <div class="span-5 colborder">
+            <h3>Most Popular</h3>
+            
+            <ul>
+                <li>Module 1</li>
+                <li>Module 2</li>
+                <li>Module 3</li>
+                <li>Module 4</li>
+                <li>Module 5</li>
+            </ul>
+        </div>
+        
+        <div class="span-5 colborder">
+            <h3>Recently Added</h3>
+            
+            <ul>
+                <li>Module 1</li>
+                <li>Module 2</li>
+                <li>Module 3</li>
+                <li>Module 4</li>
+                <li>Module 5</li>
+            </ul>
+        </div>
+        
+        <div class="span-5 colborder">
+            <h3>Recently Updated</h3>
+            
+            <ul>
+                <li>Module 1</li>
+                <li>Module 2</li>
+                <li>Module 3</li>
+                <li>Module 4</li>
+                <li>Module 5</li>
+            </ul>
+        </div>
+        
+        <div class="span-6 last">
+            <h3>Recently Added</h3>
+            
+            <ul>
+                <li>Module 1</li>
+                <li>Module 2</li>
+                <li>Module 3</li>
+                <li>Module 4</li>
+                <li>Module 5</li>
+            </ul>
+        </div>
+    </div>
    
     <div id="footer" class="span-24">
-        <ul id="primary-nav">
+        <ul id="primary-nav" class="span-14">
             <li><a href="/pages/about">About</a></li>
             <li><a href="http://github.com/ahutchings/kohana-modules">Code</a></li>
             <li><a href="http://twitter.com/kohana-modules">Status</a></li>
             <li><a href="/pages/suggest">Suggest a Module</a></li>
             <li><a href="/pages/feedback">Feedback</a></li>
         </ul>
+
+        <p class="span-10 last" id="footnote">Indexing <b>11,201</b> Kohana modules. Built with Kohana 3.x.</p>
     </div><!-- end #footer -->
 
   </div> <!-- end .container -->

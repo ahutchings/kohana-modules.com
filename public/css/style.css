@@ -20,12 +20,21 @@
 /**************************************/
 /*              GLOBALS               */
 /**************************************/
+a[href^="http:"] {
+	background-image:none;
+	padding-right:0;
+}
 
+a[href^="http:"]:visited {
+	background-image:none;
+}
 
 /**************************************/
 /*              HEADER                */
 /**************************************/
-
+h1 a, h1 a:visited {
+	text-decoration:none;
+}
 
 
 /**************************************/
@@ -53,10 +62,37 @@
 /**************************************/
 /*            MAIN CONTENT            */
 /**************************************/
+div.module h2 {
+	margin-bottom:.15em;
+}
 
+div.module h2 a {
+	text-decoration:none;
+}
 
+#popular-tags ul {
+	list-style-type:none;
+	margin-left:0;
+}
+
+#popular-tags ul li {
+	margin-left:0;
+	border-bottom:1px solid #DDD;
+	line-height:2em;
+}
+
+#popular-tags a {
+	text-decoration:none;
+}
 
 /**************************************/
 /*               FOOTER               */
 /**************************************/
+#primary-nav {
+	float:left;
+}
 
+#footnote {
+	float:right;
+	text-align:right;
+}
