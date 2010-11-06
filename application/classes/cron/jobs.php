@@ -34,7 +34,7 @@ class Cron_Jobs
                 $module->refresh_github_metadata();
                 
                 // throttle API requests
-                sleep(1);
+                sleep(2);
             }
         }
     }
@@ -57,7 +57,7 @@ class Cron_Jobs
             }
             
             // throttle HEAD requests
-            sleep(1)
+            sleep(2);
         }
     }
     
@@ -78,7 +78,7 @@ class Cron_Jobs
             $module->refresh_github_metadata();
             
             // throttle API requests
-            sleep(1);
+            sleep(2);
         }
     }
     
