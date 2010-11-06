@@ -6,10 +6,9 @@
 class Cron_Jobs
 {
     /**
-     * Imports new repositories and flags deleted repositories from the
-     * master module repository.
+     * Imports new repositories from the master module repository.
      */
-    public static function sync_index()
+    public static function import_new_modules()
     {
         $url     = "https://github.com/ahutchings/kohana-modules/raw/master/.gitmodules";
         $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
@@ -18,9 +17,6 @@ class Cron_Jobs
         
         preg_match_all($pattern, $data, $matches);
         
-        // set flagged_for_deletion_at on all modules in database, but require manual pruning
-        DB::update('modules')->set(array('flagged_for_deletion_at' => time()));
-        
         for ($i = 0; $i < count($matches[0]); $i++)
         {
             $count = ORM::factory('module')
@@ -28,15 +24,7 @@ class Cron_Jobs
                 ->where('name', '=', $matches['name'][$i])
                 ->count_all();
                 
-            if ($count == 1)
-            {
-                // module exists in .gitmodules, unflag for deletion
-                DB::update('modules')
-                    ->set(array('flagged_for_deletion_at' => NULL))
-                    ->where('username', '=', $matches['username'][$i])
-                    ->where('name', '=', $matches['name'][$i]);
-            }
-            else
+            if ($count === 0)
             {
                 $module = ORM::factory('module');
                 $module->username = $matches['username'][$i];
@@ -44,7 +32,32 @@ class Cron_Jobs
                 $module->save();
                 
                 $module->refresh_github_metadata();
+                
+                // throttle API requests
+                sleep(1);
             }
+        }
+    }
+    
+    /**
+     * Flags modules that have been removed from GitHub.
+     */
+    public static function flag_deleted_modules()
+    {
+        foreach (ORM::factory('module')->find_all() as $module)
+        {
+            $url = 'http://github.com/'.$username.'/'.$name;
+            
+            if (Remote::status($url) == 404)
+            {
+                DB::update('modules')
+                    ->set(array('flagged_for_deletion_at' => time()))
+                    ->where('username', '=', $username)
+                    ->where('name', '=', $name); 
+            }
+            
+            // throttle HEAD requests
+            sleep(1)
         }
     }
     
@@ -63,6 +76,9 @@ class Cron_Jobs
         foreach ($modules as $module)
         {
             $module->refresh_github_metadata();
+            
+            // throttle API requests
+            sleep(1);
         }
     }
     

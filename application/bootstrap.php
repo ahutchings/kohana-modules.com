@@ -114,10 +114,11 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
 /**
  * Define Crontab listings.
  */
-Cron::set('sync_index', array('@daily', 'Cron_Jobs::sync_index'));
+Cron::set('import_new_modules', array('@daily', 'Cron_Jobs::import_new_modules'));
 Cron::set('refresh_metadata', array('@daily', 'Cron_Jobs::refresh_metadata'));
 Cron::set('fetch_search_results', array('@weekly', 'Cron_Jobs::fetch_search_results'));
 Cron::set('prune_search_results', array('@daily', 'Cron_Jobs::prune_search_results'));
+Cron::set('flag_deleted_modules', array('@weekly', 'Cron_Jobs::flag_deleted_modules'));
 
 /**
  * Run Cron.
