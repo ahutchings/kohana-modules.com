@@ -72,7 +72,6 @@ Kohana::modules(array(
     'database'   => MODPATH.'database',   // Database access
     'orm'        => MODPATH.'orm',        // Object Relationship Mapping
     'pagination' => MODPATH.'pagination', // Paging of results
-    'kostache' => MODPATH.'kostache',
     'notices'  => MODPATH.'notices',
     'yform'    => MODPATH.'yform',
     'github'   => MODPATH.'github',
