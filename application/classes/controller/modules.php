@@ -1,10 +1,17 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Modules extends Controller
+class Controller_Modules extends Controller_Template
 {
-    public function action_show($user, $name)
+    public function action_show($username, $name)
     {
-        echo new View_Modules_Show($user, $name);
+        $module = ORM::factory('module')
+            ->where('username', '=', $username)
+            ->where('name', '=', $name)
+            ->find();
+        
+        $this->template->title   = $module->username.'/'.$module->name.' | ';
+        $this->template->content = View::factory('modules/show')
+            ->bind('module', $module);
     }
     
     public function action_process_suggest()

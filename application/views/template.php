@@ -4,7 +4,7 @@
 
 <head>
 
-  <title>{{title}}KohanaModules.com</title>
+  <title><?php echo HTML::chars($title) ?>KohanaModules.com</title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
@@ -42,7 +42,7 @@
     </div><!-- end #header -->
     
     <div id="main" class="span-19 colborder">
-        {{>body}}
+        <?php echo $content ?>
     </div><!-- end #main -->
     
     <div id="sidebar" class="span-4 last">

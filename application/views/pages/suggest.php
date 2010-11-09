@@ -14,9 +14,11 @@
 <p>Don't have a GitHub account? That's okay, you can inform us of new or
     missing modules by submitting this form.</p>
 
-{{#form}}
-    {{{open}}}
-    {{{github_url}}}
-    {{{submit}}}
-    {{{close}}}
-{{/form}}
+<?php
+    $form = YForm::factory('suggest');
+
+    echo $form->open('/modules/process_suggest'),
+        $form->text('github_url'),
+        $form->submit('Submit'),
+        $form->close();
+?>

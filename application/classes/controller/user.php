@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_User extends Controller
+class Controller_User extends Controller_Template
 {
     public function action_logout()
     {
@@ -11,7 +11,11 @@ class Controller_User extends Controller
     
     public function action_login()
     {
-        echo new View_User_Login;
+        $this->template->title   = 'Login | ';
+        $this->template->content = View::factory('user/login')
+            ->bind('form', $form);
+
+        $form = YForm::factory('login');
     }
 
     public function action_process_login()

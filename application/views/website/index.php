@@ -1,10 +1,12 @@
 <div id="modules">
-    {{#modules}}
+    <?php foreach ($modules as $module): ?>
     <div class="module">
-        <h2><a href="/modules/{{username}}/{{name}}">{{name}}</a></h2>
-        <p>{{description}}</p>
+        <h2>
+            <?php echo HTML::anchor("/modules/$module->username/$module->name", $module->name) ?>
+        </h2>
+        <p><?php echo HTML::chars($module->description) ?></p>
     </div>
-    {{/modules}}
+    <?php endforeach ?>
     
-    {{&pagination}}
+    <?php echo $pagination->render() ?>
 </div>

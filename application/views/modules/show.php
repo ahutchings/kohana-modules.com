@@ -1,37 +1,38 @@
-{{#module}}
-<h2>{{name}}</h2>
-<p>{{description}}</p>
+<h2><?php echo HTML::chars($module->name) ?></h2>
+<p><?php echo HTML::chars($module->description) ?></p>
 
     <div class="links">
-        {{#homepage}}
-            <a href="{{homepage}}">Homepage</a>
-        {{/homepage}}
-        {{#has_wiki}}
-            <a href="http://github.com/{{username}}/{{name}}/wiki">Wiki</a>
-        {{/has_wiki}}
-        {{#has_issues}}
-            <a href="http://github.com/{{username}}/{{name}}/issues">Issues ({{open_issues}})</a>
-        {{/has_issues}} 
+        <?php if ($module->homepage): ?>
+            <?php echo HTML::anchor($module->homepage, 'Homepage') ?>
+        <?php endif ?>
+        <?php if ($module->has_wiki): ?>
+            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/wiki", 'Wiki') ?>
+        <?php endif ?>
+        <?php if ($module->has_issues): ?>
+            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/issues", "Issues ($module->open_issues)") ?>
+        <?php endif ?> 
     </div>
 
     <div class="authors">
         <h4>Authors</h4>
-        <a href="http://github.com/{{username}}">{{username}}</a>
+        <a href="http://github.com/<?php echo HTML::chars($module->username) ?>"><?php echo HTML::chars($module->username) ?></a>
         
-        {{watchers}} watchers
-        {{forks}} forks
+        <?php echo $module->watchers ?> watchers
+        <?php echo $module->forks ?> forks
     </div>
 
     <div class="versions">
         <h4>Versions</h4>
         <ul>
-        {{#tags_array}}
-            <li><a href="http://github.com/{{username}}/{{name}}/tree/{{.}}">{{.}}</a></li>
-        {{/tags_array}}
+        <?php foreach ($module->tags_array as $tag): ?>
+            <li>
+                <a href="http://github.com/<?php echo HTML::chars($module->username) ?>/<?php echo HTML::chars($module->name) ?>/tree/<?php echo HTML::chars($tag) ?>">
+                    <?php echo HTML::chars($tag) ?>
+                </a>
+            </li>
+        <?php endforeach ?>
         </ul>
     </div>
-
-{{/module}}
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
