@@ -1,16 +1,18 @@
 <div class="span-11 colborder">
 
     <h3>Open Tickets</h3>
-    {{open_tickets}}
+    <?php echo $open_tickets ?>
 
     <h3>New Search Results</h3>
-    {{search_results}}
+    <?php echo ORM::factory('searchresult')->count_all() ?>
 
     <h3>Pending Deletion</h3>
-    {{pending_deletion}}
+    <?php echo ORM::factory('module')
+        ->where('flagged_for_deletion_at', 'IS NOT', NULL)
+        ->count_all() ?>
 
     <h3>Next Cron</h3>
-    {{next_cron.hours}} hours, {{next_cron.minutes}} minutes, {{next_cron.seconds}} seconds
+    <?php echo $next_cron ?>
 
 </div>
 
@@ -19,24 +21,24 @@
     <h3>Newest Modules</h3>
     <table>
         <tbody>
-        {{#newest_modules}}
+        <?php foreach ($newest as $module): ?>
             <tr>
-                <td>{{username}}/{{name}}</td>
-                <td>{{created_at}}</td>
+                <td><?php echo HTML::chars("$module->username/$module->name") ?></td>
+                <td><?php echo Date::fuzzy_span($module->created_at) ?></td>
             </tr>
-        {{/newest_modules}}
+        <?php endforeach ?>
         </tbody>
     </table>
 
     <h3>Recently Updated</h3>
     <table>
         <tbody>
-        {{#recently_updated}}
+        <?php foreach ($recently_updated as $module): ?>
             <tr>
-                <td>{{username}}/{{name}}</td>
-                <td>{{updated_at}}</td>
+                <td><?php echo HTML::chars("$module->username/$module->name") ?></td>
+                <td><?php echo Date::fuzzy_span($module->updated_at) ?></td>
             </tr>
-        {{/recently_updated}}
+        <?php endforeach ?>
         </tbody>
     </table>
 

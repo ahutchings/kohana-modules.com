@@ -1,7 +1,9 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Admin extends Controller
+class Controller_Admin extends Controller_Template
 {
+    public $template = 'admin/template';
+    
     public function before()
     {
         parent::before();
