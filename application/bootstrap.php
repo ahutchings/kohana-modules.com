@@ -76,6 +76,8 @@ Kohana::modules(array(
     'yform'    => MODPATH.'yform',
     'github'   => MODPATH.'github',
     'cron'     => MODPATH.'cron',
+    'sitemap'  => MODPATH.'sitemap',
+    'cache'    => MODPATH.'cache',
     ));
 
 /**
