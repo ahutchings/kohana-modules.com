@@ -21,26 +21,21 @@
   <div class="container">
       
     <div id="header" class="span-24">
-      <ul id="navigation">
-          <li><a href="/admin/dashboard">Dashboard</a></li>
-          <li class="active">
-              <a href="/admin/modules">Modules</a>
-              <ul>
-                  <li><a href="/admin/modules/queue">Approval Queue</a></li>
-                  <li><a href="/admin/modules/ignored">Ignored</a></li>
-                  <li><a href="/admin/modules/pending_deletion">Pending Deletion</a></li>
-              </ul>
-          </li>
-      </ul>
+        <div class="span-7">
+            <h1><a href="/"><?php echo $_SERVER['SERVER_NAME'] ?></a></h1>
+            <div id="user-navigation">
+                <a href="/user/logout">logout</a>
+            </div>
+        </div>
+
       
-      <div id="site-links">
-          Hello, andrew.hutchings@gmail.com |
-          <a href="/">Visit Site</a> |
-          <a href="/user/logout">Logout</a>
-      </div>
-      
-      <ul id="breadcrumbs">
-      </ul>
+        <ul id="navigation">
+          <li class="active"><a href="/admin/dashboard">Dashboard</a></li>
+          <li><a href="/admin/modules">Modules</a></li>
+          <li><a href="/admin/modules/queue">Approval Queue</a></li>
+          <li><a href="/admin/modules/ignored">Ignored</a></li>
+          <li><a href="/admin/modules/pending_deletion">Pending Deletion</a></li>
+        </ul>
     </div><!-- end #header -->
     
     <div id="main" class="span-24">
