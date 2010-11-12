@@ -4,7 +4,11 @@ class Controller_Admin_Modules extends Controller_Admin
 {
     public function action_index()
     {
-        echo new View_Admin_Modules_Index;
+        $this->template->title   = 'Modules | ';
+        $this->template->content = View::factory('admin/modules/index')
+            ->bind('modules', $modules);
+
+        $modules = ORM::factory('module')->find_all();
     }
     
     public function action_queue()
