@@ -31,7 +31,6 @@
                   <li><a href="/admin/modules/pending_deletion">Pending Deletion</a></li>
               </ul>
           </li>
-          <li><a href="/admin/cron">Cron</a></li>
       </ul>
       
       <div id="site-links">

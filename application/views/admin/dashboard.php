@@ -1,18 +1,21 @@
 <div class="span-11 colborder">
 
-    <h3>Open Tickets</h3>
-    <?php echo $open_tickets ?>
+    <h3>System Statistics</h3>
 
-    <h3>New Search Results</h3>
-    <?php echo ORM::factory('searchresult')->count_all() ?>
-
-    <h3>Pending Deletion</h3>
-    <?php echo ORM::factory('module')
-        ->where('flagged_for_deletion_at', 'IS NOT', NULL)
-        ->count_all() ?>
-
-    <h3>Next Cron</h3>
-    <?php echo $next_cron ?>
+    <dl>
+        <dt>Open Tickets</dt>
+        <dd><?php echo $open_tickets ?></dd>
+        
+        <dt>New Search Results</dt>
+        <dd><?php echo ORM::factory('searchresult')->count_all() ?></dd>
+        
+        <dt>Pending Deletion</dt>
+        <dd>
+            <?php echo ORM::factory('module')
+                ->where('flagged_for_deletion_at', 'IS NOT', NULL)
+                ->count_all() ?>
+        </dd>
+    </dl>
 
 </div>
 
@@ -29,6 +32,31 @@
         <?php endforeach ?>
         </tbody>
     </table>
+
+</div>
+
+<div class="span-11 colborder">
+
+    <h3>Cron</h3>
+    
+    <table>
+        <tbody>
+        <?php foreach (Cron_Helper::get_jobs() as $job): ?>
+            <tr>
+                <td><?php echo $job['name'] ?></td>
+                <td>
+                    <?php echo $job['time_span']['hours'] ?> hours,
+                    <?php echo $job['time_span']['minutes'] ?> minutes,
+                    <?php echo $job['time_span']['seconds'] ?> seconds
+                </td>
+            </tr>
+        <?php endforeach ?>
+        </tbody>
+    </table>
+
+</div>
+
+<div class="span-12 last">
 
     <h3>Recently Updated</h3>
     <table>

@@ -7,7 +7,6 @@ class Controller_Admin_Dashboard extends Controller_Admin
         $this->template->title = 'Dashboard | ';
         $this->template->content = View::factory('admin/dashboard')
             ->set('open_tickets', $this->_open_tickets())
-            ->set('next_cron', $this->_next_cron())
             ->bind('newest', $newest)
             ->bind('recently_updated', $recently_updated);
 
@@ -35,12 +34,5 @@ class Controller_Admin_Dashboard extends Controller_Admin
         Kohana::cache('open_tickets', $repo['open_issues']);
 
         return $repo['open_issues'];
-    }
-
-    private function _next_cron()
-    {
-        $next = Date::span(Cron_Helper::next_run(), NULL, 'hours,minutes,seconds');
-        
-        return $next['hours'].' hours, '.$next['minutes'].' minutes, '.$next['seconds'].' seconds';
     }
 }
