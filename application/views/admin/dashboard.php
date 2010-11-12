@@ -1,4 +1,4 @@
-<div class="span-11 colborder">
+<div class="span-11 colborder widget">
 
     <h3>System Statistics</h3>
 
@@ -19,7 +19,7 @@
 
 </div>
 
-<div class="span-12 last">
+<div class="span-12 last widget">
 
     <h3>Newest Modules</h3>
     <table>
@@ -35,7 +35,7 @@
 
 </div>
 
-<div class="span-11 colborder">
+<div class="span-11 colborder widget">
 
     <h3>Cron</h3>
     
@@ -56,7 +56,7 @@
 
 </div>
 
-<div class="span-12 last">
+<div class="span-12 last widget">
 
     <h3>Recently Updated</h3>
     <table>

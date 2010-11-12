@@ -48,8 +48,28 @@ th, td {
 /**************************************/
 /*            MAIN CONTENT            */
 /**************************************/
+.widget > * {
+	padding:0 15px;
+}
 
+.widget h3 {
+	text-transform:uppercase;
+	background:#EEE;
+	padding:6px 0 2px 15px;
+}
 
+.widget table {
+	width:440px;
+	margin-left:15px;
+}
+
+.widget table, .widget dl {
+	font-size:110%;
+}
+
+.widget table td:first-child {
+	font-weight:700;
+}
 
 /**************************************/
 /*               FOOTER               */
