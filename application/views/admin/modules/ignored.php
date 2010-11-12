@@ -10,15 +10,15 @@
         </tr>
     </thead>
     <tbody>
-    {{#modules}}
+    <?php foreach ($ignored as $module): ?>
         <tr>
-            <td>{{username}}</td>
-            <td>{{name}}</td>
-            <td>{{description}}</td>
+            <td><?php echo HTML::chars($module->username) ?></td>
+            <td><?php echo HTML::chars($module->name) ?></td>
+            <td><?php echo HTML::chars($module->description) ?></td>
             <td align="center">
-                <a href="http://github.com/{{username}}/{{name}}">GitHub</a>
+                <?php echo HTML::anchor("http://github.com/$module->username/$module->name", 'GitHub') ?>
             </td>
         </tr>
-    {{/modules}}
+    <?php endforeach ?>
     </tbody>
 </table>

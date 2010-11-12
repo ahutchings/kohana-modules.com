@@ -13,17 +13,31 @@ class Controller_Admin_Modules extends Controller_Admin
     
     public function action_queue()
     {
-        echo new View_Admin_Modules_Queue;
+        $this->template->title = 'Approval Queue | Modules | ';
+        $this->template->content = View::factory('admin/modules/queue')
+            ->bind('results', $results);
+
+        $results = ORM::factory('searchresult')->find_all();
     }
 
     public function action_ignored()
     {
-        echo new View_Admin_Modules_Ignored;
+        $this->template->title = 'Ignored | Modules | ';
+        $this->template->content = View::factory('admin/modules/ignored')
+            ->bind('ignored', $ignored);
+
+        $ignored = ORM::factory('ignored')->find_all();
     }
     
     public function action_pending_deletion()
     {
-        echo new View_Admin_Modules_PendingDeletion;
+        $this->template->title = 'Pending Deletion | Modules | ';
+        $this->template->content = View::factory('admin/modules/pendingdeletion')
+            ->bind('modules', $modules);
+
+        $modules = ORM::factory('module')
+            ->where('flagged_for_deletion_at', 'IS NOT', NULL)
+            ->find_all();
     }
     
     public function action_add()

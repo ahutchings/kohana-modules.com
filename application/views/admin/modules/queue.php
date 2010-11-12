@@ -25,17 +25,17 @@
         </tr>
     </thead>
     <tbody>
-    {{#search_results}}
+    <?php foreach ($results as $module): ?>
         <tr>
-            <td>{{username}}</td>
-            <td>{{name}}</td>
-            <td>{{description}}</td>
+            <td><?php echo HTML::chars($module->username) ?>}</td>
+            <td><?php echo HTML::chars($module->name) ?></td>
+            <td><?php echo HTML::chars($module->description) ?></td>
             <td align="center">
-                <a href="http://github.com/{{username}}/{{name}}">GitHub</a>
-                <a href="/admin/modules/add?username={{username}}&amp;name={{name}}">Add</a>
-                <a href="/admin/modules/ignore?username={{username}}&amp;name={{name}}&amp;from=search">Ignore</a>
+                <a href="http://github.com/<?php echo HTML::chars($module->username) ?>/<?php echo HTML::chars($module->name) ?>">GitHub</a>
+                <a href="/admin/modules/add?username=<?php echo HTML::chars($module->username) ?>&amp;name=<?php echo HTML::chars($module->name) ?>">Add</a>
+                <a href="/admin/modules/ignore?username=<?php echo HTML::chars($module->username) ?>&amp;name=<?php echo HTML::chars($module->name) ?>&amp;from=search">Ignore</a>
             </td>
         </tr>
-    {{/search_results}}
+    <?php endforeach ?>
     </tbody>
 </table>

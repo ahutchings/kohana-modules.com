@@ -21,9 +21,10 @@
   <div class="container">
       
     <div id="header" class="span-24">
-        <div class="span-7">
-            <h1><a href="/"><?php echo $_SERVER['SERVER_NAME'] ?></a></h1>
+        <div class="span-8">
+            <h1><a href="/admin"><?php echo $_SERVER['SERVER_NAME'] ?></a></h1>
             <div id="user-navigation">
+                <a href="/">site</a>
                 <a href="/user/logout">logout</a>
             </div>
         </div>
