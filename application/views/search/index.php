@@ -1,21 +1,21 @@
 <h3>Exact matches</h3>
+
 <ul id="exact-matches">
-{{#exact}}
     <li>
-        <a href="/modules/{{username}}/{{name}}">{{name}}</a>
+        <?php echo HTML::anchor("/modules/$exact->username/$exact->name", $exact->name) ?>
         <br />
-        {{description}}
+        <?php echo HTML::chars($exact->description) ?>
     </li>
-{{/exact}}
 </ul>
 
 <h3>Fuzzy matches</h3>
+
 <ul id="fuzzy-matches">
-{{#fuzzy}}
+<?php foreach ($fuzzy as $module): ?>
     <li>
-        <a href="/modules/{{username}}/{{name}}">{{name}}</a>
+        <?php echo HTML::anchor("/modules/$module->username/$module->name", $module->name) ?>
         <br />
-        {{description}}
+        <?php echo HTML::chars($module->description) ?>
     </li>
-{{/fuzzy}}
+<?php endforeach ?>
 </ul>
