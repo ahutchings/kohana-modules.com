@@ -37,6 +37,14 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 //-- Configuration and initialization -----------------------------------------
 
 /**
+* Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
+*/
+if (getenv('KOHANA_ENV') !== FALSE)
+{
+    Kohana::$environment = getenv('KOHANA_ENV');
+}
+
+/**
  * Initialize Kohana, setting the default options.
  *
  * The following options are available:
@@ -52,6 +60,8 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
 Kohana::init(array(
     'base_url'   => '/',
     'index_file' => FALSE,
+    'profile'    => Kohana::$environment !== Kohana::PRODUCTION,
+    'caching'    => Kohana::$environment === Kohana::PRODUCTION,
 ));
 
 /**
@@ -72,12 +82,12 @@ Kohana::modules(array(
     'database'   => MODPATH.'database',   // Database access
     'orm'        => MODPATH.'orm',        // Object Relationship Mapping
     'pagination' => MODPATH.'pagination', // Paging of results
-    'notices'  => MODPATH.'notices',
-    'yform'    => MODPATH.'yform',
-    'github'   => MODPATH.'github',
-    'cron'     => MODPATH.'cron',
-    'sitemap'  => MODPATH.'sitemap',
-    'cache'    => MODPATH.'cache',
+    'notices'    => MODPATH.'notices',
+    'yform'      => MODPATH.'yform',
+    'github'     => MODPATH.'github',
+    'cron'       => MODPATH.'cron',
+    'sitemap'    => MODPATH.'sitemap',
+    'cache'      => MODPATH.'cache',
     ));
 
 /**
