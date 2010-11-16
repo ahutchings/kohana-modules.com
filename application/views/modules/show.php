@@ -39,7 +39,9 @@
   /**
     * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
     */
+  <?php if (Kohana::$environment !== Kohana::PRODUCTION): ?>
   var disqus_developer = true;
+  <?php endif ?>
   (function() {
    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
    dsq.src = 'http://kohana-modules.disqus.com/embed.js';
