@@ -109,6 +109,12 @@ Route::set('pages', 'pages/<page>',
         'controller' => 'pages',
         'action'     => 'display',
     ));
+
+Route::set('modules_by_username', 'modules/<username>')
+    ->defaults(array(
+        'controller' => 'modules',
+        'action'     => 'by_username',
+    ));
  
 Route::set('modules_show', 'modules/<username>/<name>')
     ->defaults(array(

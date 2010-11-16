@@ -32,4 +32,28 @@ class Controller_Modules extends Controller_Template
         
         $this->request->redirect('pages/suggest');
     }
+    
+    public function action_by_username($username)
+    {
+        $this->template->title = $username.' | ';
+        $this->template->content = View::factory('website/index')
+            ->bind('modules', $modules)
+            ->bind('pagination', $pagination);
+
+        $count = DB::select(DB::expr('COUNT(*) AS count'))
+            ->from('modules')
+            ->where('username', '=', $username)
+            ->execute()
+            ->get('count');
+
+        $pagination = Pagination::factory(array(
+            'total_items' => $count,
+            ));
+
+        $modules = ORM::factory('module')
+            ->where('username', '=', $username)
+            ->limit($pagination->items_per_page)
+            ->offset($pagination->offset)
+            ->find_all();
+    }
 }
