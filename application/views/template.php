@@ -14,6 +14,7 @@
   <![endif]-->
   <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
 
+  <?php if (Kohana::$environment === Kohana::PRODUCTION): ?>
   <script type="text/javascript">
 
     var _gaq = _gaq || [];
@@ -27,6 +28,7 @@
     })();
 
   </script>
+  <?php endif ?>
 
 </head>
 
