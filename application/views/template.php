@@ -133,7 +133,9 @@
             <li><a href="/pages/feedback">Feedback</a></li>
         </ul>
 
-        <p class="span-10 last" id="footnote">Indexing <b>11,201</b> Kohana modules. Built with Kohana 3.x.</p>
+        <p class="span-10 last" id="footnote">
+            Indexing <b><?php echo ORM::factory('module')->count_all() ?></b> Kohana modules. Built with Kohana <?php echo Kohana::VERSION ?>.
+        </p>
     </div><!-- end #footer -->
 
   </div> <!-- end .container -->
