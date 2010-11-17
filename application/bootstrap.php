@@ -85,9 +85,9 @@ Kohana::modules(array(
     'notices'    => MODPATH.'notices',
     'yform'      => MODPATH.'yform',
     'github'     => MODPATH.'github',
-    'cron'       => MODPATH.'cron',
     'sitemap'    => MODPATH.'sitemap',
     'cache'      => MODPATH.'cache',
+    'cron-controller' => MODPATH.'cron-controller',
     ));
 
 /**
@@ -127,20 +127,6 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
         'controller' => 'website',
         'action'     => 'index',
     ));
-
-/**
- * Define Crontab listings.
- */
-Cron::set('import_new_modules', array('@daily', 'Cron_Jobs::import_new_modules'));
-Cron::set('refresh_metadata', array('@daily', 'Cron_Jobs::refresh_metadata'));
-Cron::set('fetch_search_results', array('@weekly', 'Cron_Jobs::fetch_search_results'));
-Cron::set('prune_search_results', array('@daily', 'Cron_Jobs::prune_search_results'));
-Cron::set('flag_deleted_modules', array('@weekly', 'Cron_Jobs::flag_deleted_modules'));
-
-/**
- * Run Cron.
- */
-Cron::run();
 
 if ( ! defined('SUPPRESS_REQUEST'))
 {

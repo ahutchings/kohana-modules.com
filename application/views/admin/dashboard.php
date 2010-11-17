@@ -22,6 +22,7 @@
 <div class="span-12 last widget">
 
     <h3>Newest Modules</h3>
+
     <table>
         <tbody>
         <?php foreach ($newest as $module): ?>
@@ -37,28 +38,8 @@
 
 <div class="span-11 colborder widget">
 
-    <h3>Cron</h3>
-    
-    <table>
-        <tbody>
-        <?php foreach (Cron_Helper::get_jobs() as $job): ?>
-            <tr>
-                <td><?php echo $job['name'] ?></td>
-                <td>
-                    <?php echo $job['time_span']['hours'] ?> hours,
-                    <?php echo $job['time_span']['minutes'] ?> minutes,
-                    <?php echo $job['time_span']['seconds'] ?> seconds
-                </td>
-            </tr>
-        <?php endforeach ?>
-        </tbody>
-    </table>
-
-</div>
-
-<div class="span-12 last widget">
-
     <h3>Recently Updated</h3>
+
     <table>
         <tbody>
         <?php foreach ($recently_updated as $module): ?>

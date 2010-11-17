@@ -1,14 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-/**
- * Class container for static Cron jobs.
- */
-class Cron_Jobs
+class Controller_Cron extends Kohana_Controller_Cron
 {
     /**
      * Imports new repositories from the master module repository.
      */
-    public static function import_new_modules()
+    public function action_import_new_modules()
     {
         $url     = "https://github.com/ahutchings/kohana-modules/raw/master/.gitmodules";
         $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
@@ -42,7 +39,7 @@ class Cron_Jobs
     /**
      * Flags modules that have been removed from GitHub.
      */
-    public static function flag_deleted_modules()
+    public function action_flag_deleted_modules()
     {
         foreach (ORM::factory('module')->find_all() as $module)
         {
@@ -64,7 +61,7 @@ class Cron_Jobs
     /**
      * Refreshes local repository metadata from GitHub.
      */
-    public static function refresh_metadata()
+    public function action_refresh_metadata()
     {
         // select 30 jobs with oldest metadata
         $modules = ORM::factory('module')
@@ -85,7 +82,7 @@ class Cron_Jobs
     /**
      * Fetches search results from GitHub and stores them locally.
      */
-    public static function fetch_search_results()
+    public function action_fetch_search_results()
     {
         $repositories = Github::instance()
             ->getRepoApi()
@@ -151,7 +148,7 @@ class Cron_Jobs
     /**
      * Delete search results that have been added to the module index.
      */
-    public static function prune_search_results()
+    public function action_prune_search_results()
     {
         $modules = ORM::factory('module')->find_all();
         

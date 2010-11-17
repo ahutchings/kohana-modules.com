@@ -22,9 +22,6 @@
 [submodule "modules/github"]
 	path = modules/github
 	url = git://github.com/ahutchings/kohana-github.git
-[submodule "modules/cron"]
-	path = modules/cron
-	url = git://github.com/cbandy/kohana-cron.git
 [submodule "modules/sitemap"]
 	path = modules/sitemap
 	url = git://github.com/ThePixelDeveloper/kohana-sitemap.git
