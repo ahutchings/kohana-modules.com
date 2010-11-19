@@ -1,4 +1,8 @@
-<h2><?php echo HTML::chars($module->name) ?></h2>
+<h2>
+    <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
+    /
+    <?php echo HTML::chars($module->name) ?>
+</h2>
 <p><?php echo HTML::chars($module->description) ?></p>
 
     <div class="links">
