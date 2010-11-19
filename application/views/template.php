@@ -76,14 +76,16 @@
    
     <div id="" class="span-24">
         <div class="span-5 colborder">
-            <h3>Most Popular</h3>
+            <h3>Most Watchers</h3>
             
             <ul>
-                <li>Module 1</li>
-                <li>Module 2</li>
-                <li>Module 3</li>
-                <li>Module 4</li>
-                <li>Module 5</li>
+            <?php foreach (ORM::factory('module')->limit(5)->order_by('watchers', 'DESC')->find_all() as $module): ?>
+                <li>
+                    <?php echo HTML::anchor("modules/$module->username", $module->username)
+                        .'/'.HTML::anchor("modules/$module->username/$module->name", $module->name)
+                        .' ('.$module->watchers.')' ?>
+                </li>
+            <?php endforeach ?>
             </ul>
         </div>
         
@@ -91,11 +93,13 @@
             <h3>Recently Added</h3>
             
             <ul>
-                <li>Module 1</li>
-                <li>Module 2</li>
-                <li>Module 3</li>
-                <li>Module 4</li>
-                <li>Module 5</li>
+            <?php foreach (ORM::factory('module')->limit(5)->order_by('created_at', 'DESC')->find_all() as $module): ?>
+                <li>
+                    <?php echo HTML::anchor("modules/$module->username", $module->username)
+                        .'/'.HTML::anchor("modules/$module->username/$module->name", $module->name)
+                        .' ('.Date::fuzzy_span($module->created_at).')' ?>
+                </li>
+            <?php endforeach ?>
             </ul>
         </div>
         
@@ -103,11 +107,13 @@
             <h3>Recently Updated</h3>
             
             <ul>
-                <li>Module 1</li>
-                <li>Module 2</li>
-                <li>Module 3</li>
-                <li>Module 4</li>
-                <li>Module 5</li>
+            <?php foreach (ORM::factory('module')->limit(5)->order_by('updated_at', 'DESC')->find_all() as $module): ?>
+                <li>
+                    <?php echo HTML::anchor("modules/$module->username", $module->username).'/'
+                        .HTML::anchor("modules/$module->username/$module->name", $module->name)
+                        .' ('.Date::fuzzy_span($module->updated_at).')' ?>
+                </li>
+            <?php endforeach ?>
             </ul>
         </div>
         
@@ -115,11 +121,11 @@
             <h3>Most Prolific Authors</h3>
             
             <ul>
-                <li>Module 1</li>
-                <li>Module 2</li>
-                <li>Module 3</li>
-                <li>Module 4</li>
-                <li>Module 5</li>
+            <?php foreach (DB::select('username', DB::expr('COUNT(1) as module_count'))->
+                from('modules')->limit(5)->order_by('module_count', 'DESC')->
+                group_by('username')->as_object()->execute() as $module): ?>
+                <li><?php echo HTML::anchor("modules/$module->username", $module->username).' ('.$module->module_count.')' ?></li>
+            <?php endforeach ?>
             </ul>
         </div>
     </div>
