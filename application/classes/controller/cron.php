@@ -5,14 +5,9 @@ class Controller_Cron extends Kohana_Controller_Cron
     /**
      * Imports new repositories from the master module repository.
      */
-    public function action_import_new_modules()
+    public function action_import_from_master()
     {
-        $url     = "https://github.com/ahutchings/kohana-modules/raw/master/.gitmodules";
-        $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
-
-        $data = Remote::get($url);
-        
-        preg_match_all($pattern, $data, $matches);
+        $matches = $this->fetch_gitmodules("https://github.com/ahutchings/kohana-modules/raw/master/.gitmodules");
         
         for ($i = 0; $i < count($matches[0]); $i++)
         {
@@ -32,6 +27,38 @@ class Controller_Cron extends Kohana_Controller_Cron
                 
                 // throttle API requests
                 sleep(2);
+            }
+        }
+    }
+
+    private function fetch_gitmodules($url)
+    {
+        $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
+
+        $data = Remote::get($url);
+        
+        preg_match_all($pattern, $data, $matches);
+        
+        return $matches;
+    }
+
+    /**
+     * Imports new repositories from kolanos/kohana-universe.
+     */
+    public function action_import_from_universe()
+    {
+        $matches = $this->fetch_gitmodules("https://github.com/kolanos/kohana-universe/raw/master/.gitmodules");
+        
+        for ($i = 0; $i < count($matches[0]); $i++)
+        {
+            $queue = ORM::factory('queue');
+            $queue->username = $matches['username'][$i];
+            $queue->name     = $matches['name'][$i];
+            $queue->source   = $queue::SOURCE_KOHANA_UNIVERSE;
+            
+            if ($queue->check())
+            {
+                $queue->save();
             }
         }
     }
@@ -82,86 +109,48 @@ class Controller_Cron extends Kohana_Controller_Cron
     /**
      * Fetches search results from GitHub and stores them locally.
      */
-    public function action_fetch_search_results()
+    public function action_import_from_search()
     {
-        $repositories = Github::instance()
-            ->getRepoApi()
-            ->search('kohana');
-        
-        $modules = DB::select('username', 'name')
-            ->from('modules')
-            ->execute();
-        
-        $results = self::filter_existing($repositories, $modules);
-        
-        // truncate existing database
-        ORM::factory('searchresult')->delete_all();
-        
-        // insert new rows
-        foreach ($results as $result)
+        for ($i = 1; $i < 10; $i++)
         {
-            $searchresult = ORM::factory('searchresult');
-            $searchresult->values($result);
-            $searchresult->save();
-        }
-    }
-    
-    private static function filter_existing($repositories, $modules)
-    {
-        $repositories_nonassoc = array();
-        $modules_nonassoc = array();
-        
-        foreach ($repositories as $repository)
-        {
-            $repositories_nonassoc[$repository['username'].'/'.$repository['name']] = $repository['description'];
-        }
-        
-        foreach ($modules as $module)
-        {
-            $modules_nonassoc[$module['username'].'/'.$module['name']] = '';
-        }
-        
-        $filtered = array_diff_key($repositories_nonassoc, $modules_nonassoc);
-        
-        return self::reassoc($filtered);
-    }
-    
-    private static function reassoc($array)
-    {
-        $return = array();
-        
-        foreach ($array as $k => $description)
-        {
-            list($username, $name) = explode('/', $k);
+            $results = Github::instance()
+                ->getRepoApi()
+                ->search('kohana', '', $i);
+
+            foreach ($results as $result)
+            {
+                $queue = ORM::factory('queue');
+                $queue->values($result);
+                $queue->source = $queue::SOURCE_GITHUB_SEARCH;
+
+                if ($queue->check())
+                {
+                    $queue->save();   
+                }
+            }
             
-            $return[] = array
-            (
-                'username'    => $username,
-                'name'        => $name,
-                'description' => $description,
-            );
+            // throttle API requests
+            sleep(2);
         }
-        
-        return $return;
     }
     
     /**
      * Delete search results that have been added to the module index.
      */
-    public function action_prune_search_results()
+    public function action_prune_queue()
     {
         $modules = ORM::factory('module')->find_all();
         
         foreach ($modules as $module)
         {
-            $searchresult = ORM::factory('searchresult')
+            $queue = ORM::factory('queue')
                 ->where('username', '=', $module->username)
                 ->where('name', '=', $module->name)
                 ->find();
                 
-            if ($searchresult->loaded())
+            if ($queue->loaded())
             {
-                $searchresult->delete();
+                $queue->delete();
             }
         }
     }

@@ -6,8 +6,8 @@
         <dt>Open Tickets</dt>
         <dd><?php echo $open_tickets ?></dd>
         
-        <dt>New Search Results</dt>
-        <dd><?php echo ORM::factory('searchresult')->count_all() ?></dd>
+        <dt>In Queue</dt>
+        <dd><?php echo ORM::factory('queue')->where('is_ignored', '=', FALSE)->count_all() ?></dd>
         
         <dt>Pending Deletion</dt>
         <dd>

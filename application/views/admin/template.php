@@ -33,13 +33,14 @@
         <ul id="navigation">
           <li class="active"><a href="/admin/dashboard">Dashboard</a></li>
           <li><a href="/admin/modules">Modules</a></li>
-          <li><a href="/admin/modules/queue">Approval Queue</a></li>
-          <li><a href="/admin/modules/ignored">Ignored</a></li>
+          <li><a href="/admin/queue">Approval Queue</a></li>
+          <li><a href="/admin/queue/ignored">Ignored</a></li>
           <li><a href="/admin/modules/pending_deletion">Pending Deletion</a></li>
         </ul>
     </div><!-- end #header -->
     
     <div id="main" class="span-24">
+        <?php echo Notices::display() ?>
         <?php echo $content ?>
     </div><!-- end #main -->
 
