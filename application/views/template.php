@@ -128,7 +128,7 @@
         <ul id="primary-nav" class="span-14">
             <li><a href="/pages/about">About</a></li>
             <li><a href="http://github.com/ahutchings/kohana-modules">Code</a></li>
-            <li><a href="http://twitter.com/kohana-modules">Status</a></li>
+            <li><a href="http://twitter.com/KohanaModules">Status</a></li>
             <li><a href="/pages/suggest">Suggest a Module</a></li>
             <li><a href="/pages/feedback">Feedback</a></li>
         </ul>
