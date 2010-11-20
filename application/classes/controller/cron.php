@@ -66,18 +66,18 @@ class Controller_Cron extends Kohana_Controller_Cron
     /**
      * Flags modules that have been removed from GitHub.
      */
-    public function action_flag_deleted_modules()
+    public function action_flag_deleted()
     {
         foreach (ORM::factory('module')->find_all() as $module)
         {
-            $url = 'http://github.com/'.$username.'/'.$name;
+            $url = 'https://github.com/'.$module->username.'/'.$module->name;
             
-            if (Remote::status($url) == 404)
+            if (Remote::status($url) === 404)
             {
                 DB::update('modules')
                     ->set(array('flagged_for_deletion_at' => time()))
-                    ->where('username', '=', $username)
-                    ->where('name', '=', $name); 
+                    ->where('username', '=', $module->username)
+                    ->where('name', '=', $module->name); 
             }
             
             // throttle HEAD requests
