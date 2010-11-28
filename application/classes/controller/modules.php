@@ -13,26 +13,7 @@ class Controller_Modules extends Controller_Template
         $this->template->content = View::factory('modules/show')
             ->bind('module', $module);
     }
-    
-    public function action_process_suggest()
-    {
-        $post = Validate::factory($_POST)
-            ->filter(TRUE, 'trim')
-            ->rule('github_url', 'not_empty')
-            ->rule('github_url', 'url');
-            
-        if ($post->check())
-        {
-            // @todo create issue in kohana-modules repository
 
-            Notices::add('success', "Your message has been received");
-        }
-
-        Notices::add('error', implode('<br />', $post->errors('validate')));
-        
-        $this->request->redirect('pages/suggest');
-    }
-    
     public function action_by_username($username)
     {
         $this->template->title = $username.' | ';
