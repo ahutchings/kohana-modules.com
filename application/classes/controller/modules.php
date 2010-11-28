@@ -16,18 +16,24 @@ class Controller_Modules extends Controller_Template
 
     public function action_by_username($username)
     {
+        $count = DB::select(DB::expr('COUNT(*) AS count'))
+            ->from('modules')
+            ->where('username', '=', $username)
+            ->execute()
+            ->get('count');
+            
+        if ($count == 0)
+        {
+            throw new Kohana_Request_Exception("No modules found for :username",
+                array(':username' => $username));
+        }
+        
         $this->template->title = $username.' | ';
         $this->template->content = View::factory('modules/by_username')
             ->bind('count', $count)
             ->set('username', $username)
             ->bind('modules', $modules)
             ->bind('pagination', $pagination);
-
-        $count = DB::select(DB::expr('COUNT(*) AS count'))
-            ->from('modules')
-            ->where('username', '=', $username)
-            ->execute()
-            ->get('count');
 
         $pagination = Pagination::factory(array(
             'total_items' => $count,

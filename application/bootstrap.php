@@ -134,8 +134,28 @@ if ( ! defined('SUPPRESS_REQUEST'))
      * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
      * If no source is specified, the URI will be automatically detected.
      */
-    echo Request::instance()
-        ->execute()
-        ->send_headers()
-        ->response;
+    $request = Request::instance();
+    
+    try
+    {
+        $request->execute();
+    }
+    catch (Exception $e)
+    {
+        if (Kohana::$environment !== Kohana::PRODUCTION)
+        {
+            throw $e;
+        }
+        
+        // Log the error
+        Kohana::$log->add(Kohana::ERROR, Kohana::exception_text($e));
+
+        // Create a 404 response
+        $request->status = 404;
+        $request->response = View::factory('template')
+            ->set('title', '404 | ')
+            ->set('content', View::factory('errors/404'));
+    }
+        
+    echo $request->send_headers()->response;
 }
