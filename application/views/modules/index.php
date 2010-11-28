@@ -1,19 +1,17 @@
-<h2>Search Results</h2>
-
 <div id="modules">
     <?php foreach ($modules as $module): ?>
     <div class="module clearfix">
-
+        
         <div class="span-12">
             <h2>
                 <span class="username">
-                    <?php echo HTML::anchor("modules/$module->username", Text::highlight($module->username, $_GET['query'])) ?>
+                    <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
                 </span>
                 /
-                <?php echo HTML::anchor("modules/$module->username/$module->name", Text::highlight($module->name, $_GET['query'])) ?>
+                <?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?>
             </h2>
 
-            <p><?php echo Text::highlight(Text::widont(HTML::chars($module->description)), $_GET['query']) ?></p>
+            <p><?php echo Text::widont(HTML::chars($module->description)) ?></p>
         </div>
 
         <div class="span-4 last">
@@ -23,6 +21,6 @@
 
     </div>
     <?php endforeach ?>
-
+    
     <?php echo $pagination->render() ?>
 </div>

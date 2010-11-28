@@ -23,7 +23,7 @@ class Model_Module extends ORM
         if ($name == 'tags_array')
         {
             $tags = explode(':', $this->tags);
-            sort($tags);
+            rsort($tags);
             return array_filter($tags);
         }
         

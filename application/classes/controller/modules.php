@@ -36,7 +36,9 @@ class Controller_Modules extends Controller_Template
     public function action_by_username($username)
     {
         $this->template->title = $username.' | ';
-        $this->template->content = View::factory('website/index')
+        $this->template->content = View::factory('modules/by_username')
+            ->bind('count', $count)
+            ->set('username', $username)
             ->bind('modules', $modules)
             ->bind('pagination', $pagination);
 
@@ -54,6 +56,7 @@ class Controller_Modules extends Controller_Template
             ->where('username', '=', $username)
             ->limit($pagination->items_per_page)
             ->offset($pagination->offset)
+            ->order_by('watchers', 'DESC')
             ->find_all();
     }
 }

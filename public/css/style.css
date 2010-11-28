@@ -1,11 +1,3 @@
-/*************************************
-   WELCOME TO THE CUSTOM STYLESHEET
---------------------------------------
-              style.css
-        BlueTrip CSS Framework
-    Put your custom styles in here.
-***************************************/
-
 /**************************************/
 /*           COLOR SCHEME             */
 /**************************************
@@ -20,6 +12,10 @@
 /**************************************/
 /*              GLOBALS               */
 /**************************************/
+body {
+	margin:0;
+}
+
 a[href^="http:"] {
 	background-image:none;
 	padding-right:0;
@@ -29,26 +25,45 @@ a[href^="http:"]:visited {
 	background-image:none;
 }
 
-/**************************************/
-/*              HEADER                */
-/**************************************/
-h1 a, h1 a:visited {
+a:link, a:visited {
+	color:DarkRed;
 	text-decoration:none;
 }
 
+/**************************************/
+/*              HEADER                */
+/**************************************/
+#header {
+	background:#000;
+	color:#FFF;
+	margin-bottom:5em;
+	padding:20px 20px 0;
+}
+
+#header h1 {
+	margin-top:0;
+	font-family:Rockwell,Arial,sans-serif;
+	letter-spacing:-2px;
+}
+
+#header h1 a {
+	color:#FFF;
+}
+
+#header p {
+	margin-bottom:0;
+}
+
+#header p span {
+	font-weight:bold;
+	font-size:120%;
+}
 
 /**************************************/
 /*             NAVIGATION             */
 /**************************************/
 #primary-nav {
-	margin-left:0;
-	font-size:120%;
-	font-weight:bold;
-}
-
-#primary-nav a {
-	text-decoration:none;
-}
+	margin-left:0;}
 
 #primary-nav li {
 	display:inline;
@@ -62,27 +77,110 @@ h1 a, h1 a:visited {
 /**************************************/
 /*            MAIN CONTENT            */
 /**************************************/
-div.module h2 {
+div.module {
+	border-bottom:1px dotted #DDD;
+	margin-bottom:1.2em;
+	padding-bottom:0.5em;
+}
+
+.module h2 {
+	color:#CCC;
 	margin-bottom:.15em;
+	margin-top:0;
 }
 
-div.module h2 a {
+.module h2 .username {
+	font-size:75%;
+}
+
+.bubble {
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	background:#EEE;
+	margin-right:4px;
+	text-align:center;
+	padding:10px 0 5px 0;
+}
+
+.bubble span {
+	display:block;
+	font-size:140%;
+	font-weight:bold;
+}
+
+#sidebar > div h3 {
+	margin-top:0;
+}
+
+#sidebar .name {
+	font-weight:bold;
+}
+
+#modules>div:last-of-type {
+	margin-bottom:5em;
+}
+
+p.pagination {
+	text-align:center;
+}
+
+p.pagination a {
 	text-decoration:none;
+	background:#EEE;
+	border:1px solid #DDD;
+	padding:3px 6px;
+	-moz-border-radius:3px;
 }
 
-#popular-tags ul {
+.pagination strong {
+	padding:3px 6px;
+	font-weight:bolder;
+}
+
+.pagination .prev {
+	margin-right:20px;
+}
+
+.pagination .next {
+	margin-left:20px;
+}
+
+#main {
+	margin-bottom:3em;
+}
+
+#main h2 {
+	margin-top:0;
+}
+
+.developer-info {
+	margin-bottom:3em;
+}
+
+h3.module-heading {
+	margin-bottom:1em;
+	color:#888;
+}
+
+h3.module-heading span {
+	color:#000;
+	font-size:120%;
+}
+
+#sidebar ol {
+	color:#BBB;
 	list-style-type:none;
 	margin-left:0;
 }
 
-#popular-tags ul li {
-	margin-left:0;
-	border-bottom:1px solid #DDD;
-	line-height:2em;
+#sidebar ol li {
+	border-bottom:1px dotted #DDD;
+	margin-bottom:.6em;
 }
 
-#popular-tags a {
-	text-decoration:none;
+#sidebar > div {
+	margin-bottom:4em;
 }
 
 /**************************************/
@@ -95,4 +193,14 @@ div.module h2 a {
 #footnote {
 	float:right;
 	text-align:right;
+}
+
+#footer {
+	background:#F2F2F2;
+	padding:20px 20px 0;
+	margin:0 auto;
+}
+
+#footer a {
+	font-weight:bold;
 }
