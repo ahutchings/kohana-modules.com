@@ -8,6 +8,12 @@ class Controller_Modules extends Controller_Template
             ->where('username', '=', $username)
             ->where('name', '=', $name)
             ->find();
+            
+        if ( ! $module->loaded())
+        {
+            throw new Kohana_Request_Exception('Module :username/:name not found',
+                array(':username' => $username, ':name' => $name));
+        }
         
         $this->template->title   = $module->username.'/'.$module->name.' | ';
         $this->template->content = View::factory('modules/show')
@@ -24,7 +30,7 @@ class Controller_Modules extends Controller_Template
             
         if ($count == 0)
         {
-            throw new Kohana_Request_Exception("No modules found for :username",
+            throw new Kohana_Request_Exception('No modules found for :username',
                 array(':username' => $username));
         }
         
