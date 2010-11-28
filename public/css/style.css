@@ -59,6 +59,26 @@ a:link, a:visited {
 	font-size:120%;
 }
 
+#search form div {
+	float:left;
+}
+
+#query {
+	width:194px;
+	padding:0.3em 0.14em 0.38em 0.15em;
+}
+
+#search-button {
+	margin-right:0;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	height:25px;
+}
+
 /**************************************/
 /*             NAVIGATION             */
 /**************************************/

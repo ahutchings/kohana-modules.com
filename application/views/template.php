@@ -48,7 +48,7 @@
                     $form = YForm::factory();
                     echo $form->open('search', array('method' => 'get')),
                         $form->text('query')->set_label(''),
-                        $form->button('search')->set_label('Search'),
+                        $form->button('search-button')->set_label('Search'),
                         $form->close();
                 ?>
             </div>
