@@ -4,7 +4,7 @@
 
 <head>
 
-  <title><?php echo HTML::chars($title) ?>kohana-modules.com</title>
+  <title><?php echo HTML::chars($title), Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
@@ -39,7 +39,7 @@
         <div id="header" class="clearfix">
             <div class="container">
                 <div class="span-17">
-                    <h1><a href="/">kohana-modules.com</a></h1>
+                    <h1><a href="/"><?php echo Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></a></h1>
                     <p>Indexing <span><?php echo ORM::factory('module')->count_all() ?></span> modules from
                         <span><?php echo DB::query(Database::SELECT, 'SELECT DISTINCT username FROM modules')->execute()->count() ?></span>
                         developers.</p>

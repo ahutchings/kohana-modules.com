@@ -4,7 +4,7 @@
 
 <head>
 
-  <title><?php echo HTML::chars($title) ?>Admin | KohanaModules.com</title>
+  <title><?php echo HTML::chars($title) ?>Admin | <?php echo Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
@@ -22,7 +22,7 @@
       
     <div id="header" class="span-24">
         <div class="span-8">
-            <h1><a href="/admin"><?php echo $_SERVER['SERVER_NAME'] ?></a></h1>
+            <h1><a href="/admin"><?php echo Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></a></h1>
             <div id="user-navigation">
                 <a href="/">site</a>
                 <a href="/user/logout">logout</a>
