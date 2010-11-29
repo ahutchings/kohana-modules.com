@@ -60,6 +60,11 @@ a:hover {
 	color:#FFF;
 }
 
+#header h1 a:hover {
+	border:none;
+	padding-bottom:0.1em;
+}
+
 #header p {
 	margin-bottom:0;
 }
