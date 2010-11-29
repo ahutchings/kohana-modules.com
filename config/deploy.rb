@@ -24,11 +24,6 @@ ssh_options[:forward_agent] = true # Use local keys
 # --------------------------------------------
 # Tasks
 # --------------------------------------------
-
-task :uname do
-  run "uname -a"
-end
-
 namespace :deploy do
     task :start do ; end
     task :restart do ; end
