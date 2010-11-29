@@ -15,7 +15,7 @@ class Controller_Modules extends Controller_Template
                 array(':username' => $username, ':name' => $name));
         }
         
-        $this->template->title   = $module->username.'/'.$module->name.' | ';
+        $this->template->title   = $module->username.'/'.$module->name.' - ';
         $this->template->content = View::factory('modules/show')
             ->bind('module', $module);
     }
@@ -34,7 +34,7 @@ class Controller_Modules extends Controller_Template
                 array(':username' => $username));
         }
         
-        $this->template->title = $username.' | ';
+        $this->template->title = $username.' - ';
         $this->template->content = View::factory('modules/by_username')
             ->bind('count', $count)
             ->set('username', $username)

@@ -4,7 +4,7 @@ class Controller_Admin_Queue extends Controller_Admin
 {
     public function action_index()
     {
-        $this->template->title = 'Approval Queue | Modules | ';
+        $this->template->title = 'Approval Queue - Modules - ';
         $this->template->content = View::factory('admin/modules/queue')
             ->bind('search', $search)
             ->bind('universe', $universe);
@@ -22,7 +22,7 @@ class Controller_Admin_Queue extends Controller_Admin
 
     public function action_ignored()
     {
-        $this->template->title = 'Ignored | Modules | ';
+        $this->template->title = 'Ignored - Modules - ';
         $this->template->content = View::factory('admin/modules/ignored')
             ->bind('ignored', $ignored);
 

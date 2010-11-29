@@ -12,7 +12,7 @@ class Controller_Pages extends Controller_Template
             'suggest'  => 'Suggest a module',
         );
         
-        $this->template->title = $titles[$page].' | ';
+        $this->template->title = $titles[$page].' - ';
         $this->template->content = View::factory("pages/$page");
     }
 }

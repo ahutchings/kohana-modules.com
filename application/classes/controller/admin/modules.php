@@ -4,7 +4,7 @@ class Controller_Admin_Modules extends Controller_Admin
 {
     public function action_index()
     {
-        $this->template->title   = 'Modules | ';
+        $this->template->title   = 'Modules - ';
         $this->template->content = View::factory('admin/modules/index')
             ->bind('modules', $modules);
 
@@ -13,7 +13,7 @@ class Controller_Admin_Modules extends Controller_Admin
     
     public function action_pending_deletion()
     {
-        $this->template->title = 'Pending Deletion | Modules | ';
+        $this->template->title = 'Pending Deletion - Modules - ';
         $this->template->content = View::factory('admin/modules/pendingdeletion')
             ->bind('modules', $modules);
 
