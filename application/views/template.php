@@ -34,84 +34,88 @@
 
 <body>
 
-    <div id="header" class="clearfix">
+    <div id="container">
+
+        <div id="header" class="clearfix">
+            <div class="container">
+                <div class="span-17">
+                    <h1><a href="/">kohana-modules.com</a></h1>
+                    <p>Indexing <span><?php echo ORM::factory('module')->count_all() ?></span> modules from
+                        <span><?php echo DB::query(Database::SELECT, 'SELECT DISTINCT username FROM modules')->execute()->count() ?></span>
+                        developers.</p>
+                </div>
+        
+                <div id="search" class="span-7 last">
+                    <?php
+                        $form = YForm::factory();
+                        echo $form->open('search', array('method' => 'get')),
+                            $form->text('query')->set_label('')->set_value(Arr::get($_GET, 'query')),
+                            $form->button('search-button')->set_label('Search'),
+                            $form->close();
+                    ?>
+                </div>
+            </div>
+        </div><!-- end #header -->
+
+      <div id="content" class="container">
+    
+        <div id="main" class="span-16 colborder">
+            <?php echo $content ?>
+        </div><!-- end #main -->
+    
+        <div id="sidebar" class="span-7 last">
+        
+            <div>
+                <h3>Recently Added</h3>
+            
+                <ol>
+                <?php foreach (ORM::factory('module')->limit(5)->order_by('created_at', 'DESC')->find_all() as $module): ?>
+                    <li>
+                        <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>
+                        /
+                        <span class="name"><?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?></span>
+                        <span style="float:right"><?php echo date('d M H:i', $module->created_at) ?></span>
+                    </li>
+                <?php endforeach ?>
+                </ol>
+            </div>
+        
+            <div>
+                <h3>Most Prolific Authors</h3>
+            
+                <ol>
+                <?php foreach (DB::select('username', DB::expr('COUNT(1) as module_count'))->
+                    from('modules')->limit(5)->order_by('module_count', 'DESC')->
+                    group_by('username')->as_object()->execute() as $module): ?>
+                    <li>
+                        <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
+                        <span style="float:right"><?php echo $module->module_count ?> modules</span>
+                    </li>
+                <?php endforeach ?>
+                </ol>
+            </div>
+        
+        </div>
+
+      </div> <!-- end #content -->
+
+      <div id="footer" class="clearfix">
         <div class="container">
-            <div class="span-17">
-                <h1><a href="/">kohana-modules.com</a></h1>
-                <p>Indexing <span><?php echo ORM::factory('module')->count_all() ?></span> modules from
-                    <span><?php echo DB::query(Database::SELECT, 'SELECT DISTINCT username FROM modules')->execute()->count() ?></span>
-                    developers.</p>
-            </div>
-        
-            <div id="search" class="span-7 last">
-                <?php
-                    $form = YForm::factory();
-                    echo $form->open('search', array('method' => 'get')),
-                        $form->text('query')->set_label('')->set_value(Arr::get($_GET, 'query')),
-                        $form->button('search-button')->set_label('Search'),
-                        $form->close();
-                ?>
-            </div>
+          <ul id="primary-nav" class="span-14">
+              <li><a href="/pages/about">About</a></li>
+              <li><a href="http://github.com/ahutchings/kohana-modules">Code</a></li>
+              <li><a href="http://twitter.com/KohanaModules">Status</a></li>
+              <li><a href="/pages/suggest">Suggest a Module</a></li>
+              <li><a href="/pages/feedback">Feedback</a></li>
+          </ul>
+
+          <p class="span-10 last" id="footnote">
+              Powered by <?php echo HTML::anchor('http://kohanaframework.org', 'Kohana') ?> v<?php echo Kohana::VERSION ?>
+          </p>
         </div>
-    </div><!-- end #header -->
+      </div><!-- end #footer -->
 
-  <div class="container">
-    
-    <div id="main" class="span-16 colborder">
-        <?php echo $content ?>
-    </div><!-- end #main -->
-    
-    <div id="sidebar" class="span-7 last">
-        
-        <div>
-            <h3>Recently Added</h3>
-            
-            <ol>
-            <?php foreach (ORM::factory('module')->limit(5)->order_by('created_at', 'DESC')->find_all() as $module): ?>
-                <li>
-                    <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>
-                    /
-                    <span class="name"><?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?></span>
-                    <span style="float:right"><?php echo date('d M H:i', $module->created_at) ?></span>
-                </li>
-            <?php endforeach ?>
-            </ol>
-        </div>
-        
-        <div>
-            <h3>Most Prolific Authors</h3>
-            
-            <ol>
-            <?php foreach (DB::select('username', DB::expr('COUNT(1) as module_count'))->
-                from('modules')->limit(5)->order_by('module_count', 'DESC')->
-                group_by('username')->as_object()->execute() as $module): ?>
-                <li>
-                    <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
-                    <span style="float:right"><?php echo $module->module_count ?> modules</span>
-                </li>
-            <?php endforeach ?>
-            </ol>
-        </div>
-        
-    </div>
-
-  </div> <!-- end .container -->
-
-  <div id="footer" class="clearfix">
-    <div class="container">
-      <ul id="primary-nav" class="span-14">
-          <li><a href="/pages/about">About</a></li>
-          <li><a href="http://github.com/ahutchings/kohana-modules">Code</a></li>
-          <li><a href="http://twitter.com/KohanaModules">Status</a></li>
-          <li><a href="/pages/suggest">Suggest a Module</a></li>
-          <li><a href="/pages/feedback">Feedback</a></li>
-      </ul>
-
-      <p class="span-10 last" id="footnote">
-          Powered by <?php echo HTML::anchor('http://kohanaframework.org', 'Kohana') ?> v<?php echo Kohana::VERSION ?>
-      </p>
-    </div>
-  </div><!-- end #footer -->
+  </div><!-- end #container -->
 
   <script type="text/javascript">
   var disqus_shortname = 'kohana-modules';

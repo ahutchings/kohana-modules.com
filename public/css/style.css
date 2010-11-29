@@ -12,8 +12,9 @@
 /**************************************/
 /*              GLOBALS               */
 /**************************************/
-body {
+html,body {
 	margin:0;
+	height:100%;
 }
 
 a[href^="http:"] {
@@ -37,7 +38,11 @@ a:link, a:visited {
 	background:#000;
 	color:#FFF;
 	margin-bottom:5em;
-	padding:20px 20px 0;
+
+}
+
+#header .container {
+	padding:16px 0 14px;
 }
 
 #header h1 {
@@ -59,8 +64,17 @@ a:link, a:visited {
 	font-size:120%;
 }
 
+#search {
+	margin-top:10px;
+}
+
+#search form {
+	margin-bottom:0;
+}
+
 #search form div {
 	float:left;
+	margin-bottom:0;
 }
 
 #query {
@@ -97,6 +111,17 @@ a:link, a:visited {
 /**************************************/
 /*            MAIN CONTENT            */
 /**************************************/
+#container {
+	position:relative;
+	height:auto !important;
+	height:100%;
+	min-height:100%;
+}
+
+#content {
+	padding-bottom:4em;
+}
+
 div.module {
 	border-bottom:1px dotted #DDD;
 	margin-bottom:1.2em;
@@ -217,8 +242,14 @@ h3.module-heading span {
 
 #footer {
 	background:#F2F2F2;
-	padding:20px 20px 0;
 	margin:0 auto;
+	position:absolute;
+	bottom:0;
+	width:100%;
+}
+
+#footer .container {
+	padding:20px 20px 0;
 }
 
 #footer a {
