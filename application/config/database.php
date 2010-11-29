@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
-return array
+$config = array
 (
     'default' => array
     (
@@ -29,3 +29,29 @@ return array
         'profiling'    => TRUE,
     ),
 );
+
+if (Kohana::$environment === Kohana::PRODUCTION)
+{
+    return $config;
+}
+elseif (Kohana::$environment === Kohana::STAGING)
+{
+    $config['default']['connection']['database'] = 'kohana-modules_staging';
+    $config['default']['connection']['username'] = 'km_staging';
+    $config['default']['connection']['password'] = 'km_staging';
+    
+    return $config;
+}
+elseif (Kohana::$environment === Kohana::DEVELOPMENT)
+{
+    $config['default']['connection']['database'] = 'kohana-modules_development';
+    $config['default']['connection']['username'] = 'km_development';
+    $config['default']['connection']['password'] = 'km_development';
+    
+    return $config;
+}
+else
+{
+    throw new Kohana_Exception('Database config for environment :environment not found',
+        array(':environment' => Kohana::$environment));
+}
