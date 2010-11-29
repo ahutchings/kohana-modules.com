@@ -1,1 +1,1 @@
-set :deploy_to, "/home/andrew/#{domain}"
+set :deploy_to, "/srv/www/#{domain}"

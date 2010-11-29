@@ -33,8 +33,8 @@ namespace :deploy do
     
     namespace :shared_files do
         task :setup do
-            run "#{sudo} mkdir -m 0777 -p #{shared_path}/cache"            
-            run "#{sudo} mkdir -m 0777 -p #{shared_path}/logs"
+            run "mkdir -m 0777 -p #{shared_path}/cache"            
+            run "mkdir -m 0777 -p #{shared_path}/logs"
         end
         
         task :symlink do
