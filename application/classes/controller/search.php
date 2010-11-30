@@ -4,7 +4,7 @@ class Controller_Search extends Controller_Template
 {
     public function action_index()
     {
-        $this->template->title   = "Search for \"{$_GET['query']}\" | ";
+        $this->template->title   = "Search for \"{$_GET['query']}\" - ";
         $this->template->content = View::factory('search/index')
             ->bind('pagination', $pagination)
             ->bind('modules', $modules);
