@@ -54,7 +54,7 @@ class Controller_Cron extends Kohana_Controller_Cron
             $queue = ORM::factory('queue');
             $queue->username = $matches['username'][$i];
             $queue->name     = $matches['name'][$i];
-            $queue->source   = $queue::SOURCE_KOHANA_UNIVERSE;
+            $queue->source   = Model_Queue::SOURCE_KOHANA_UNIVERSE;
             
             if ($queue->check())
             {
@@ -121,7 +121,7 @@ class Controller_Cron extends Kohana_Controller_Cron
             {
                 $queue = ORM::factory('queue');
                 $queue->values($result);
-                $queue->source = $queue::SOURCE_GITHUB_SEARCH;
+                $queue->source = Model_Queue::SOURCE_GITHUB_SEARCH;
 
                 if ($queue->check())
                 {
