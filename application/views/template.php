@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/css/ie.css" type="text/css" media="screen, projection" />
   <![endif]-->
   <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
+  <link rel="alternate" href="http://feeds.feedburner.com/KohanaModules" type="application/rss+xml" title="kohana-modules.com - Recently Added Modules" />
 
   <?php if (Kohana::$environment === Kohana::PRODUCTION): ?>
   <script type="text/javascript">
@@ -94,7 +95,18 @@
                 <?php endforeach ?>
                 </ol>
             </div>
+
+            <div>
+                <h3>Subscribe</h3>
         
+                <p><a href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
+                    type="application/rss+xml"><img
+                    src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt=""
+                    style="vertical-align:middle;border:0"/></a>&nbsp;<a
+                    href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
+                    type="application/rss+xml">Subscribe via RSS</a></p>
+            </div>
+
         </div>
 
       </div> <!-- end #content -->
