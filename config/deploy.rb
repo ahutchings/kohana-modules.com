@@ -51,27 +51,31 @@ end
 
 namespace :job do
     task :flag_deleted do
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/flag_deleted"
+        run_job("flag_deleted")
     end
     
     task :import_from_master do
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/import_from_master"
+        run_job("import_from_master")
     end
 
     task :import_from_search do
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/import_from_search"
+        run_job("import_from_search")
     end
     
     task :import_from_universe do
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/import_from_universe"
+        run_job("import_from_universe")
     end
     
     task :prune_queue do
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/prune_queue"
+        run_job("prune_queue")
     end
     
     task :refresh_metadata do
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/refresh_metadata"
+        run_job("refresh_metadata")
+    end
+    
+    def run_job(job)
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/#{job}"
     end
 end
 
