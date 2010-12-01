@@ -11,7 +11,7 @@ class Controller_User extends Controller_Template
     
     public function action_login()
     {
-        $this->template->title   = 'Login | ';
+        $this->template->title   = 'Login - ';
         $this->template->content = View::factory('user/login')
             ->bind('form', $form);
 
