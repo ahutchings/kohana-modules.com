@@ -49,6 +49,32 @@ namespace :deploy do
     end
 end
 
+namespace :job do
+    task :flag_deleted do
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/flag_deleted"
+    end
+    
+    task :import_from_master do
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/import_from_master"
+    end
+
+    task :import_from_search do
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/import_from_search"
+    end
+    
+    task :import_from_universe do
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/import_from_universe"
+    end
+    
+    task :prune_queue do
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/prune_queue"
+    end
+    
+    task :refresh_metadata do
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/refresh_metadata"
+    end
+end
+
 after "deploy:setup", "deploy:shared_files:setup"
 after "deploy:symlink", "deploy:shared_files:symlink"
 after :deploy, 'deploy:cleanup' # Remove old releases
