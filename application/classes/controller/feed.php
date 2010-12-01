@@ -2,6 +2,11 @@
 
 class Controller_Feed extends Controller
 {
+    public function before()
+    {
+        $this->request->headers['Content-Type'] = 'application/rss+xml; charset=utf-8';
+    }
+    
     public function action_index()
     {
         return $this->action_recently_added();
