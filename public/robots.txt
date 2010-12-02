@@ -4,3 +4,5 @@ Disallow: /user/
 Disallow: /css/
 Disallow: /images/
 Allow: /
+
+Sitemap: http://kohana-modules.com/sitemap.xml

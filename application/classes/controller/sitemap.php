@@ -6,27 +6,64 @@ class Controller_Sitemap extends Controller
     {
         $cache = Cache::instance();
 
-        if (($response = $cache->get('sitemap')) === NULL)
+        if ( ! $response = $cache->get('sitemap', FALSE))
         {
-            $sitemap = new Sitemap;
+            $response = $this->_generate_sitemap();
 
-            foreach (ORM::factory('module')->find_all() as $module)
-            {
-                $url = new Sitemap_URL;
-
-                $url->set_loc(url::site("modules/$module->username/$module->name", TRUE))
-                    ->set_last_mod($module->updated_at)
-                    ->set_change_frequency('weekly')
-                    ->set_priority(1);
-
-                $sitemap->add($url);
-            }
-
-            $response = $sitemap->render();
-
-            $cache->set('sitemap', $response, 86400);
+            $cache->set('sitemap', $response, Date::DAY);
         }
         
         echo $response;
+    }
+    
+    private function _generate_sitemap()
+    {
+        $sitemap = new Sitemap;
+
+        $url = new Sitemap_URL;
+
+        $url->set_loc(url::base(FALSE, TRUE))
+            ->set_priority(1.0);
+
+        $sitemap->add($url);
+
+        // Add primary pages
+        foreach (array('about', 'feedback', 'suggest') as $page)
+        {
+            $url = new Sitemap_URL;
+
+            $url->set_loc(url::site("pages/$page", TRUE))
+                ->set_priority(0.8);
+
+            $sitemap->add($url);
+        }
+
+        // Add module developer pages
+        foreach (DB::select(DB::expr('DISTINCT username'))
+            ->from('modules')->execute()->as_array() as $result)
+        {
+            $url = new Sitemap_URL;
+            
+            $url->set_loc(url::site("modules/".$result['username'], TRUE))
+                ->set_change_frequency('monthly')
+                ->set_priority(0.5);
+            
+            $sitemap->add($url);
+        }
+
+        // Add individual module pages
+        foreach (ORM::factory('module')->find_all() as $module)
+        {
+            $url = new Sitemap_URL;
+
+            $url->set_loc(url::site("modules/$module->username/$module->name", TRUE))
+                ->set_last_mod($module->updated_at)
+                ->set_change_frequency('monthly')
+                ->set_priority(0.5);
+
+            $sitemap->add($url);
+        }
+
+        return $sitemap->render();
     }
 }
