@@ -88,19 +88,23 @@ a:hover {
 }
 
 #query {
-	width:194px;
-	padding:0.3em 0.14em 0.38em 0.15em;
+	border:1px solid #444;
+	background:url("../images/icons/magnifier.png") no-repeat 3px 3px #FFF;
+	font-family:"Liberation Sans",Helvetica,Arial,sans-serif;
+	font-size:12px;
+	width:242px;
+	padding:5px 1.4px 3.8px 24px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 
-#search button {
-	margin-right:0;
-	-webkit-border-top-right-radius: 4px;
-	-webkit-border-bottom-right-radius: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-bottomright: 4px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	height:25px;
+#query.blur {
+	color:#AAA;
+}
+
+#query:focus {
+	outline:0;
 }
 
 /**************************************/

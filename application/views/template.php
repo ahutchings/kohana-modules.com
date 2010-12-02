@@ -14,6 +14,8 @@
   <![endif]-->
   <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
   <link rel="alternate" href="http://feeds.feedburner.com/KohanaModules" type="application/rss+xml" title="kohana-modules.com - Recently Added Modules" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script type="text/javascript" src="/javascripts/jquery.clearinginput.js"></script>
 
   <?php if (Kohana::$environment === Kohana::PRODUCTION): ?>
   <script type="text/javascript">
@@ -51,7 +53,6 @@
                         $form = YForm::factory();
                         echo $form->open('search', array('method' => 'get')),
                             $form->text('query')->set_label('')->set_value(Arr::get($_GET, 'query')),
-                            $form->submit('')->set_label('Search'),
                             $form->close();
                     ?>
                 </div>
@@ -135,6 +136,10 @@
     s.src = 'http://disqus.com/forums/kohana-modules/count.js';
     (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
   }());
+  
+  $(document).ready(function() {
+      $("#query").clearingInput({text: 'Search Kohana Modules...'});
+  });
   </script>
 
 </body>
