@@ -170,6 +170,11 @@ div.module {
 
 #sidebar > div h3 {
 	margin-top:0;
+	margin-right:8px;
+}
+
+#sidebar > div h3 + div {
+	line-height:0;
 }
 
 #sidebar .name {
@@ -240,6 +245,29 @@ h3.module-heading span {
 
 #sidebar > div {
 	margin-bottom:4em;
+}
+
+#subscribe-links {
+	list-style-type:none;
+	margin-left:0;
+}
+
+#subscribe-links li {
+	margin-left:0;
+	background-repeat:no-repeat;
+	margin-bottom:.6em;
+}
+
+#subscribe-links a {
+	padding-left:20px;
+}
+
+#subscribe-links .twitter {
+	background-image:url('/images/icons/twitter.png');
+}
+
+#subscribe-links .feed {
+	background-image:url('/images/icons/feed.png');
 }
 
 /**************************************/

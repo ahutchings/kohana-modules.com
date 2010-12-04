@@ -69,7 +69,7 @@
         
             <div>
                 <h3>Recently Added</h3>
-            
+
                 <ol>
                 <?php foreach (ORM::factory('module')->limit(5)->order_by('created_at', 'DESC')->find_all() as $module): ?>
                     <li>
@@ -98,14 +98,18 @@
             </div>
 
             <div>
-                <h3>Subscribe</h3>
+                <h3>Keep Updated</h3>
         
-                <p><a href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
-                    type="application/rss+xml"><img
-                    src="http://www.feedburner.com/fb/images/pub/feed-icon16x16.png" alt=""
-                    style="vertical-align:middle;border:0"/></a>&nbsp;<a
-                    href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
-                    type="application/rss+xml">Subscribe via RSS</a></p>
+                <ul id="subscribe-links">
+                    <li class="feed">
+                        <a href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
+                            type="application/rss+xml">Subscribe via RSS</a>
+                    </li>
+
+                    <li class="twitter">
+                        <a href="http://twitter.com/KohanaModules">Follow @KohanaModules on Twitter</a>
+                    </li>
+                </ul>
             </div>
 
         </div>
