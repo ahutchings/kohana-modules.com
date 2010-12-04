@@ -6,14 +6,15 @@
 <p><?php echo HTML::chars($module->description) ?></p>
 
     <div class="links">
+        <?php echo HTML::anchor("http://github.com/$module->username/$module->name", 'GitHub', array('class' => 'github')) ?>
         <?php if ($module->homepage): ?>
-            <?php echo HTML::anchor($module->homepage, 'Homepage') ?>
+            <?php echo HTML::anchor($module->homepage, 'Homepage', array('class' => 'homepage')) ?>
         <?php endif ?>
         <?php if ($module->has_wiki): ?>
-            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/wiki", 'Wiki') ?>
+            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/wiki", 'Wiki', array('class' => 'wiki')) ?>
         <?php endif ?>
         <?php if ($module->has_issues): ?>
-            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/issues", "Issues ($module->open_issues)") ?>
+            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/issues", "Issues ($module->open_issues)", array('class' => 'issues')) ?>
         <?php endif ?> 
     </div>
 
