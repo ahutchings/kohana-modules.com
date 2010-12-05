@@ -71,6 +71,11 @@ class Model_Module extends ORM
                 return "https://github.com/$this->username/$this->name/wiki";
             case 'issues':
                 return "https://github.com/$this->username/$this->name/issues";
+            case 'homepage':
+                if (strpos($this->homepage, '://') === FALSE)
+                    return "http://$this->homepage";
+                    
+                return $this->homepage;
             default:
                 return "https://github.com/$this->username/$this->name";
         }

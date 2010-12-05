@@ -8,7 +8,7 @@
     <div class="links">
         <?php echo HTML::anchor($module->url(), 'GitHub', array('class' => 'github')) ?>
         <?php if ($module->homepage): ?>
-            <?php echo HTML::anchor($module->homepage, 'Homepage', array('class' => 'homepage')) ?>
+            <?php echo HTML::anchor($module->url('homepage'), 'Homepage', array('class' => 'homepage')) ?>
         <?php endif ?>
         <?php if ($module->has_wiki): ?>
             <?php echo HTML::anchor($module->url('wiki'), 'Wiki', array('class' => 'wiki')) ?>
