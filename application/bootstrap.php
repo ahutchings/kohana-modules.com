@@ -116,7 +116,10 @@ Route::set('modules_by_username', 'modules/<username>')
         'action'     => 'by_username',
     ));
  
-Route::set('modules_show', 'modules/<username>/<name>')
+Route::set('modules_show', 'modules/<username>/<name>',
+    array(
+        'name' => '[a-zA-Z0-9-\._]++',
+    ))
     ->defaults(array(
         'controller' => 'modules',
         'action'     => 'show',
