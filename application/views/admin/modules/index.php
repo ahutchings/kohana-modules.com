@@ -16,10 +16,10 @@
         <tr>
             <td><?php echo $module->id ?></td>
             <td>
-                <?php echo HTML::anchor("http://github.com/$module->username", $module->username) ?>
+                <?php echo HTML::anchor($module->url('username'), $module->username) ?>
             </td>
             <td>
-                <?php echo HTML::anchor("http://github.com/$module->username/$module->name", $module->name) ?>
+                <?php echo HTML::anchor($module->url(), $module->name) ?>
             </td>
             <td><?php echo HTML::chars($module->description) ?></td>
             <td><?php echo date(Date::$timestamp_format, $module->created_at) ?></td>

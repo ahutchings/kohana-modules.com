@@ -6,22 +6,22 @@
 <p><?php echo HTML::chars($module->description) ?></p>
 
     <div class="links">
-        <?php echo HTML::anchor("http://github.com/$module->username/$module->name", 'GitHub', array('class' => 'github')) ?>
+        <?php echo HTML::anchor($module->url(), 'GitHub', array('class' => 'github')) ?>
         <?php if ($module->homepage): ?>
             <?php echo HTML::anchor($module->homepage, 'Homepage', array('class' => 'homepage')) ?>
         <?php endif ?>
         <?php if ($module->has_wiki): ?>
-            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/wiki", 'Wiki', array('class' => 'wiki')) ?>
+            <?php echo HTML::anchor($module->url('wiki'), 'Wiki', array('class' => 'wiki')) ?>
         <?php endif ?>
         <?php if ($module->has_issues): ?>
-            <?php echo HTML::anchor("http://github.com/$module->username/$module->name/issues", "Issues ($module->open_issues)", array('class' => 'issues')) ?>
+            <?php echo HTML::anchor($module->url('issues'), "Issues ($module->open_issues)", array('class' => 'issues')) ?>
         <?php endif ?> 
     </div>
 
     <div class="authors">
         <h4>Authors</h4>
-        <a href="http://github.com/<?php echo HTML::chars($module->username) ?>"><?php echo HTML::chars($module->username) ?></a>
-        
+        <?php echo HTML::anchor($module->url('username'), $module->username) ?>
+
         <?php echo $module->watchers ?> watchers
         <?php echo $module->forks ?> forks
     </div>
@@ -31,7 +31,7 @@
         <ul>
         <?php foreach ($module->tags_array as $tag): ?>
             <li>
-                <a href="http://github.com/<?php echo HTML::chars($module->username) ?>/<?php echo HTML::chars($module->name) ?>/tree/<?php echo HTML::chars($tag) ?>">
+                <a href="<?php echo $module->url() ?>/tree/<?php echo HTML::chars($tag) ?>">
                     <?php echo HTML::chars($tag) ?>
                 </a>
             </li>

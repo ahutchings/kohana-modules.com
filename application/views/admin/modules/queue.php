@@ -31,7 +31,7 @@
             <td><?php echo HTML::chars($module->name) ?></td>
             <td><?php echo HTML::chars($module->description) ?></td>
             <td align="center">
-                <a href="http://github.com/<?php echo HTML::chars($module->username) ?>/<?php echo HTML::chars($module->name) ?>">GitHub</a>
+                <?php echo HTML::anchor("https://github.com/$module->username/$module->name", 'GitHub') ?>
                 <a href="/admin/queue/ignore/<?php echo $module->id ?>">Ignore</a>
             </td>
         </tr>
@@ -57,7 +57,7 @@
             <td><?php echo HTML::chars($module->name) ?></td>
             <td><?php echo HTML::chars($module->description) ?></td>
             <td align="center">
-                <a href="http://github.com/<?php echo HTML::chars($module->username) ?>/<?php echo HTML::chars($module->name) ?>">GitHub</a>
+                <?php echo HTML::anchor("https://github.com/$module->username/$module->name", 'GitHub') ?>
                 <a href="/admin/queue/ignore/<?php echo $module->id ?>">Ignore</a>
             </td>
         </tr>

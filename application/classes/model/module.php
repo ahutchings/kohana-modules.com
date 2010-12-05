@@ -4,20 +4,20 @@ class Model_Module extends ORM
 {
     protected $_created_column = array('column' => 'created_at', 'format' => TRUE);
     protected $_updated_column = array('column' => 'updated_at', 'format' => TRUE);
-    
+
     protected $_sorting = array('name' => 'ASC');
-    
+
     protected $_rules = array
     (
         'name' => array('not_empty' => array()),
         'user' => array('not_empty' => array()),
     );
-    
+
     protected $_filters = array
     (
         TRUE => array('trim' => array()),
     );
-    
+
     public function __get($name)
     {
         if ($name == 'tags_array')
@@ -53,5 +53,26 @@ class Model_Module extends ORM
         $this->tags = empty($tags) ? NULL : implode(':', $tags);
         
         $this->save();
+    }
+
+    /**
+     * Returns the specified GitHub URL for the module.
+     *
+     * @param   string  URL type
+     * @return  string
+     */
+    public function url($type = NULL)
+    {
+        switch ($type)
+        {
+            case 'username':
+                return "https://github.com/$this->username";
+            case 'wiki':
+                return "https://github.com/$this->username/$this->name/wiki";
+            case 'issues':
+                return "https://github.com/$this->username/$this->name/issues";
+            default:
+                return "https://github.com/$this->username/$this->name";
+        }
     }
 }

@@ -16,7 +16,7 @@
             <td><?php echo HTML::chars($module->name) ?></td>
             <td><?php echo HTML::chars($module->description) ?></td>
             <td align="center">
-                <?php echo HTML::anchor("http://github.com/$module->username/$module->name", 'GitHub') ?>
+                <?php echo HTML::anchor("https://github.com/$module->username/$module->name", 'GitHub') ?>
             </td>
         </tr>
     <?php endforeach ?>
