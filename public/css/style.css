@@ -181,6 +181,15 @@ div.module {
 	font-weight:bold;
 }
 
+#recently-added .title {
+	float:left;
+	max-width:188px;
+	overflow-x:hidden;
+	white-space:nowrap;
+	width:188px;
+	margin-right:10px;
+}
+
 #modules>div:last-of-type {
 	margin-bottom:5em;
 }

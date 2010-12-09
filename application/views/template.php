@@ -70,16 +70,18 @@
     
         <div id="sidebar" class="span-7 last">
         
-            <div>
+            <div id="recently-added">
                 <h3>Recently Added</h3>
 
                 <ol>
                 <?php foreach (ORM::factory('module')->limit(5)->order_by('created_at', 'DESC')->find_all() as $module): ?>
                     <li>
-                        <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>
-                        /
-                        <span class="name"><?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?></span>
-                        <span style="float:right"><?php echo date('d M H:i', $module->created_at) ?></span>
+                        <span class="title">
+                            <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>
+                            /
+                            <span class="name"><?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?></span>
+                        </span>
+                        <span class="date"><?php echo date('d M H:i', $module->created_at) ?></span>
                     </li>
                 <?php endforeach ?>
                 </ol>
