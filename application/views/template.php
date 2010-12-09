@@ -6,6 +6,9 @@
 
   <title><?php echo HTML::chars($title), Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></title>
   <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <?php if (isset($meta_description)): ?>
+  <meta name="description" content="<?php echo HTML::chars($meta_description) ?>" />
+  <?php endif ?>
 
   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
   <link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
