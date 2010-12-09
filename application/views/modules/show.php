@@ -7,7 +7,7 @@
 
     <div class="links">
         <?php echo HTML::anchor($module->url(), 'GitHub', array('class' => 'github')) ?>
-        <?php if ($module->homepage): ?>
+        <?php if ($module->homepage AND Validate::external_url($module->url('homepage'))): ?>
             <?php echo HTML::anchor($module->url('homepage'), 'Homepage', array('class' => 'homepage')) ?>
         <?php endif ?>
         <?php if ($module->has_wiki): ?>
