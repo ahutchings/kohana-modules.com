@@ -127,7 +127,7 @@ Route::set('modules_show', 'modules/<username>/<name>',
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
     ->defaults(array(
-        'controller' => 'website',
+        'controller' => 'modules',
         'action'     => 'index',
     ));
 
