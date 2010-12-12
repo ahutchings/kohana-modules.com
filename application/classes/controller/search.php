@@ -4,30 +4,26 @@ class Controller_Search extends Controller_Template
 {
     public function action_index()
     {
-        $this->template->title   = "Search for \"{$_GET['query']}\" - ";
+        $term = $_GET['query'];
+        
+        $this->template->title   = "Search: $term - ";
         $this->template->content = View::factory('search/index')
             ->bind('pagination', $pagination)
             ->bind('modules', $modules);
 
-        $count = DB::select(DB::expr('COUNT(*) AS count'))
-            ->from('modules')
-            ->where('name', NULL, DB::expr("LIKE '%{$_GET['query']}%'"))
-            ->or_where('description', NULL, DB::expr("LIKE '%{$_GET['query']}%'"))
-            ->or_where('username', NULL, DB::expr("LIKE '%{$_GET['query']}%'"))
-            ->execute()
-            ->get('count');
+        $query = ORM::factory('module')
+            ->where('name', 'LIKE', "%$term%")
+            ->or_where('description', 'LIKE', "%$term%")
+            ->or_where('username', 'LIKE', "%$term%")
+            ->order_by('watchers', 'DESC');
 
         $pagination = Pagination::factory(array(
-            'total_items' => $count,
+            'total_items' => $query->reset(FALSE)->count_all(),
             ));
-
-        $modules = ORM::factory('module')
-            ->where('name', NULL, DB::expr("LIKE '%{$_GET['query']}%'"))
-            ->or_where('description', NULL, DB::expr("LIKE '%{$_GET['query']}%'"))
-            ->or_where('username', NULL, DB::expr("LIKE '%{$_GET['query']}%'"))
+            
+        $modules = $query
             ->limit($pagination->items_per_page)
             ->offset($pagination->offset)
-            ->order_by('watchers', 'DESC')
             ->find_all();
     }
 }
