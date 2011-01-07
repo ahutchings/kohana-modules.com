@@ -23,11 +23,11 @@ $use_middle = ($n5 >= $n4);
 
 // Point $n3 between $n2 and $n4
 $n3 = (int) (($n2 + $n4) / 2);
-$use_n3 = ($use_middle && (($n4 - $n2) > 1));
+$use_n3 = ($use_middle AND (($n4 - $n2) > 1));
 
 // Point $n6 between $n5 and $n7
 $n6 = (int) (($n5 + $n7) / 2);
-$use_n6 = ($use_middle && (($n7 - $n5) > 1));
+$use_n6 = ($use_middle AND (($n7 - $n5) > 1));
 
 // Links to display as array(page => content)
 $links = array();

@@ -17,7 +17,7 @@ class Text extends Kohana_Text
         // Highlight partial matches
         $var = '';
 
-        foreach(explode(' ', $keywords) as $keyword)
+        foreach (explode(' ', $keywords) as $keyword)
         {
             $replacement = '<span class="highlight-partial">'.$keyword.'</span>';
             $var .= $replacement." ";
