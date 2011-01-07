@@ -18,11 +18,21 @@ class Minion_Task_Module_Discover extends Minion_Task
      */
     protected function _import_from_search()
     {
-        for ($i = 1; $i < 10; $i++)
-        {
-            $results = Github::instance()
+		$i = 1;
+		
+		while (TRUE)
+		{
+			$this->log("Searching page $i...");
+
+			$results = Github::instance()
                 ->getRepoApi()
                 ->search('kohana', '', $i);
+
+			if (count($results) === 0)
+			{
+				$this->log('Finished.');
+				break;
+			}
 
             foreach ($results as $result)
             {
@@ -38,7 +48,9 @@ class Minion_Task_Module_Discover extends Minion_Task
             
             // throttle API requests
             sleep(2);
-        }
+			
+			$i++;
+		}
     }
     
     /**
@@ -72,4 +84,15 @@ class Minion_Task_Module_Discover extends Minion_Task
         
         return $matches;
     }
+
+	/**
+	 * Writes the message to STDOUT.
+	 *
+	 * @param   string  Message
+	 * @return  void
+	 */
+	protected function log($message)
+	{
+		fputs(STDOUT, $message.PHP_EOL);
+	}
 }
