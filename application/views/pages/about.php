@@ -22,9 +22,9 @@ Framework</a>. The following Kohana modules are enabled:</p>
 <ul>
     <li><?php echo HTML::anchor('https://github.com/kohana/auth', 'auth') ?> - Auth module for Kohana v3</li>
     <li><?php echo HTML::anchor('https://github.com/kohana/cache', 'cache') ?> - Cache library for Kohana 3</li>
-    <li><?php echo HTML::anchor('https://github.com/ahutchings/kohana-cron-controller', 'cron-controller') ?> - Controller to handle cron and cli requests</li>
     <li><?php echo HTML::anchor('https://github.com/kohana/database', 'database') ?> - A Kohana module for database interactions, building queries, and prepared statements </li>
     <li><?php echo HTML::anchor('https://github.com/ahutchings/kohana-github', 'github') ?> - GitHub API module for Kohana 3</li>
+    <li><?php echo HTML::anchor('https://github.com/BRMatt/kohana-minion', 'minion') ?> - Everyone loves having a minion they can boss around</li>
     <li><?php echo HTML::anchor('https://github.com/synapsestudios/kohana-notices', 'notices') ?> - Notices module for Kohana 3.x</li>
     <li><?php echo HTML::anchor('https://github.com/kohana/orm', 'orm') ?> - Kohana ORM</li>
     <li><?php echo HTML::anchor('https://github.com/kohana/pagination', 'pagination') ?> - A Kohana module for pagination</li>

@@ -8,8 +8,8 @@ class Controller_Webhook extends Controller
             array(':action' => $this->request->action));   
     }
 
-    public function action_import_from_master()
+    public function action_import()
     {
-        Job::import_from_master();
+        Minion_Task::factory('module:import')->execute(array());
     }
 }

@@ -49,33 +49,25 @@ namespace :deploy do
     end
 end
 
-namespace :job do
-    task :flag_deleted do
-        run_job("flag_deleted")
+namespace :module do
+    task :flagdeleted do
+        run_task("flagdeleted")
     end
     
-    task :import_from_master do
-        run_job("import_from_master")
+    task :import do
+        run_task("import")
     end
 
-    task :import_from_search do
-        run_job("import_from_search")
+    task :discover do
+        run_task("discover")
     end
     
-    task :import_from_universe do
-        run_job("import_from_universe")
+    task :refreshmetadata do
+        run_task("refreshmetadata")
     end
     
-    task :prune_queue do
-        run_job("prune_queue")
-    end
-    
-    task :refresh_metadata do
-        run_job("refresh_metadata")
-    end
-    
-    def run_job(job)
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=cron/#{job}"
+    def run_task(task)
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=minion/module:#{task}"
     end
 end
 

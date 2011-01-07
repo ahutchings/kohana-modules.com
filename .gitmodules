@@ -28,9 +28,6 @@
 [submodule "modules/cache"]
 	path = modules/cache
 	url = git://github.com/kohana/cache.git
-[submodule "modules/cron-controller"]
-	path = modules/cron-controller
-	url = git://github.com/ahutchings/kohana-cron-controller.git
 [submodule "modules/unittest"]
 	path = modules/unittest
 	url = git://github.com/kohana/unittest.git
