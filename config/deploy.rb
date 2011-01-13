@@ -73,3 +73,4 @@ end
 after "deploy:setup", "deploy:shared_files:setup"
 after "deploy:symlink", "deploy:shared_files:symlink"
 after :deploy, 'deploy:cleanup' # Remove old releases
+after :deploy, 'deploy:migrate' # Run new migrations
