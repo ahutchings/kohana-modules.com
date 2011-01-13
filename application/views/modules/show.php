@@ -36,10 +36,10 @@
     </div>
 
     <div class="versions">
-        <h4>Versions</h4>
+        <h4>Latest Versions</h4>
 
         <ul>
-        <?php foreach ($module->tags_array as $tag): ?>
+        <?php foreach (array_slice($module->tags_array, 0, 5) as $tag): ?>
             <li>
                 <a href="<?php echo $module->url() ?>/tree/<?php echo HTML::chars($tag) ?>">
                     <?php echo HTML::chars($tag) ?>
