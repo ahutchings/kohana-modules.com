@@ -27,9 +27,12 @@ ssh_options[:forward_agent] = true # Use local keys
 namespace :deploy do
     task :start do ; end
     task :restart do ; end
-    task :migrate do ; end
     task :stop do ; end
     task :finalize_update do ; end
+
+    task :migrate do
+        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=minion/db:migrate --versions=TRUE"
+    end
     
     namespace :shared_files do
         task :setup do
