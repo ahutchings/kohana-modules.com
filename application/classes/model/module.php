@@ -6,6 +6,16 @@ class Model_Module extends ORM
     protected $_updated_column = array('column' => 'updated_at', 'format' => TRUE);
 
     protected $_sorting = array('name' => 'ASC');
+    
+    protected $_has_many = array
+    (
+        'kohana_versions' => array
+        (
+            // 'model' => 'kohana_version',
+            'through' => 'module_compatibilities',
+            // 'foreign_key' => 'kohana_version_id',
+        )
+    );
 
     protected $_rules = array
     (

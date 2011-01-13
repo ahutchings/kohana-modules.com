@@ -227,8 +227,44 @@ p.pagination a {
 	margin-top:0;
 }
 
+.description {
+	margin-bottom:.2em;
+}
+
+.stats {
+	color:#666;
+	margin-bottom:2em;
+}
+
+.stats b {
+	color:#000;
+}
+
 .developer-info {
 	margin-bottom:3em;
+}
+
+.compatibility ul {
+	float:left;
+	list-style-type:none;
+	margin-left:0;
+}
+
+.compatibility ul li:first-child {
+	margin-left:0;
+}
+
+.compatibility ul li {
+	float:left;
+}
+
+.compatibility ul li.positive {
+	font-weight:bold;
+	font-size:120%;
+}
+
+.versions {
+	clear:both;
 }
 
 h3.module-heading {

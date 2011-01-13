@@ -3,9 +3,13 @@
     /
     <?php echo HTML::chars($module->name) ?>
 </h2>
-<p><?php echo HTML::chars($module->description) ?></p>
+
+<p class="description"><?php echo HTML::chars($module->description) ?></p>
+<p class="stats"><b><?php echo $module->watchers ?></b> watchers, <b><?php echo $module->forks ?></b> forks</p>
 
     <div class="links">
+        <h4>Links</h4>
+
         <?php echo HTML::anchor($module->url(), 'GitHub', array('class' => 'github')) ?>
         <?php if ($module->homepage AND Validate::external_url($module->url('homepage'))): ?>
             <?php echo HTML::anchor($module->url('homepage'), 'Homepage', array('class' => 'homepage')) ?>
@@ -18,16 +22,22 @@
         <?php endif ?> 
     </div>
 
-    <div class="authors">
-        <h4>Authors</h4>
-        <?php echo HTML::anchor($module->url('username'), $module->username) ?>
+    <div class="compatibility">
+        <h4>Kohana Compatibility</h4>
 
-        <?php echo $module->watchers ?> watchers
-        <?php echo $module->forks ?> forks
+        <ul>
+        <?php foreach (Model_Kohana_Version::names() as $name): ?>
+        <?php $class = $module->kohana_versions->where('name', '=', $name)->count_all() ? 'positive' : 'negative' ?>
+            <li class="<?php echo $class ?>">
+                <?php echo $name ?>
+            </li>
+        <?php endforeach ?>
+        </ul>
     </div>
 
     <div class="versions">
         <h4>Versions</h4>
+
         <ul>
         <?php foreach ($module->tags_array as $tag): ?>
             <li>
