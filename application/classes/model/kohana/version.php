@@ -2,6 +2,11 @@
 
 class Model_Kohana_Version extends ORM
 {
+    /**
+     * Returns a sorted non-associative array of Kohana versions.
+     *
+     * @return  array
+     */
     public static function names()
     {
         $names = DB::select('name')

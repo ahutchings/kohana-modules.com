@@ -3,7 +3,7 @@
 /**
  * Refreshes local repository metadata from GitHub.
  */
-class Minion_Task_Module_RefreshMetadata extends Minion_Task
+class Minion_Task_Module_Sync extends Minion_Task
 {
 	/**
 	 * Execute the task with the specified set of config
@@ -22,14 +22,11 @@ class Minion_Task_Module_RefreshMetadata extends Minion_Task
         foreach ($modules as $module)
         {
             $this->log("Refreshing metadata for $module->username/$module->name...", FALSE);
-            
-            $return = $module->refresh_metadata();
-            
-            if ($return === FALSE)
-                $this->log("404.");
-            else
-                $this->log("success!", TRUE);
-            
+
+            $success = $module->sync();
+
+            $this->log($success ? 'done.' : 'done (404).', TRUE);
+
             // throttle API requests
             sleep(2);
         }

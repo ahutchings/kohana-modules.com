@@ -41,14 +41,14 @@ class Model_Module extends ORM
     }
 
     /**
-     * Refreshes the module's GitHub repository metadata locally.
+     * Syncs the module's metadata from the GitHub repository.
      *
      * If a 404 exception is thrown by the GitHub API, the module is flagged
      * for deletion.
      *
      * @return  FALSE|NULL  FALSE if the module isn't found on GitHub, NULL otherwise
      */
-    public function refresh_metadata()
+    public function sync()
     {
         try
         {
@@ -87,6 +87,8 @@ class Model_Module extends ORM
         $this->tags = empty($tags) ? NULL : implode(':', $tags);
         
         $this->save();
+        
+        return TRUE;
     }
 
     /**
