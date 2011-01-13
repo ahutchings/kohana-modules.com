@@ -21,10 +21,31 @@ class Minion_Task_Module_RefreshMetadata extends Minion_Task
 
         foreach ($modules as $module)
         {
-            $module->refresh_github_metadata();
+            $this->log("Refreshing metadata for $module->username/$module->name...", FALSE);
+            
+            $return = $module->refresh_metadata();
+            
+            if ($return === FALSE)
+                $this->log("404.");
+            else
+                $this->log("success!", TRUE);
             
             // throttle API requests
             sleep(2);
         }
+	}
+	
+	/**
+	 * Writes the message to STDOUT.
+	 *
+	 * @param   string  Message
+	 * @return  void
+	 */
+	protected function log($message, $new_line = TRUE)
+	{
+	    if ($new_line)
+	        $message = $message.PHP_EOL;
+	    
+		fwrite(STDOUT, $message);
 	}
 }

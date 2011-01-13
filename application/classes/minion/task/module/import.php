@@ -84,7 +84,7 @@ class Minion_Task_Module_Import extends Minion_Task
                 $module->name     = $matches['name'][$i];
                 $module->save();
 
-                $module->refresh_github_metadata();
+                $module->refresh_metadata();
 
                 // throttle API requests
                 sleep(2);

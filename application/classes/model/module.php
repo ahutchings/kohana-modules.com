@@ -32,10 +32,34 @@ class Model_Module extends ORM
 
     /**
      * Refreshes the module's GitHub repository metadata locally.
+     *
+     * If a 404 exception is thrown by the GitHub API, the module is flagged
+     * for deletion.
+     *
+     * @return  FALSE|NULL  FALSE if the module isn't found on GitHub, NULL otherwise
      */
-    public function refresh_github_metadata()
+    public function refresh_metadata()
     {
-        $repo = Github::instance()->getRepoApi()->show($this->username, $this->name);
+        try
+        {
+            $repo = Github::instance()->getRepoApi()
+                ->show($this->username, $this->name);
+        }
+        catch (phpGitHubApiRequestException $e)
+        {
+            if ($e->getCode() === 404)
+            {
+                // Flag the module for deletion.
+                $this->flagged_for_deletion_at = time();
+                $this->save();
+                return FALSE;
+            }
+            else
+            {
+                // Rethrow the exception.
+                throw $e;
+            }
+        }
 
         $this->description   = $repo['description'];
         $this->homepage      = $repo['homepage'];
