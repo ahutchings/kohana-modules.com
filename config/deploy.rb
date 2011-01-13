@@ -53,10 +53,6 @@ namespace :deploy do
 end
 
 namespace :module do
-    task :flagdeleted do
-        run_task("flagdeleted")
-    end
-    
     task :import do
         run_task("import")
     end
@@ -65,8 +61,8 @@ namespace :module do
         run_task("discover")
     end
     
-    task :refreshmetadata do
-        run_task("refreshmetadata")
+    task :sync do
+        run_task("sync")
     end
     
     def run_task(task)
