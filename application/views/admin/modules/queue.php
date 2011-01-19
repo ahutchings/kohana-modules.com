@@ -10,6 +10,7 @@
         </tr>
     </thead>
     <tbody>
+    <?php if (count($universe)): ?>
     <?php foreach ($universe as $module): ?>
         <tr>
             <td><?php echo HTML::chars($module->username) ?></td>
@@ -21,6 +22,11 @@
             </td>
         </tr>
     <?php endforeach ?>
+    <?php else: ?>
+        <tr>
+            <td align="center" colspan="4">No modules</td>
+        </tr>
+    <?php endif ?>
     </tbody>
 </table>
 
@@ -36,6 +42,7 @@
         </tr>
     </thead>
     <tbody>
+    <?php if (count($search)): ?>
     <?php foreach ($search as $module): ?>
         <tr>
             <td><?php echo HTML::chars($module->username) ?></td>
@@ -47,5 +54,10 @@
             </td>
         </tr>
     <?php endforeach ?>
+    <?php else: ?>
+        <tr>
+            <td align="center" colspan="4">No results</td>
+        </tr>
+    <?php endif ?>
     </tbody>
 </table>
