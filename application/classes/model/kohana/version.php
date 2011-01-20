@@ -13,9 +13,9 @@ class Model_Kohana_Version extends ORM
             ->from('kohana_versions')
             ->execute()
             ->as_array(NULL, 'name');
-            
+
         sort($names);
-        
+
         return $names;
     }
 }

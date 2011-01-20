@@ -6,14 +6,12 @@ class Model_Module extends ORM
     protected $_updated_column = array('column' => 'updated_at', 'format' => TRUE);
 
     protected $_sorting = array('name' => 'ASC');
-    
+
     protected $_has_many = array
     (
         'kohana_versions' => array
         (
-            // 'model' => 'kohana_version',
             'through' => 'module_compatibilities',
-            // 'foreign_key' => 'kohana_version_id',
         )
     );
 
@@ -80,14 +78,14 @@ class Model_Module extends ORM
         $this->has_issues    = $repo['has_issues'];
         $this->has_downloads = $repo['has_downloads'];
         $this->open_issues   = $repo['open_issues'];
-        
+
         $repo_tags = Github::instance()->getRepoApi()->getRepoTags($this->username, $this->name);
         $tags = array_keys($repo_tags);
-        
+
         $this->tags = empty($tags) ? NULL : implode(':', $tags);
-        
+
         $this->save();
-        
+
         return TRUE;
     }
 
