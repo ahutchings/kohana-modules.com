@@ -38,6 +38,7 @@
     <div class="versions">
         <h4>Latest Versions</h4>
 
+        <?php if (count($module->tags_array)): ?>
         <ul>
         <?php foreach (array_slice($module->tags_array, 0, 5) as $tag): ?>
             <li>
@@ -47,6 +48,7 @@
             </li>
         <?php endforeach ?>
         </ul>
+        <?php endif ?>
     </div>
 
 <div id="disqus_thread"></div>
