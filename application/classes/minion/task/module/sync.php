@@ -12,11 +12,9 @@ class Minion_Task_Module_Sync extends Minion_Task
 	 */
 	public function execute(array $config)
 	{
-	    // select 30 jobs with oldest metadata
+	    // jobs that haven't been refreshed in the past week
         $modules = ORM::factory('module')
             ->where('updated_at', '<', time() - Date::WEEK)
-            ->order_by('updated_at', 'ASC')
-            ->limit(30)
             ->find_all();
 
         foreach ($modules as $module)
