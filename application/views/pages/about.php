@@ -16,7 +16,7 @@ have it work directly without moving files.</p>
 <h3>Colophon</h3>
 
 <p>kohana-modules.com was built using <a href="http://kohanaframework.org">Kohana</a>
-v<?php echo Kohana::VERSION ?> and the <a href="http://www.blueprintcss.org">Blueprint CSS
+v<?php echo Kohana::VERSION ?> and the <a href="http://bluetrip.org">BlueTrip CSS
 Framework</a>. The following Kohana modules are enabled:</p>
 
 <ul>
