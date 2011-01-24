@@ -87,7 +87,6 @@ Kohana::modules(array(
     'github'     => MODPATH.'github',
     'sitemap'    => MODPATH.'sitemap',
     'cache'      => MODPATH.'cache',
-    'cron-controller' => MODPATH.'cron-controller',
     'minion'     => MODPATH.'minion',     // Everyone loves having a minion they can boss around
     ));
 
