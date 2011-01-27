@@ -12,18 +12,23 @@ class Minion_Task_Module_Sync extends Minion_Task
 	 */
 	public function execute(array $config)
 	{
-	    // jobs that haven't been refreshed in the past week
+	    // Modules that haven't been refreshed in the past week
         $modules = ORM::factory('module')
-            ->where('updated_at', '<', time() - Date::DAY)
+            ->where('updated_at', '<', time() - Date::WEEK)
             ->find_all();
 
         foreach ($modules as $module)
         {
-            $this->log("Refreshing metadata for $module->username/$module->name...", FALSE);
-
             $success = $module->sync();
 
-            $this->log($success ? 'done.' : 'done (404).');
+            $message = "Refreshed metadata for $module->username/$module->name.";
+            
+            if ( ! $success)
+            {
+                $message += " (404)";
+            }
+
+            $this->log($message);
 
             // throttle API requests
             sleep(2);
@@ -36,13 +41,8 @@ class Minion_Task_Module_Sync extends Minion_Task
 	 * @param   string  Message
 	 * @return  void
 	 */
-	protected function log($message, $new_line = TRUE)
+	protected function log($message)
 	{
-	    if ($new_line)
-	    {
-	        $message = $message.PHP_EOL;
-	    }
-	    
-		fwrite(STDOUT, $message);
+		fwrite(STDOUT, $message.PHP_EOL);
 	}
 }
