@@ -69,14 +69,14 @@ class Model_Module extends ORM
 
         foreach (array_keys($tags) as $tag_name)
         {
-            $tag = ORM::factory('module_tag')
+            $tag = ORM::factory('tag')
                 ->where('module_id', '=', $this->id)
                 ->where('name', '=', $tag_name)
                 ->find();
             
             if ( ! $tag->loaded())
             {
-                $tag            = ORM::factory('module_tag');
+                $tag            = ORM::factory('tag');
                 $tag->module_id = $this->id;
                 $tag->name      = $tag_name;
                 $tag->save();

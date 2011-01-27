@@ -14,7 +14,7 @@ class Minion_Task_Module_Sync extends Minion_Task
 	{
 	    // jobs that haven't been refreshed in the past week
         $modules = ORM::factory('module')
-            ->where('updated_at', '<', time() - Date::WEEK)
+            ->where('updated_at', '<', time() - Date::DAY)
             ->find_all();
 
         foreach ($modules as $module)
@@ -40,7 +40,7 @@ class Minion_Task_Module_Sync extends Minion_Task
 	{
 	    if ($new_line)
 	    {
-	        $message += PHP_EOL;
+	        $message = $message.PHP_EOL;
 	    }
 	    
 		fwrite(STDOUT, $message);
