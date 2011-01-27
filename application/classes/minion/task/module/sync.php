@@ -23,7 +23,7 @@ class Minion_Task_Module_Sync extends Minion_Task
 
             $success = $module->sync();
 
-            $this->log($success ? 'done.' : 'done (404).', TRUE);
+            $this->log($success ? 'done.' : 'done (404).');
 
             // throttle API requests
             sleep(2);
@@ -39,7 +39,9 @@ class Minion_Task_Module_Sync extends Minion_Task
 	protected function log($message, $new_line = TRUE)
 	{
 	    if ($new_line)
-	        $message = $message.PHP_EOL;
+	    {
+	        $message += PHP_EOL;
+	    }
 	    
 		fwrite(STDOUT, $message);
 	}
