@@ -9,10 +9,8 @@ class Model_Module extends ORM
 
     protected $_has_many = array
     (
-        'kohana_versions' => array
-        (
-            'through' => 'module_compatibilities',
-        )
+        'kohana_versions' => array('through' => 'module_compatibilities'),
+        'tags'            => array(),
     );
 
     protected $_rules = array
@@ -25,18 +23,6 @@ class Model_Module extends ORM
     (
         TRUE => array('trim' => array()),
     );
-
-    public function __get($name)
-    {
-        if ($name == 'tags_array')
-        {
-            $tags = explode(':', $this->tags);
-            rsort($tags);
-            return array_filter($tags);
-        }
-        
-        return parent::__get($name);
-    }
 
     /**
      * Syncs the module's metadata from the GitHub repository.
@@ -79,10 +65,23 @@ class Model_Module extends ORM
         $this->has_downloads = $repo['has_downloads'];
         $this->open_issues   = $repo['open_issues'];
 
-        $repo_tags = Github::instance()->getRepoApi()->getRepoTags($this->username, $this->name);
-        $tags = array_keys($repo_tags);
+        $tags = Github::instance()->getRepoApi()->getRepoTags($this->username, $this->name);
 
-        $this->tags = empty($tags) ? NULL : implode(':', $tags);
+        foreach (array_keys($tags) as $tag_name)
+        {
+            $tag = ORM::factory('module_tag')
+                ->where('module_id', '=', $this->id)
+                ->where('name', '=', $tag_name)
+                ->find();
+            
+            if ( ! $tag->loaded())
+            {
+                $tag            = ORM::factory('module_tag');
+                $tag->module_id = $this->id;
+                $tag->name      = $tag_name;
+                $tag->save();
+            }
+        }
 
         $this->save();
 

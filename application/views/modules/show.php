@@ -38,12 +38,12 @@
     <div class="versions">
         <h4>Latest Versions</h4>
 
-        <?php if (count($module->tags_array)): ?>
+        <?php if (count($module->tags->find_all())): ?>
         <ul>
-        <?php foreach (array_slice($module->tags_array, 0, 5) as $tag): ?>
+        <?php foreach ($module->tags->order_by('name', 'DESC')->limit(5)->find_all() as $tag): ?>
             <li>
-                <a href="<?php echo $module->url() ?>/tree/<?php echo HTML::chars($tag) ?>">
-                    <?php echo HTML::chars($tag) ?>
+                <a href="<?php echo $module->url() ?>/tree/<?php echo HTML::chars($tag->name) ?>">
+                    <?php echo HTML::chars($tag->name) ?>
                 </a>
             </li>
         <?php endforeach ?>
