@@ -31,3 +31,6 @@
 [submodule "modules/unittest"]
 	path = modules/unittest
 	url = git://github.com/kohana/unittest.git
+[submodule "modules/minion"]
+	path = modules/minion
+	url = git://github.com/BRMatt/kohana-minion.git
