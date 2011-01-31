@@ -3,6 +3,7 @@ Disallow: /admin/
 Disallow: /user/
 Disallow: /css/
 Disallow: /images/
+Disallow: /javascripts/
 Allow: /
 
 Sitemap: http://kohana-modules.com/sitemap.xml
