@@ -29,16 +29,16 @@ class Migration_Application_20110107001421 extends Minion_Migration_Base {
         $db->query(NULL, 'ALTER TABLE `module_compatibilities` ADD INDEX ( `module_id` )');
         $db->query(NULL, 'ALTER TABLE `module_compatibilities` ADD INDEX ( `kohana_version_id` )');
 
-        $db->query(NULL,
-            'ALTER TABLE `module_compatibilities` ADD FOREIGN KEY ( `module_id` ) REFERENCES `modules` (
-                `id`
-            ) ON DELETE CASCADE ON UPDATE CASCADE'
+        $db->query(NULL, 'ALTER TABLE `module_compatibilities`
+            ADD CONSTRAINT `module_compatibilities_ibfk_1` FOREIGN KEY ( `module_id` )
+            REFERENCES `modules` (`id`)
+            ON DELETE CASCADE ON UPDATE CASCADE'
         );
 
-        $db->query(NULL,
-            'ALTER TABLE `module_compatibilities` ADD FOREIGN KEY ( `kohana_version_id` ) REFERENCES `kohana_versions` (
-                `id`
-            ) ON DELETE CASCADE ON UPDATE CASCADE'
+        $db->query(NULL, 'ALTER TABLE `module_compatibilities`
+            ADD CONSTRAINT `module_compatibilities_ibfk_2` FOREIGN KEY ( `kohana_version_id` )
+            REFERENCES `kohana_versions` (`id`)
+            ON DELETE CASCADE ON UPDATE CASCADE'
         );
 	}
 

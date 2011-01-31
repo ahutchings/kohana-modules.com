@@ -52,9 +52,12 @@ class Migration_Application_20110127122358 extends Minion_Migration_Base {
 
         $db->query(NULL, 'ALTER TABLE `modules_tags` ADD `tag_id` INT( 11 ) UNSIGNED NOT NULL ,
             ADD INDEX ( `tag_id` )');
+            
+        $db->query(NULL, 'TRUNCATE TABLE `modules_tags`');
 
         $db->query(NULL, 'ALTER TABLE `modules_tags`
-            ADD FOREIGN KEY ( `tag_id` ) REFERENCES `kohana-modules_development`.`tags` (`id`)
+            ADD CONSTRAINT `modules_tags_ibfk_1` FOREIGN KEY ( `tag_id` )
+            REFERENCES `kohana-modules_development`.`tags` (`id`)
             ON DELETE CASCADE ON UPDATE CASCADE');
 	}
 }
