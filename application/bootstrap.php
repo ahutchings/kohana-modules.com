@@ -103,7 +103,7 @@ Route::set('admin', 'admin(/<controller>(/<action>(/<id>)))')
  
 Route::set('pages', 'pages/<page>',
     array(
-        'page' => '(about|feedback|suggest)',
+        'page' => '(about|feedback|add-a-module)',
     ))
     ->defaults(array(
         'controller' => 'pages',

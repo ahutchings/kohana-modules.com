@@ -125,8 +125,9 @@
         <div class="container">
           <ul id="primary-nav" class="span-14">
               <li><a href="/pages/about">About</a></li>
+              <li><a href="https://github.com/ahutchings/kohana-modules.com">Code</a></li>
               <li><a href="http://twitter.com/KohanaModules">Status</a></li>
-              <li><a href="/pages/suggest">Suggest a Module</a></li>
+              <li><a href="/pages/add-a-module">Add a Module</a></li>
               <li><a href="/pages/feedback">Feedback</a></li>
           </ul>
 
@@ -147,7 +148,7 @@
   }());
   
   $(document).ready(function() {
-      $("#query").clearingInput({text: 'Search Kohana Modules...'});
+      $("#query").clearingInput({text: 'Search modules...'});
   });
   </script>
 

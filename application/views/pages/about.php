@@ -7,17 +7,17 @@ combination of <a href="https://github.com/kolanos/kohana-universe">kohana-unive
 and through GitHub search results. Thanks to <a href="https://github.com/kolanos">kolanos</a>
 for his hard work curating <a href="https://github.com/kolanos/kohana-universe">kohana-universe</a>.</p>
 
-<h3>Criteria for Inclusion</h3>
+<h3>Contributing</h3>
 
-<p>The repository must contain a single module at the top level. A user must be
-able to clone the repository into a Kohana application's modules directory, and
-have it work directly without moving files.</p>
+<p>Those with a desire to help out are welcome to contribute by hacking on the
+<a href="https://github.com/ahutchings/kohana-modules.com">site</a>, or by
+<a href="/pages/suggest">adding modules</a> to the index.</p>
 
 <h3>Colophon</h3>
 
 <p>kohana-modules.com was built using <a href="http://kohanaframework.org">Kohana</a>
-v<?php echo Kohana::VERSION ?> and the <a href="http://bluetrip.org">BlueTrip CSS
-Framework</a>. The following Kohana modules are enabled:</p>
+v<?php echo Kohana::VERSION ?>, the <a href="http://bluetrip.org">BlueTrip CSS
+Framework</a>, and the following modules.</p>
 
 <ul>
     <li><?php echo HTML::anchor('https://github.com/kohana/auth', 'auth') ?> - Auth module for Kohana v3</li>

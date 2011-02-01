@@ -6,13 +6,13 @@ class Controller_Pages extends Controller_Template
     {
         $titles = array
         (
-            'about'    => 'About',
-            'feedback' => 'Feedback',
-            'login'    => 'Login',
-            'suggest'  => 'Suggest a module',
+            'about'         => 'About',
+            'feedback'      => 'Feedback',
+            'login'         => 'Login',
+            'add-a-module'  => 'Add a module',
         );
         
-        $this->template->title = $titles[$page].' - ';
+        $this->template->title   = $titles[$page].' - ';
         $this->template->content = View::factory("pages/$page");
     }
 }
