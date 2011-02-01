@@ -35,6 +35,10 @@
 
   </script>
   <?php endif ?>
+  
+  <?php if (isset($_GET['query']) OR isset($_GET['page'])): ?>
+  <meta name="robots" content="noindex, follow" />
+  <?php endif ?>
 
 </head>
 
