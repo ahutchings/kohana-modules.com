@@ -15,7 +15,7 @@ class Controller_Search extends Controller_Template
             ->where('name', 'LIKE', "%$term%")
             ->or_where('description', 'LIKE', "%$term%")
             ->or_where('username', 'LIKE', "%$term%")
-            ->order_by('watchers', 'DESC');
+            ->set_order_by();
 
         $pagination = Pagination::factory(array(
             'total_items' => $query->reset(FALSE)->count_all(),

@@ -194,6 +194,28 @@ div.module {
 	margin-bottom:5em;
 }
 
+.sort {
+	font-size:110%;
+	text-align:right;
+	margin-bottom:1.5em;
+}
+
+.sort span {
+	color:#999;
+}
+
+.sort a {
+	margin-left:.5em;
+}
+
+.sort.added #sort-added,
+.sort.watchers #sort-watchers,
+.sort.forks #sort-forks {
+	border-bottom:1px dotted #000;
+	color: #000;
+	font-weight:700;
+}
+
 p.pagination {
 	text-align:center;
 }

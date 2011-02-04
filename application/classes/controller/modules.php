@@ -54,7 +54,7 @@ class Controller_Modules extends Controller_Template
             ->where('username', '=', $username)
             ->limit($pagination->items_per_page)
             ->offset($pagination->offset)
-            ->order_by('watchers', 'DESC')
+            ->set_order_by()
             ->find_all();
     }
     
@@ -78,7 +78,7 @@ class Controller_Modules extends Controller_Template
         $modules = ORM::factory('module')
             ->limit($pagination->items_per_page)
             ->offset($pagination->offset)
-            ->order_by('watchers', 'DESC')
+            ->set_order_by()
             ->find_all();
     }
 }

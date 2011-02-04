@@ -1,5 +1,7 @@
 <h2>Search Results</h2>
 
+<?php echo View::factory('modules/sort')->render() ?>
+
 <div id="modules">
     <?php foreach ($modules as $module): ?>
     <div class="module clearfix">
