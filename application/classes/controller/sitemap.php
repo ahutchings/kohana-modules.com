@@ -28,7 +28,7 @@ class Controller_Sitemap extends Controller
         $sitemap->add($url);
 
         // Add primary pages
-        foreach (array('about', 'feedback', 'suggest') as $page)
+        foreach (array('about', 'feedback', 'add-a-module') as $page)
         {
             $url = new Sitemap_URL;
 

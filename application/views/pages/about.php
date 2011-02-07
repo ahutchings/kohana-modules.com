@@ -11,7 +11,7 @@ for his hard work curating <a href="https://github.com/kolanos/kohana-universe">
 
 <p>Those with a desire to help out are welcome to contribute by hacking on the
 <a href="https://github.com/ahutchings/kohana-modules.com">site</a>, or by
-<a href="/pages/suggest">adding modules</a> to the index.</p>
+<a href="/pages/add-a-module">adding modules</a> to the index.</p>
 
 <h3>Colophon</h3>
 
