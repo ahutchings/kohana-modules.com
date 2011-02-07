@@ -23,6 +23,22 @@ class Model_Module extends ORM
     (
         TRUE => array('trim' => array()),
     );
+    
+    /**
+     * @var  array  fields to import from the GitHub repository API
+     */
+    protected $_import_fields = array
+    (
+        'description',
+        'homepage',
+        'fork',
+        'forks',
+        'watchers',
+        'has_wiki',
+        'has_issues',
+        'has_downloads',
+        'open_issues',
+    );
 
     /**
      * Syncs the module's metadata from the GitHub repository.
@@ -55,15 +71,9 @@ class Model_Module extends ORM
             }
         }
 
-        $this->description   = $repo['description'];
-        $this->homepage      = $repo['homepage'];
-        $this->forks         = $repo['forks'];
-        $this->watchers      = $repo['watchers'];
-        $this->fork          = $repo['fork'];
-        $this->has_wiki      = $repo['has_wiki'];
-        $this->has_issues    = $repo['has_issues'];
-        $this->has_downloads = $repo['has_downloads'];
-        $this->open_issues   = $repo['open_issues'];
+        $values = Arr::extract($repo, $this->_import_fields);
+
+        $this->values($values);
 
         $tags = Github::instance()->getRepoApi()->getRepoTags($this->username, $this->name);
 
