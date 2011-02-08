@@ -75,6 +75,11 @@ Kohana::$log->attach(new Kohana_Log_File(APPPATH.'logs'));
 Kohana::$config->attach(new Kohana_Config_File);
 
 /**
+ * Override config with environment-specific config.
+ */
+Kohana::$config->attach(new Kohana_Config_File('config/'.Kohana::$environment));
+
+/**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
