@@ -78,7 +78,7 @@
                 <h3>Recently Added</h3>
 
                 <ol>
-                <?php foreach (ORM::factory('module')->limit(5)->order_by('created_at', 'DESC')->find_all() as $module): ?>
+                <?php foreach (ORM::factory('module')->limit(7)->order_by('created_at', 'DESC')->find_all() as $module): ?>
                     <li>
                         <span class="title">
                             <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>
@@ -96,7 +96,7 @@
             
                 <ol>
                 <?php foreach (DB::select('username', DB::expr('COUNT(1) as module_count'))->
-                    from('modules')->limit(5)->order_by('module_count', 'DESC')->
+                    from('modules')->limit(7)->order_by('module_count', 'DESC')->
                     group_by('username')->as_object()->execute() as $module): ?>
                     <li>
                         <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
