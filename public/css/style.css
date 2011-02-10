@@ -144,7 +144,7 @@ div.module {
 
 .module h2 {
 	color:#CCC;
-	margin-bottom:.15em;
+	margin-bottom:.25em;
 	margin-top:0;
 }
 
@@ -152,17 +152,19 @@ div.module {
 	font-size:75%;
 }
 
+.module p {
+	color:#444;
+	margin-bottom:0;
+}
+
 .bubble {
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	border-radius: 6px;
-	background:#EEE;
-	margin-right:4px;
+	color:DarkRed;
 	text-align:center;
 	padding:10px 0 5px 0;
 }
 
 .bubble span {
+	color:#000;
 	display:block;
 	font-size:140%;
 	font-weight:bold;
@@ -216,16 +218,20 @@ div.module {
 	font-weight:700;
 }
 
-p.pagination {
-	text-align:center;
-}
-
 p.pagination a {
+	color:#808080;
 	text-decoration:none;
 	background:#EEE;
-	border:1px solid #DDD;
+	border:1px solid #EEE;
 	padding:3px 6px;
-	-moz-border-radius:3px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	margin-right:1px;
+}
+
+.pagination {
+	text-align:center;
 }
 
 .pagination strong {
@@ -233,12 +239,11 @@ p.pagination a {
 	font-weight:bolder;
 }
 
-.pagination .prev {
-	margin-right:20px;
-}
-
-.pagination .next {
-	margin-left:20px;
+.pagination .current {
+	background:#B3B3B3;
+	border-color:#B3B3B3;
+	color:#FFFFFF;
+	font-weight:bold;
 }
 
 #main {

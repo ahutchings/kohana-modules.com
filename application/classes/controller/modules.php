@@ -72,7 +72,6 @@ class Controller_Modules extends Controller_Template
 
         $pagination = Pagination::factory(array(
             'total_items' => $count,
-            'view'        => 'pagination/custom',
             ));
 
         $modules = ORM::factory('module')

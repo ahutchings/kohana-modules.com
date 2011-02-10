@@ -6,11 +6,7 @@
         
         <div class="span-12">
             <h2>
-                <span class="username">
-                    <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
-                </span>
-                /
-                <?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?>
+                <?php echo HTML::anchor("modules/$module->username/$module->name", "$module->username/$module->name") ?>
             </h2>
 
             <p><?php echo Text::widont(HTML::chars($module->description)) ?></p>

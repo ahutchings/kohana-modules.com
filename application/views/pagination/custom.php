@@ -4,7 +4,7 @@
 */
 
 // Number of page links in the begin and end of whole range
-$count_out = ( ! empty($config['count_out'])) ? (int) $config['count_out'] : 3;
+$count_out = ( ! empty($config['count_out'])) ? (int) $config['count_out'] : 1;
 // Number of page links on each side of current page
 $count_in = ( ! empty($config['count_in'])) ? (int) $config['count_in'] : 5;
 
@@ -58,15 +58,15 @@ for ($i = $n7; $i <= $n8; $i++)
 <p class="pagination">
 
 	<?php if ($previous_page !== FALSE): ?>
-		<a href="<?php echo HTML::chars($page->url($previous_page)) ?>" class="prev" rel="prev">&larr; <?php echo __('prev') ?></a>
+		<a href="<?php echo HTML::chars($page->url($previous_page)) ?>" class="prev" rel="prev">&laquo;</a>
 	<?php else: ?>
-		<span class="prev">&larr; <?php echo __('prev') ?></span>
+		<span class="prev">&laquo;</span>
 	<?php endif ?>
 
 	<?php foreach ($links as $number => $content): ?>
 
 		<?php if ($number === $current_page): ?>
-			<strong><?php echo $content ?></strong>
+			<a href="<?php echo HTML::chars($page->url($number)) ?>" class="current"><?php echo $content ?></a>
 		<?php else: ?>
 			<a href="<?php echo HTML::chars($page->url($number)) ?>"><?php echo $content ?></a>
 		<?php endif ?>
@@ -74,9 +74,9 @@ for ($i = $n7; $i <= $n8; $i++)
 	<?php endforeach ?>
 
 	<?php if ($next_page !== FALSE): ?>
-		<a href="<?php echo HTML::chars($page->url($next_page)) ?>" class="next" rel="next"><?php echo __('next') ?> &rarr;</a>
+		<a href="<?php echo HTML::chars($page->url($next_page)) ?>" class="next" rel="next">&raquo;</a>
 	<?php else: ?>
-		<span class="next"><?php echo __('next') ?> &rarr;</span>
+		<span class="next">&raquo;</span>
 	<?php endif ?>
 
 </p><!-- .pagination -->
