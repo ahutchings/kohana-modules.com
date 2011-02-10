@@ -74,6 +74,21 @@
     
         <div id="sidebar" class="span-7 last">
         
+            <div>
+                <h3>Keep Updated</h3>
+        
+                <ul id="subscribe-links">
+                    <li class="feed">
+                        <a href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
+                            type="application/rss+xml">Subscribe via RSS</a>
+                    </li>
+
+                    <li class="twitter">
+                        <a href="http://twitter.com/KohanaModules">Follow @KohanaModules on Twitter</a>
+                    </li>
+                </ul>
+            </div>
+        
             <div id="recently-added">
                 <h3>Recently Added</h3>
 
@@ -104,21 +119,6 @@
                     </li>
                 <?php endforeach ?>
                 </ol>
-            </div>
-
-            <div>
-                <h3>Keep Updated</h3>
-        
-                <ul id="subscribe-links">
-                    <li class="feed">
-                        <a href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
-                            type="application/rss+xml">Subscribe via RSS</a>
-                    </li>
-
-                    <li class="twitter">
-                        <a href="http://twitter.com/KohanaModules">Follow @KohanaModules on Twitter</a>
-                    </li>
-                </ul>
             </div>
 
         </div>
