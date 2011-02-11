@@ -19,30 +19,17 @@ class Minion_Task_Module_Sync extends Minion_Task
 
         foreach ($modules as $module)
         {
-            $success = $module->sync();
-
-            $message = "Refreshed metadata for $module->username/$module->name.";
-            
-            if ( ! $success)
+            if ($success = $module->sync())
             {
-                $message += " (404)";
+                Minion_CLI::write("$module->username/$module->name synced.");
             }
-
-            $this->log($message);
+            else
+            {
+                Minion_CLI::write("$module->username/$module->name flagged for deletion.", 'red');
+            }
 
             // throttle API requests
             sleep(2);
         }
-	}
-	
-	/**
-	 * Writes the message to STDOUT.
-	 *
-	 * @param   string  Message
-	 * @return  void
-	 */
-	protected function log($message)
-	{
-		fwrite(STDOUT, $message.PHP_EOL);
 	}
 }

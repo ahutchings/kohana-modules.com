@@ -93,6 +93,7 @@ Kohana::modules(array(
     'sitemap'    => MODPATH.'sitemap',
     'cache'      => MODPATH.'cache',
     'minion'     => MODPATH.'minion',     // Everyone loves having a minion they can boss around
+    'migrations' => MODPATH.'migrations', // Migration tasks for the kohana-minion cli framework 
     ));
 
 /**

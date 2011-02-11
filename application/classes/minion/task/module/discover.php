@@ -22,7 +22,7 @@ class Minion_Task_Module_Discover extends Minion_Task
 		
 		while (TRUE)
 		{
-			$this->log("Searching page $i...");
+			Minion_CLI::write("Searching page $i...");
 
 			$results = Github::instance()
                 ->getRepoApi()
@@ -30,7 +30,7 @@ class Minion_Task_Module_Discover extends Minion_Task
 
 			if (count($results) === 0)
 			{
-				$this->log('Finished.');
+				Minion_CLI::write('Finished.');
 				break;
 			}
 
@@ -84,15 +84,4 @@ class Minion_Task_Module_Discover extends Minion_Task
         
         return $matches;
     }
-
-	/**
-	 * Writes the message to STDOUT.
-	 *
-	 * @param   string  Message
-	 * @return  void
-	 */
-	protected function log($message)
-	{
-		fputs(STDOUT, $message.PHP_EOL);
-	}
 }
