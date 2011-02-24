@@ -46,7 +46,7 @@ class Model_Module extends ORM
      * If a 404 exception is thrown by the GitHub API, the module is flagged
      * for deletion.
      *
-     * @return  FALSE|NULL  FALSE if the module isn't found on GitHub, NULL otherwise
+     * @return  boolean  FALSE if the module isn't found on GitHub, TRUE otherwise
      */
     public function sync()
     {
@@ -54,6 +54,9 @@ class Model_Module extends ORM
         {
             $repo = Github::instance()->getRepoApi()
                 ->show($this->username, $this->name);
+
+            $tags = Github::instance()->getRepoApi()
+                ->getRepoTags($this->username, $this->name);
         }
         catch (phpGitHubApiRequestException $e)
         {
@@ -62,6 +65,7 @@ class Model_Module extends ORM
                 // Flag the module for deletion.
                 $this->flagged_for_deletion_at = time();
                 $this->save();
+
                 return FALSE;
             }
             else
@@ -74,8 +78,6 @@ class Model_Module extends ORM
         $values = Arr::extract($repo, $this->_import_fields);
 
         $this->values($values);
-
-        $tags = Github::instance()->getRepoApi()->getRepoTags($this->username, $this->name);
 
         foreach (array_keys($tags) as $tag_name)
         {
