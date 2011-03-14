@@ -9,7 +9,6 @@
             <th>Description</th>
             <th>Created At</th>
             <th>Updated At</th>
-            <th>Links</th>
         </tr>
     </thead>
     <tbody>
@@ -20,14 +19,11 @@
             <?php echo HTML::anchor($module->url('username'), $module->username) ?>
         </td>
         <td>
-            <?php echo HTML::anchor($module->url(), $module->name) ?>
+            <?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?>
         </td>
         <td><?php echo HTML::chars($module->description) ?></td>
         <td><?php echo date(Date::$timestamp_format, $module->created_at) ?></td>
         <td><?php echo date(Date::$timestamp_format, $module->updated_at) ?></td>
-            <td>
-                <a href="<?php echo $module->url() ?>">GitHub</a>
-            </td>
         </tr>
     <?php endforeach ?>
     </tbody>
