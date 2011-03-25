@@ -105,7 +105,7 @@ class Minion_Task_Module_Import extends Minion_Task
             {
                 $module->values($values)->save();
 
-                Minion_CLI::write("Created $module->username/$module->name");
+                $this->log("Created $module->username/$module->name");
 
                 $module->sync();
 
@@ -121,7 +121,7 @@ class Minion_Task_Module_Import extends Minion_Task
                 ->param(':version_id', $version_id)
                 ->execute();
 
-            Minion_CLI::write("$branch: Added $module->username/$module->name");
+            $this->log("$branch: Added $module->username/$module->name");
         }
 
         $delete = self::array_diff_recursive($existing_modules, $new_modules);
@@ -135,7 +135,7 @@ class Minion_Task_Module_Import extends Minion_Task
                 ->where('kohana_version_id', '=', $version_id)
                 ->execute();
 
-            Minion_CLI::write("$branch: Deleted $module->username/$module->name", 'red');
+            $this->log("$branch: Deleted $module->username/$module->name", 'red');
         }
     }
 
@@ -201,7 +201,17 @@ class Minion_Task_Module_Import extends Minion_Task
         {
             DB::delete('modules')->where('id', '=', $module['id'])->execute();
 
-            Minion_CLI::write('Deleted '.$module['username'].'/'.$module['name'], 'red');
+            $this->log('Deleted '.$module['username'].'/'.$module['name'], 'red');
         }
+    }
+    
+    /**
+     * Either logs to file or prints to console, depending on the request protocol.
+     */
+    private function log($message, $color)
+    {
+        (Request::$protocol === 'cli')
+            ? Minion_CLI::write($message, $color)
+            : Kohana_Log::instance()->add(Kohana::INFO, $message);
     }
 }
