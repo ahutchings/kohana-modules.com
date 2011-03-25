@@ -208,7 +208,7 @@ class Minion_Task_Module_Import extends Minion_Task
     /**
      * Either logs to file or prints to console, depending on the request protocol.
      */
-    private function log($message, $color)
+    private function log($message, $color = NULL)
     {
         (Request::$protocol === 'cli')
             ? Minion_CLI::write($message, $color)
