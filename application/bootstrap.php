@@ -92,6 +92,11 @@ Kohana::init(array(
 Kohana::$log->attach(new Log_File(APPPATH.'logs'));
 
 /**
+ * Attach a file reader to config. Multiple readers are supported.
+ */
+Kohana::$config->attach(new Config_File);
+
+/**
  * Set the environment name since the environment constants are integers.
  */
 $environments = array(
@@ -104,7 +109,7 @@ $environments = array(
 $environment = $environments[Kohana::$environment];
 
 /**
- * Attach a file reader to config. Multiple readers are supported.
+ * Override config with environment-specific config.
  */
 Kohana::$config->attach(new Config_File('config/'.$environment));
 
