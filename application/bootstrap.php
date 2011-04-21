@@ -1,6 +1,20 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-//-- Environment setup --------------------------------------------------------
+// -- Environment setup --------------------------------------------------------
+
+// Load the core Kohana class
+require SYSPATH.'classes/kohana/core'.EXT;
+
+if (is_file(APPPATH.'classes/kohana'.EXT))
+{
+	// Application extends the core
+	require APPPATH.'classes/kohana'.EXT;
+}
+else
+{
+	// Load empty core extension
+	require SYSPATH.'classes/kohana'.EXT;
+}
 
 /**
  * Set the default time zone.
@@ -34,14 +48,22 @@ spl_autoload_register(array('Kohana', 'auto_load'));
  */
 ini_set('unserialize_callback_func', 'spl_autoload_call');
 
-//-- Configuration and initialization -----------------------------------------
+// -- Configuration and initialization -----------------------------------------
 
 /**
-* Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
-*/
-if (getenv('KOHANA_ENV') !== FALSE)
+ * Set the default language
+ */
+I18n::lang('en-us');
+
+/**
+ * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
+ *
+ * Note: If you supply an invalid environment name, a PHP warning will be thrown
+ * saying "Couldn't find constant Kohana::<INVALID_ENV_NAME>"
+ */
+if (isset($_SERVER['KOHANA_ENV']))
 {
-    Kohana::$environment = getenv('KOHANA_ENV');
+	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
 
 /**
@@ -58,7 +80,7 @@ if (getenv('KOHANA_ENV') !== FALSE)
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
 Kohana::init(array(
-    'base_url'   => '/',
+	'base_url'   => '/',
     'index_file' => FALSE,
     'profile'    => Kohana::$environment !== Kohana::PRODUCTION,
     'caching'    => Kohana::$environment === Kohana::PRODUCTION,
@@ -67,34 +89,46 @@ Kohana::init(array(
 /**
  * Attach the file write to logging. Multiple writers are supported.
  */
-Kohana::$log->attach(new Kohana_Log_File(APPPATH.'logs'));
+Kohana::$log->attach(new Log_File(APPPATH.'logs'));
+
+/**
+ * Set the environment name since the environment constants are integers.
+ */
+$environments = array(
+    Kohana::PRODUCTION  => 'production',
+    Kohana::STAGING     => 'staging',
+    Kohana::TESTING     => 'testing',
+    Kohana::DEVELOPMENT => 'development',
+    );
+    
+$environment = $environments[Kohana::$environment];
 
 /**
  * Attach a file reader to config. Multiple readers are supported.
  */
-Kohana::$config->attach(new Kohana_Config_File);
+Kohana::$config->attach(new Config_File('config/'.$environment));
 
 /**
- * Override config with environment-specific config.
+ * Clean up environment variables.
  */
-Kohana::$config->attach(new Kohana_Config_File('config/'.Kohana::$environment));
+unset($environments, $environment);
 
 /**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
     'auth'       => MODPATH.'auth',       // Basic authentication
+    'cache'      => MODPATH.'cache',      // Caching with multiple backends
     'database'   => MODPATH.'database',   // Database access
+    'github'     => MODPATH.'github',
+    'minion'     => MODPATH.'minion',
+    'migrations' => MODPATH.'migrations',
+    'notices'    => MODPATH.'notices',
     'orm'        => MODPATH.'orm',        // Object Relationship Mapping
     'pagination' => MODPATH.'pagination', // Paging of results
-    'notices'    => MODPATH.'notices',
-    'yform'      => MODPATH.'yform',
-    'github'     => MODPATH.'github',
     'sitemap'    => MODPATH.'sitemap',
-    'cache'      => MODPATH.'cache',
-    'minion'     => MODPATH.'minion',     // Everyone loves having a minion they can boss around
-    'migrations' => MODPATH.'migrations', // Migration tasks for the kohana-minion cli framework 
-    ));
+    'yform'      => MODPATH.'yform',
+	));
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
@@ -136,35 +170,3 @@ Route::set('default', '(<controller>(/<action>(/<id>)))')
         'controller' => 'modules',
         'action'     => 'index',
     ));
-
-if ( ! defined('SUPPRESS_REQUEST'))
-{
-    /**
-     * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
-     * If no source is specified, the URI will be automatically detected.
-     */
-    $request = Request::instance();
-    
-    try
-    {
-        $request->execute();
-    }
-    catch (Exception $e)
-    {
-        if (Kohana::$environment !== Kohana::PRODUCTION)
-        {
-            throw $e;
-        }
-        
-        // Log the error
-        Kohana::$log->add(Kohana::ERROR, Kohana::exception_text($e));
-
-        // Create a 404 response
-        $request->status = 404;
-        $request->response = View::factory('template')
-            ->set('title', '404 | ')
-            ->set('content', View::factory('errors/404'));
-    }
-        
-    echo $request->send_headers()->response;
-}
