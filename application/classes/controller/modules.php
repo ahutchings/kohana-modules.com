@@ -19,7 +19,7 @@ class Controller_Modules extends Controller_Template
         $this->template->content = View::factory('modules/show')
             ->bind('module', $module);
             
-        if (Validate::not_empty($module->description))
+        if (Valid::not_empty($module->description))
         {
             $this->template->meta_description = $module->description;
         }

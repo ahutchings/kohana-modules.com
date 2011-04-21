@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Validate extends Kohana_Validate
+class Valid extends Kohana_Valid
 {
     /**
 	 * Validate that a URL is external.
@@ -10,7 +10,7 @@ class Validate extends Kohana_Validate
 	 */
     public static function external_url($url)
     {
-        if ( ! Validate::url($url))
+        if ( ! Valid::url($url))
             return FALSE;
 
         $host = parse_url($url, PHP_URL_HOST);
