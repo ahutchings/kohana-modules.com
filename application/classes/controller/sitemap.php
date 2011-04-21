@@ -22,7 +22,7 @@ class Controller_Sitemap extends Controller
 
         $url = new Sitemap_URL;
 
-        $url->set_loc(url::base(FALSE, TRUE))
+        $url->set_loc(url::base('http'))
             ->set_priority(1.0);
 
         $sitemap->add($url);
