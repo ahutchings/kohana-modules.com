@@ -119,6 +119,14 @@ Kohana::$config->attach(new Config_File('config/'.$environment));
 unset($environments, $environment);
 
 /**
+ * Register an exception handler for HTTP Exceptions in production and staging
+ */
+if (in_array(Kohana::$environment, array(Kohana::PRODUCTION, Kohana::STAGING)))
+{
+    set_exception_handler(array('HTTP_Exception_Handler', 'handle'));
+}
+
+/**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(

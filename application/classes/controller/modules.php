@@ -11,7 +11,7 @@ class Controller_Modules extends Controller_Template
             
         if ( ! $module->loaded())
         {
-            throw new Kohana_Request_Exception('Module :username/:name not found',
+            throw new HTTP_Exception_404('Module :username/:name not found',
                 array(':username' => $username, ':name' => $name));
         }
         
@@ -35,7 +35,7 @@ class Controller_Modules extends Controller_Template
             
         if ($count == 0)
         {
-            throw new Kohana_Request_Exception('No modules found for :username',
+            throw new HTTP_Exception_404('No modules found for :username',
                 array(':username' => $username));
         }
         
