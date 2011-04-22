@@ -19,7 +19,7 @@ class Model_Module extends ORM
             'name' => array(
                 array('not_empty'),
                 ),
-            'user' => array(
+            'username' => array(
                 array('not_empty'),
                 ),
             );
@@ -91,17 +91,16 @@ class Model_Module extends ORM
 
         foreach (array_keys($tags) as $tag_name)
         {
-            $tag = ORM::factory('tag')
-                ->where('module_id', '=', $this->id)
-                ->where('name', '=', $tag_name)
-                ->find();
+            $tag_values = array(
+                'module_id' => $this->id,
+                'name'      => $tag_name,
+                );
             
+            $tag = ORM::factory('tag', $tag_values);
+
             if ( ! $tag->loaded())
             {
-                $tag            = ORM::factory('tag');
-                $tag->module_id = $this->id;
-                $tag->name      = $tag_name;
-                $tag->save();
+                $tag->values($tag_values)->save();
             }
         }
 
