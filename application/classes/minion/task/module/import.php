@@ -144,7 +144,9 @@ class Minion_Task_Module_Import extends Minion_Task
         $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
         $url     = "https://github.com/ahutchings/kohana-modules/raw/$branch/.gitmodules";
 
-        $data = Remote::get($url);
+        $data = Request::factory($url)
+            ->execute()
+            ->body();
 
         preg_match_all($pattern, $data, $matches);
 
@@ -206,12 +208,12 @@ class Minion_Task_Module_Import extends Minion_Task
     }
     
     /**
-     * Either logs to file or prints to console, depending on the request protocol.
+     * Either logs to file or prints to console, depending on the request type.
      */
     private function log($message, $color = NULL)
     {
-        (Request::$protocol === 'cli')
+        Kohana::$is_cli
             ? Minion_CLI::write($message, $color)
-            : Kohana_Log::instance()->add(Kohana::INFO, $message);
+            : Log::instance()->add(Log::INFO, $message);
     }
 }
