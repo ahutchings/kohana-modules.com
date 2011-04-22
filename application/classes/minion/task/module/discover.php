@@ -40,10 +40,11 @@ class Minion_Task_Module_Discover extends Minion_Task
                 $queue->values($result);
                 $queue->source = Model_Queue::SOURCE_GITHUB_SEARCH;
 
-                if ($queue->check())
+                try
                 {
-                    $queue->save();   
+                   $queue->save();   
                 }
+                catch (ORM_Validation_Exception $e) {}
             }
             
             // throttle API requests
@@ -67,10 +68,11 @@ class Minion_Task_Module_Discover extends Minion_Task
             $queue->name     = $matches['name'][$i];
             $queue->source   = Model_Queue::SOURCE_KOHANA_UNIVERSE;
             
-            if ($queue->check())
+            try
             {
-                $queue->save();
+               $queue->save();   
             }
+            catch (ORM_Validation_Exception $e) {}
         }
     }
     
@@ -78,7 +80,9 @@ class Minion_Task_Module_Discover extends Minion_Task
     {
         $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
 
-        $data = Remote::get($url);
+        $data = Request::factory($url)
+            ->execute()
+            ->body();
         
         preg_match_all($pattern, $data, $matches);
         
