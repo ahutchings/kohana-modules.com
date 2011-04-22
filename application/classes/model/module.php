@@ -13,16 +13,26 @@ class Model_Module extends ORM
         'tags'            => array(),
     );
 
-    protected $_rules = array
-    (
-        'name' => array('not_empty' => array()),
-        'user' => array('not_empty' => array()),
-    );
+    public function rules()
+    {
+        return array(
+            'name' => array(
+                array('not_empty'),
+                ),
+            'user' => array(
+                array('not_empty'),
+                ),
+            );
+    }
 
-    protected $_filters = array
-    (
-        TRUE => array('trim' => array()),
-    );
+    public function filters()
+    {
+        return array(
+            TRUE => array(
+                array('trim'),
+                ),
+            );
+    }
     
     /**
      * @var  array  fields to import from the GitHub repository API
