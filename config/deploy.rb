@@ -11,7 +11,7 @@ server domain, :app, :web, :db, :primary => true
 set :scm, :git
 set :repository, "git@github.com:ahutchings/kohana-modules.com.git"
 set :deploy_via, :remote_cache
-set :branch, "master"
+set :branch, "3.1/master"
 set :copy_exclude, [".git", ".gitignore", ".gitmodules"]
 
 # --------------------------------------------
@@ -36,17 +36,20 @@ namespace :deploy do
     
     namespace :shared_files do
         task :setup do
-            run "mkdir -m 0777 -p #{shared_path}/cache"            
+            run "mkdir -m 0777 -p #{shared_path}/cache"
             run "mkdir -m 0777 -p #{shared_path}/logs"
+            run "mkdir -p #{shared_path}/config"
         end
         
         task :symlink do
-            # Make sure the cache and log directories do not exist.
+            # Make sure the cache, config, and log directories do not exist.
             run "rmdir #{latest_release}/application/cache"
+            run "rm -rf #{latest_release}/application/config"
             run "rmdir #{latest_release}/application/logs"
 
             # Symlink the shared directories to the directories in your application.
             run "ln -s #{shared_path}/cache #{latest_release}/application/cache"
+            run "ln -s #{shared_path}/config #{latest_release}/application/config"
             run "ln -s #{shared_path}/logs #{latest_release}/application/logs"
         end
     end
