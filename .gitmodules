@@ -37,3 +37,6 @@
 [submodule "modules/minion"]
 	path = modules/minion
 	url = git://github.com/kohana-minion/core.git
+[submodule "modules/hoptoad"]
+	path = modules/hoptoad
+	url = git://github.com/ahutchings/kohana-hoptoad.git

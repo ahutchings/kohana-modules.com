@@ -134,6 +134,7 @@ Kohana::modules(array(
     'cache'      => MODPATH.'cache',      // Caching with multiple backends
     'database'   => MODPATH.'database',   // Database access
     'github'     => MODPATH.'github',
+    'hoptoad'    => MODPATH.'hoptoad',    // Hoptoad error notifier
     'minion'     => MODPATH.'minion',
     'migrations' => MODPATH.'migrations',
     'notices'    => MODPATH.'notices',
