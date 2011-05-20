@@ -2,6 +2,12 @@
 
 class Model_Kohana_Version extends ORM
 {
+    protected $_has_many = array(
+        'modules' => array(
+            'through' => 'module_compatibilities',
+        ),
+    );
+    
     /**
      * Returns a sorted non-associative array of Kohana versions.
      *
