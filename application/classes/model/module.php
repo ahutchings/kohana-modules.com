@@ -70,7 +70,8 @@ class Model_Module extends ORM
         }
         catch (phpGitHubApiRequestException $e)
         {
-            if ($e->getCode() === 404)
+            // If the module has been made private or deleted
+            if (in_array($e->getCode(), array(401, 404)))
             {
                 // Flag the module for deletion.
                 $this->flagged_for_deletion_at = time();
