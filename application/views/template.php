@@ -105,7 +105,7 @@
                         <p class="added">
                             Added
                             <abbr class="timeago" title="<?php echo date(DATE_ISO8601, $module->created_at) ?>">
-                                <?php echo date('d M H:i', $module->created_at) ?>
+                                <?php echo date(DATE_ISO8601, $module->created_at) ?>
                             </abbr>
                         </p>
                     </li>
