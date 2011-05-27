@@ -136,6 +136,13 @@ a:hover {
 	padding-bottom:4em;
 }
 
+abbr.timeago {
+    border: 0;
+    text-transform: none;
+    font-size: 100%;
+    letter-spacing: 0;
+}
+
 div.module {
 	border-bottom:1px dotted #DDD;
 	margin-bottom:1.2em;
@@ -183,13 +190,24 @@ div.module {
 	font-weight:bold;
 }
 
-#recently-added .title {
-	float:left;
-	max-width:188px;
-	overflow-x:hidden;
-	white-space:nowrap;
-	width:188px;
-	margin-right:10px;
+#recently-added h4 {
+    font-size: 100%;
+    margin-bottom: 0;
+	white-space: nowrap;
+}
+
+#recently-added .description {
+    margin-bottom: 0;
+}
+
+#recently-added .added {
+    color: #BBB;
+    margin-bottom: .2em;
+}
+
+#prolific-authors .count {
+    color: #BBB;
+    float: right;
 }
 
 #modules>div:last-of-type {
@@ -305,7 +323,6 @@ h3.module-heading span {
 }
 
 #sidebar ol {
-	color:#BBB;
 	list-style-type:none;
 	margin-left:0;
 }

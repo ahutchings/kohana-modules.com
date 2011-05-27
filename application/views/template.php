@@ -19,6 +19,7 @@
   <link rel="alternate" href="http://feeds.feedburner.com/KohanaModules" type="application/rss+xml" title="kohana-modules.com - Recently Added Modules" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
   <script type="text/javascript" src="/javascripts/jquery.clearinginput.js"></script>
+  <?php echo HTML::script('packages/jquery-timeago/jquery.timeago.js') ?>
 
   <?php if (Kohana::$environment === Kohana::PRODUCTION): ?>
   <script type="text/javascript">
@@ -95,18 +96,24 @@
                 <ol>
                 <?php foreach (ORM::factory('module')->limit(7)->order_by('created_at', 'DESC')->find_all() as $module): ?>
                     <li>
-                        <span class="title">
+                        <h4>
                             <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>
                             /
                             <span class="name"><?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?></span>
-                        </span>
-                        <span class="date"><?php echo date('d M H:i', $module->created_at) ?></span>
+                        </h4>
+                        <p class="description"><?php echo HTML::chars($module->description) ?></p>
+                        <p class="added">
+                            Added
+                            <abbr class="timeago" title="<?php echo date(DATE_ISO8601, $module->created_at) ?>">
+                                <?php echo date('d M H:i', $module->created_at) ?>
+                            </abbr>
+                        </p>
                     </li>
                 <?php endforeach ?>
                 </ol>
             </div>
         
-            <div>
+            <div id="prolific-authors">
                 <h3>Most Prolific Authors</h3>
             
                 <ol>
@@ -115,7 +122,7 @@
                     group_by('username')->as_object()->execute() as $module): ?>
                     <li>
                         <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
-                        <span style="float:right"><?php echo $module->module_count ?> modules</span>
+                        <span class="count"><?php echo $module->module_count ?> modules</span>
                     </li>
                 <?php endforeach ?>
                 </ol>
@@ -153,6 +160,7 @@
   
   $(document).ready(function() {
       $("#query").clearingInput({text: 'Search modules...'});
+      $("abbr.timeago").timeago();
   });
   </script>
 
