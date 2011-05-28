@@ -22,13 +22,21 @@ class HTTP_Exception_Handler
         // Construct the response body
         $body = View::factory('template')
             ->bind('content', $content)
-            ->bind('title', $title);
+            ->bind('title', $title)
+            ->bind('tagline', $tagline);
 
         $content = View::factory('errors/http')
             ->set('code', $code)
             ->set('message', $message);
 
         $title = Response::$messages[$code].' - ';
+
+        $tagline = __('Indexing <span>:modules</span> modules from <span>:developers</span> developers.',
+            array(
+                ':modules' => ORM::factory('module')->count_all(),
+                ':developers' => DB::query(Database::SELECT, 'SELECT DISTINCT username FROM modules')->execute()->count()
+                )
+            );
 
         $response = new Response;
         $response->status($code);
