@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Modules extends Controller_Template
+class Controller_Modules extends Controller_Website
 {
     public function action_show($username, $name)
     {

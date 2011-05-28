@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Search extends Controller_Template
+class Controller_Search extends Controller_Website
 {
     public function action_index()
     {

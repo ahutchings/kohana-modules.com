@@ -51,9 +51,7 @@
             <div class="container">
                 <div class="span-17">
                     <h1><a href="/"><?php echo Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></a></h1>
-                    <p>Indexing <span><?php echo ORM::factory('module')->count_all() ?></span> modules from
-                        <span><?php echo DB::query(Database::SELECT, 'SELECT DISTINCT username FROM modules')->execute()->count() ?></span>
-                        developers.</p>
+                    <p><?php echo $tagline ?></p>
                 </div>
         
                 <div id="search" class="span-7 last">
