@@ -31,4 +31,8 @@
 
 <h4>Commands</h4>
 
-<pre><?php echo implode($commands, "\n") ?></pre>
+<?php foreach (array_keys($commands) as $branch): ?>
+<h5><?php echo $branch ?> Branch</h5>
+
+<pre><?php echo implode($commands[$branch], "\n") ?></pre>
+<?php endforeach ?>

@@ -18,16 +18,16 @@ class Controller_Admin_Modules extends Controller_Admin
             ->bind('modules', $modules)
             ->bind('commands', $commands);
 
-        $repo = new Git_Repository();
-
         $modules = ORM::factory('module')
             ->where('flagged_for_deletion_at', 'IS NOT', NULL)
             ->find_all();
 
+        $repo     = new Git_Repository();
         $commands = array();
-
-        foreach (ORM::factory('kohana_version')->find_all() as $version)
+        foreach (ORM::factory('kohana_version')->order_by('name', 'DESC')->find_all() as $version)
         {
+            $commands[$version->name] = array();
+
             $deleted = $version
                 ->modules
                 ->where('flagged_for_deletion_at', 'IS NOT', NULL)
@@ -42,7 +42,7 @@ class Controller_Admin_Modules extends Controller_Admin
                 if ( ! $submodule)
                     continue;
 
-                $commands += $repo->remove_submodule($submodule);
+                $commands[$version->name] += $repo->remove_submodule($submodule);
             }
         }
     }
