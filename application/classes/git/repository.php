@@ -21,18 +21,14 @@ class Git_Repository
     public function submodule($branch, $key, $value)
     {
         // Get the submodule
-        return array_filter($this->submodules($branch), function($array) use ($key, $value)
+        foreach ($this->submodules($branch) as $name => $values)
         {
-            if ($key === 'name')
+            if (($key === 'name' AND $name === $value)
+                OR $values[$key] === $value)
             {
-                $names = array_keys($array);
-                return $names[0] === $value;
+                return array($name => $values);
             }
-            else
-            {
-                return $array[$key] === $value;
-            }
-        });
+        }
     }
 
     /**
