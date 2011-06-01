@@ -144,7 +144,15 @@ class Minion_Task_Module_Import extends Minion_Task
         $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
         $url     = "https://github.com/ahutchings/kohana-modules/raw/$branch/.gitmodules";
 
-        $data = Request::factory($url)
+        $request = Request::factory($url);
+
+        $request->get_client()
+            ->options(array(
+                CURLOPT_SSL_VERIFYPEER => FALSE,
+                CURLOPT_SSL_VERIFYHOST => FALSE
+                ));
+
+        $data = $request
             ->execute()
             ->body();
 
@@ -206,7 +214,7 @@ class Minion_Task_Module_Import extends Minion_Task
             $this->log('Deleted '.$module['username'].'/'.$module['name'], 'red');
         }
     }
-    
+
     /**
      * Either logs to file or prints to console, depending on the request type.
      */
