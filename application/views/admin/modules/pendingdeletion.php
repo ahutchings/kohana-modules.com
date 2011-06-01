@@ -28,3 +28,7 @@
     <?php endforeach ?>
     </tbody>
 </table>
+
+<h4>Commands</h4>
+
+<pre><?php echo implode($commands, "\n") ?></pre>
