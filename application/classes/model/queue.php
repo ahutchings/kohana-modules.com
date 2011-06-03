@@ -9,6 +9,14 @@ class Model_Queue extends ORM
 
     protected $_sorting = array('created_at' => 'ASC');
 
+    /**
+     * @var  array  fields to import from the GitHub repository API
+     */
+    protected $_import_fields = array
+    (
+        'description',
+    );
+
     public function rules()
     {
         return array(
@@ -77,5 +85,46 @@ class Model_Queue extends ORM
         {
             $data->error($field, 'exists_in_queue');
         }
+    }
+    
+    /**
+     * Syncs the items's metadata from the GitHub repository.
+     *
+     * If a item doesn't exist on GitHub API, it is removed from the queue.
+     *
+     * @return  boolean  FALSE if the module isn't found on GitHub, TRUE otherwise
+     */
+    public function sync()
+    {
+        try
+        {
+            $repo = Github::instance()->getRepoApi()
+                ->show($this->username, $this->name);
+        }
+        catch (phpGitHubApiRequestException $e)
+        {
+            // If the module has been made private or deleted
+            if (in_array($e->getCode(), array(401, 404)))
+            {
+                // Delete the item
+                $this->delete();
+
+                return FALSE;
+            }
+            else
+            {
+                // Rethrow the exception.
+                throw $e;
+            }
+        }
+
+        $values = Arr::extract($repo, $this->_import_fields)
+            + array('updated_at' => time());
+
+        $this
+            ->values($values)
+            ->save();
+
+        return TRUE;
     }
 }
