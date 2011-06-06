@@ -55,22 +55,9 @@ namespace :deploy do
     end
 end
 
-namespace :module do
-    task :import do
-        run_task("import")
-    end
-
-    task :discover do
-        run_task("discover")
-    end
-    
-    task :sync do
-        run_task("sync")
-    end
-    
-    def run_task(task)
-        run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=minion/module:#{task}"
-    end
+desc "Runs a minion task on the remote server. Usage: cap minion TASK=module:sync"
+task :minion do
+    run "KOHANA_ENV=#{kohana_env} php #{latest_release}/public/index.php --uri=minion/#{ENV['TASK']}"
 end
 
 after "deploy:setup", "deploy:shared_files:setup"
