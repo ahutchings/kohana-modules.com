@@ -158,8 +158,7 @@ class Minion_Task_Module_Import extends Minion_Task
 
         preg_match_all($pattern, $data, $matches);
 
-        $results = array();
-
+        $modules = array();
         for ($i = 0, $n = count($matches['name']); $i < $n; $i++)
         {
             $modules[] = array(
