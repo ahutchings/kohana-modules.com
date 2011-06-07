@@ -41,7 +41,7 @@ class Git_Repository
     {
         if ( ! isset($this->_submodules[$branch]))
         {
-            $url = 'https://github.com/ahutchings/kohana-modules/raw/'.$branch.'/.gitmodules';
+            $url = 'https://raw.github.com/ahutchings/kohana-modules/'.$branch.'/.gitmodules';
 
             $request = Request::factory($url);
 

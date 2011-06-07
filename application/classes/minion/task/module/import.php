@@ -142,7 +142,7 @@ class Minion_Task_Module_Import extends Minion_Task
     private function _fetch_modules($branch)
     {
         $pattern = "/git:\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
-        $url     = "https://github.com/ahutchings/kohana-modules/raw/$branch/.gitmodules";
+        $url     = "https://raw.github.com/ahutchings/kohana-modules/$branch/.gitmodules";
 
         $request = Request::factory($url);
 

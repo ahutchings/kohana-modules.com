@@ -59,7 +59,7 @@ class Minion_Task_Module_Discover extends Minion_Task
      */
     protected function _import_from_universe()
     {
-        $matches = self::fetch_gitmodules("https://github.com/kolanos/kohana-universe/raw/master/.gitmodules");
+        $matches = self::fetch_gitmodules("https://raw.github.com/kolanos/kohana-universe/master/.gitmodules");
         
         for ($i = 0; $i < count($matches[0]); $i++)
         {
