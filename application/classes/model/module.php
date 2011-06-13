@@ -33,7 +33,7 @@ class Model_Module extends ORM
                 ),
             );
     }
-    
+
     /**
      * @var  array  fields to import from the GitHub repository API
      */
@@ -96,7 +96,7 @@ class Model_Module extends ORM
                 'module_id' => $this->id,
                 'name'      => $tag_name,
                 );
-            
+
             $tag = ORM::factory('tag', $tag_values);
 
             if ( ! $tag->loaded())
@@ -129,13 +129,13 @@ class Model_Module extends ORM
             case 'homepage':
                 if (strpos($this->homepage, '://') === FALSE)
                     return "http://$this->homepage";
-                    
+
                 return $this->homepage;
             default:
                 return "https://github.com/$this->username/$this->name";
         }
     }
-    
+
     /**
      * Sets the column name to order by from the query string.
      *
@@ -145,7 +145,7 @@ class Model_Module extends ORM
     {
         // Get the selected sort method
         $order_by = Arr::get($_GET, 'sort', 'watchers');
-        
+
         // Valid sort methods
         $sort_methods = array
         (
@@ -164,7 +164,32 @@ class Model_Module extends ORM
             // Map the sort method to the database column name
             $sort_column = $sort_methods[$order_by];
         }
-        
+
         return $this->order_by($sort_column, 'DESC');
+    }
+
+    /**
+     * Query builder method to select modules that are compatible with a
+     * particular Kohana version.
+     *
+     * @param   ORM|string  Kohana version model or name
+     * @return  $this
+     */
+    public function where_compatible_with($version)
+    {
+        if ( ! ($version instanceof Model_Kohana_Version))
+        {
+            // We have a version name
+            $version = ORM::factory('kohana_version',
+                array('name' => $version));
+        }
+
+        if ( ! $version->loaded())
+            return $this;
+
+        return $this
+            ->join('module_compatibilities')
+            ->on('module_compatibilities.module_id', '=', 'id')
+            ->where('module_compatibilities.kohana_version_id', '=', $version->id);
     }
 }
