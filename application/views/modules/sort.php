@@ -1,7 +1,7 @@
 <div class="actions">
 
     <div class="filter">
-        <span>Compatibile with</span>
+        <span>Compatible with</span>
 
         <ul>
             <li>
