@@ -1,5 +1,3 @@
-<h2>Search Results</h2>
-
 <?php echo View::factory('modules/sort')->render() ?>
 
 <div id="modules">
@@ -8,11 +6,8 @@
 
         <div class="span-12">
             <h2>
-                <span class="username">
-                    <?php echo HTML::anchor("modules/$module->username", Text::highlight($module->username, $_GET['query'])) ?>
-                </span>
-                /
-                <?php echo HTML::anchor("modules/$module->username/$module->name", Text::highlight($module->name, $_GET['query'])) ?>
+                <?php echo HTML::anchor("modules/$module->username/$module->name",
+                    Text::highlight("$module->username/$module->name", $_GET['query'])) ?>
             </h2>
 
             <p><?php echo Text::highlight(Text::widont(HTML::chars($module->description)), $_GET['query']) ?></p>

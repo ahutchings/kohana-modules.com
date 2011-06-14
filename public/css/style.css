@@ -214,26 +214,62 @@ div.module {
 	margin-bottom:5em;
 }
 
-.sort {
-	font-size:110%;
+.actions {
+    background: #efefef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#dfe1e2));
+    background: -moz-linear-gradient(-90deg, #efefef, #dfe1e2);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#efefef, endColorstr=#dfe1e2);
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#efefef, endColorstr=#dfe1e2);
+    box-shadow: 0 1px 2px #aaaaaa;
+    -moz-box-shadow: 0 1px 2px #aaaaaa;
+    -webkit-box-shadow: 0 1px 2px #aaaaaa;
+    text-shadow: white 0 1px 0;
+    border-bottom: 1px solid #ededed;
+    padding: 9px 10px 7px 10px;
+    color: #5e6469;
+    float: left;
+    width: 100%;
+    margin-bottom: 2em;
+    line-height: 1.5em;
+}
+
+.actions a {
+    border: 0;
+    padding: 4px 8px 3px 8px;
+    font-weight: bold;
+    color: #888;
+}
+
+.actions ul {
+    list-style-type: none;
+    display: inline;
+    margin-left: .5em;
+}
+
+.actions li {
+    display: inline;
+    margin-left: 0;
+}
+
+.actions .filter {
+    float: left;
+}
+
+.actions .sort {
 	text-align:right;
-	margin-bottom:1.5em;
+	float: right;
 }
 
-.sort span {
-	color:#999;
-}
-
-.sort a {
-	margin-left:.5em;
-}
-
-.sort.added #sort-added,
-.sort.watchers #sort-watchers,
-.sort.forks #sort-forks {
-	border-bottom:1px dotted #000;
-	color: #000;
-	font-weight:700;
+.actions a.selected {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 #CCC;
+    -moz-box-shadow: inset 0 1px 0 #CCC;
+    -webkit-box-shadow: inset 0 1px 0 #CCC;
+    text-shadow: white 0 1px 0;
+    background: #F6F6F6;
+    color: #666;
 }
 
 p.pagination a {

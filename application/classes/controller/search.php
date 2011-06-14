@@ -12,10 +12,16 @@ class Controller_Search extends Controller_Website
             ->bind('modules', $modules);
 
         $query = ORM::factory('module')
-            ->where('name', 'LIKE', "%$term%")
-            ->or_where('description', 'LIKE', "%$term%")
-            ->or_where('username', 'LIKE', "%$term%")
-            ->set_order_by();
+            ->where_open()
+                ->where('name', 'LIKE', "%$term%")
+                ->or_where('description', 'LIKE', "%$term%")
+                ->or_where('username', 'LIKE', "%$term%")
+            ->where_close();
+
+        if (isset($_GET['compatibility']))
+        {
+            $query->where_compatible_with($_GET['compatibility']);
+        }
 
         $pagination = Pagination::factory(array(
             'total_items' => $query->reset(FALSE)->count_all(),
@@ -24,6 +30,7 @@ class Controller_Search extends Controller_Website
         $modules = $query
             ->limit($pagination->items_per_page)
             ->offset($pagination->offset)
+            ->set_order_by()
             ->find_all();
     }
 }
