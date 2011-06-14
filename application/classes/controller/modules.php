@@ -27,16 +27,23 @@ class Controller_Modules extends Controller_Website
 
     public function action_by_username($username)
     {
-        $count = DB::select(DB::expr('COUNT(*) AS count'))
-            ->from('modules')
-            ->where('username', '=', $username)
-            ->execute()
-            ->get('count');
+        $query = ORM::factory('module')
+            ->where('username', '=', $username);
+
+        $count = $query->reset(FALSE)->count_all();
 
         if ($count == 0)
         {
             throw new HTTP_Exception_404('No modules found for :username',
                 array(':username' => $username));
+        }
+
+        if (isset($_GET['compatibility']))
+        {
+            $query->where_compatible_with($_GET['compatibility']);
+
+            // Perform another count for the active filter
+            $count = $query->reset(FALSE)->count_all();
         }
 
         $this->template->title = "$username's Profile - ";
@@ -50,8 +57,7 @@ class Controller_Modules extends Controller_Website
             'total_items' => $count,
             ));
 
-        $modules = ORM::factory('module')
-            ->where('username', '=', $username)
+        $modules = $query
             ->limit($pagination->items_per_page)
             ->offset($pagination->offset)
             ->set_order_by()
