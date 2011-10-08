@@ -4,20 +4,18 @@
         <span>Compatible with</span>
 
         <ul>
-            <li>
-                <?php echo HTML::anchor(Arr::get($_SERVER, 'PATH_INFO').URL::query(array('compatibility' => NULL)), 'Any',
-                    array('class' => (Arr::get($_GET, 'compatibility') === NULL) ? 'selected' : NULL)) ?>
-            </li>
-
-            <?php foreach (ORM::factory('kohana_version')
-                ->order_by('name', 'DESC')
-                ->find_all() as $version): ?>
+            <?php foreach ($versions as $version): ?>
             <li>
                 <?php echo HTML::anchor(Arr::get($_SERVER, 'PATH_INFO').URL::query(array('compatibility' => $version->name)),
                     $version->name,
-                    array('class' => (Arr::get($_GET, 'compatibility') === $version->name) ? 'selected' : NULL)) ?>
+                    array('class' => (Arr::get($_GET, 'compatibility', Model_Kohana_Version::latest()) === $version->name) ? 'selected' : NULL)) ?>
             </li>
-        <?php endforeach ?>
+            <?php endforeach ?>
+
+            <li>
+                <?php echo HTML::anchor(Arr::get($_SERVER, 'PATH_INFO').URL::query(array('compatibility' => 'any')), 'Any',
+                    array('class' => (Arr::get($_GET, 'compatibility') === 'any') ? 'selected' : NULL)) ?>
+            </li>
         </ul>
     </div>
 

@@ -7,7 +7,7 @@ class Model_Kohana_Version extends ORM
             'through' => 'module_compatibilities',
         ),
     );
-    
+
     /**
      * Returns a sorted non-associative array of Kohana versions.
      *
@@ -23,5 +23,22 @@ class Model_Kohana_Version extends ORM
         sort($names);
 
         return $names;
+    }
+
+    /**
+     * Returns the name of the latest Kohana version.
+     *
+     * @return  string
+     */
+    public static function latest()
+    {
+        $names = DB::select('name')
+            ->from('kohana_versions')
+            ->limit(1)
+            ->order_by('name', 'DESC')
+            ->execute()
+            ->as_array(NULL, 'name');
+
+        return $names[0];
     }
 }

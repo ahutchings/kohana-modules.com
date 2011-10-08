@@ -38,9 +38,11 @@ class Controller_Modules extends Controller_Website
                 array(':username' => $username));
         }
 
-        if (isset($_GET['compatibility']))
+        $compatibility = Arr::get($_GET, 'compatibility', Model_Kohana_Version::latest());
+
+        if ($compatibility !== 'any')
         {
-            $query->where_compatible_with($_GET['compatibility']);
+            $query->where_compatible_with($compatibility);
 
             // Perform another count for the active filter
             $count = $query->reset(FALSE)->count_all();
@@ -51,7 +53,12 @@ class Controller_Modules extends Controller_Website
             ->bind('count', $count)
             ->set('username', $username)
             ->bind('modules', $modules)
-            ->bind('pagination', $pagination);
+            ->bind('pagination', $pagination)
+            ->bind('versions', $versions);
+
+        $versions = ORM::factory('kohana_version')
+                ->order_by('name', 'DESC')
+                ->find_all();
 
         $pagination = Pagination::factory(array(
             'total_items' => $count,
@@ -69,13 +76,20 @@ class Controller_Modules extends Controller_Website
         $this->template->title = '';
         $this->template->content = View::factory('modules/index')
             ->bind('modules', $modules)
-            ->bind('pagination', $pagination);
+            ->bind('pagination', $pagination)
+            ->bind('versions', $versions);
+
+        $versions = ORM::factory('kohana_version')
+                ->order_by('name', 'DESC')
+                ->find_all();
 
         $query = ORM::factory('module');
 
-        if (isset($_GET['compatibility']))
+        $compatibility = Arr::get($_GET, 'compatibility', Model_Kohana_Version::latest());
+
+        if ($compatibility !== 'any')
         {
-            $query->where_compatible_with($_GET['compatibility']);
+            $query->where_compatible_with($compatibility);
         }
 
         $pagination = Pagination::factory(array(
