@@ -42,7 +42,7 @@ class Controller_Admin_Modules extends Controller_Admin
                 if ( ! $submodule)
                     continue;
 
-                $commands[$version->name] += $repo->remove_submodule($submodule);
+                $commands[$version->name] = Arr::merge($commands[$version->name], $repo->remove_submodule($submodule));
             }
         }
     }
