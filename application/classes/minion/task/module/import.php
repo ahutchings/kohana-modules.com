@@ -32,11 +32,19 @@ class Minion_Task_Module_Import extends Minion_Task
      */
     private function _fetch_kohana_versions()
     {
-        $results = Github::instance()
-            ->getRepoApi()
-            ->getRepoBranches('ahutchings', 'kohana-modules');
+        $github = new Github();
+        $results = $github
+            ->get_repo('ahutchings', 'kohana-modules')
+            ->get_branches()
+            ->load();
 
-        return array_keys($results);
+        $versions = array();
+        foreach ($results as $branch)
+        {
+            $versions[] = $branch->name;
+        }
+
+        return $versions;
     }
 
     /**
