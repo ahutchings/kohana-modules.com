@@ -7,6 +7,8 @@ web1:
     - mcrypt
     - gd
     - mysql
+  before_deploy:
+    - "php index.php --uri=minion/db:migrate"
 
 db1:
   type: mysql
