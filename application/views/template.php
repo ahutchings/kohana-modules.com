@@ -17,7 +17,7 @@
   <![endif]-->
   <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection" />
   <link rel="alternate" href="http://feeds.feedburner.com/KohanaModules" type="application/rss+xml" title="kohana-modules.com - Recently Added Modules" />
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
   <script type="text/javascript" src="/javascripts/jquery.clearinginput.js"></script>
   <?php echo HTML::script('packages/jquery-timeago/jquery.timeago.js') ?>
 
@@ -37,7 +37,7 @@
 
   </script>
   <?php endif ?>
-  
+
   <?php if (isset($_GET['query']) OR isset($_GET['page'])): ?>
   <meta name="robots" content="noindex, follow" />
   <?php endif ?>
@@ -54,7 +54,7 @@
                     <h1><a href="/"><?php echo Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></a></h1>
                     <p><?php echo $tagline ?></p>
                 </div>
-        
+
                 <div id="search" class="span-7 last">
                     <?php
                         $form = YForm::factory();
@@ -67,16 +67,16 @@
         </div><!-- end #header -->
 
       <div id="content" class="container">
-    
+
         <div id="main" class="span-16 colborder">
             <?php echo $content ?>
         </div><!-- end #main -->
-    
+
         <div id="sidebar" class="span-7 last">
-        
+
             <div>
                 <h3>Keep Updated</h3>
-        
+
                 <ul id="subscribe-links">
                     <li class="feed">
                         <a href="http://feeds.feedburner.com/KohanaModules" rel="alternate"
@@ -88,7 +88,7 @@
                     </li>
                 </ul>
             </div>
-        
+
             <div id="recently-added">
                 <h3>Recently Added</h3>
 
@@ -111,10 +111,10 @@
                 <?php endforeach ?>
                 </ol>
             </div>
-        
+
             <div id="prolific-authors">
                 <h3>Most Prolific Authors</h3>
-            
+
                 <ol>
                 <?php foreach (DB::select('username', DB::expr('COUNT(1) as module_count'))->
                     from('modules')->limit(7)->order_by('module_count', 'DESC')->
@@ -153,10 +153,10 @@
   var disqus_shortname = 'kohana-modules';
   (function () {
     var s = document.createElement('script'); s.async = true;
-    s.src = 'http://disqus.com/forums/kohana-modules/count.js';
+    s.src = '//disqus.com/forums/kohana-modules/count.js';
     (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
   }());
-  
+
   $(document).ready(function() {
       $("#query").clearingInput({text: 'Search modules...'});
       $("abbr.timeago").timeago();
