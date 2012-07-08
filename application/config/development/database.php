@@ -17,7 +17,7 @@ return array
              *
              * Ports and sockets may be appended to the hostname.
              */
-            'hostname'   => 'localhost',
+            'hostname'   => '127.0.0.1',
             'database'   => 'kohana-modules_development',
             'username'   => 'km_development',
             'password'   => 'km_development',
