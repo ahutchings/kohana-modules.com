@@ -9,6 +9,11 @@ web1:
     - mysql
   before_deploy:
     - "php index.php --uri=minion/db:migrate"
+  cron:
+    - "0 0 * * *": "php index.php --uri=minion/module:import"
+    - "0 0 * * 0": "php index.php --uri=minion/module:discover"
+    - "0 0 * * 1": "php index.php --uri=minion/module:sync"
+    - "0 0 * * 2": "php index.php --uri=minion/queue:sync"
 
 db1:
   type: mysql
