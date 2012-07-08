@@ -60,18 +60,23 @@ class Model_Module extends ORM
      */
     public function sync()
     {
+        $github = new Github();
+
         try
         {
-            $repo = Github::instance()->getRepoApi()
-                ->show($this->username, $this->name);
+            $repo = $github
+                ->get_repo($this->username, $this->name)
+                ->load();
 
-            $tags = Github::instance()->getRepoApi()
-                ->getRepoTags($this->username, $this->name);
+            $tags = $repo
+                ->get_tags()
+                ->load();
         }
-        catch (phpGitHubApiRequestException $e)
+        catch (Exception $e)
         {
             // If the module has been made private or deleted
-            if (in_array($e->getCode(), array(401, 404)))
+            if ($e instanceof Github_Exception_BadHTTPResponse OR
+                $e instanceof Github_Exception_Unauthorized)
             {
                 // Flag the module for deletion.
                 $this->flagged_for_deletion_at = time();
@@ -86,22 +91,25 @@ class Model_Module extends ORM
             }
         }
 
-        $values = Arr::extract($repo, $this->_import_fields);
+        $values = Arr::extract($repo->as_array(), $this->_import_fields);
 
         $this->values($values);
 
-        foreach (array_keys($tags) as $tag_name)
+        if (count($tags))
         {
-            $tag_values = array(
-                'module_id' => $this->id,
-                'name'      => $tag_name,
-                );
-
-            $tag = ORM::factory('tag', $tag_values);
-
-            if ( ! $tag->loaded())
+            foreach ($tags as $tag)
             {
-                $tag->values($tag_values)->save();
+                $tag_values = array(
+                    'module_id' => $this->id,
+                    'name'      => $tag->name,
+                    );
+
+                $tag = ORM::factory('tag', $tag_values);
+
+                if ( ! $tag->loaded())
+                {
+                    $tag->values($tag_values)->save();
+                }
             }
         }
 
