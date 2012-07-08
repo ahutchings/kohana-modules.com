@@ -1,4 +1,5 @@
-<?php echo View::factory('modules/sort')->render() ?>
+<?php echo View::factory('modules/sort',
+    array('versions' => $versions))->render() ?>
 
 <div id="modules">
     <?php foreach ($modules as $module): ?>
