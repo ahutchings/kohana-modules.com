@@ -105,7 +105,7 @@ $environments = array(
     Kohana::TESTING     => 'testing',
     Kohana::DEVELOPMENT => 'development',
     );
-    
+
 $environment = $environments[Kohana::$environment];
 
 /**
@@ -134,7 +134,7 @@ Kohana::modules(array(
     'cache'      => MODPATH.'cache',      // Caching with multiple backends
     'database'   => MODPATH.'database',   // Database access
     'github'     => MODPATH.'github',
-    'hoptoad'    => MODPATH.'hoptoad',    // Hoptoad error notifier
+    // 'hoptoad'    => MODPATH.'hoptoad',    // Hoptoad error notifier
     'minion'     => MODPATH.'minion',
     'migrations' => MODPATH.'migrations',
     'notices'    => MODPATH.'notices',
@@ -154,7 +154,7 @@ Route::set('admin', 'admin(/<controller>(/<action>(/<id>)))')
         'controller' => 'dashboard',
         'action' => 'index',
     ));
- 
+
 Route::set('pages', 'pages/<page>',
     array(
         'page' => '(about|feedback|add-a-module)',
@@ -175,7 +175,7 @@ Route::set('modules_by_username', 'modules/<username>')
         'controller' => 'modules',
         'action'     => 'by_username',
     ));
- 
+
 Route::set('modules_show', 'modules/<username>/<name>',
     array(
         'name' => '[a-zA-Z0-9-\._]++',
