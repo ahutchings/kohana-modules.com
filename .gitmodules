@@ -40,6 +40,6 @@
 [submodule "modules/hoptoad"]
 	path = modules/hoptoad
 	url = git://github.com/ahutchings/kohana-hoptoad.git
-[submodule "public/packages/jquery-timeago"]
-	path = public/packages/jquery-timeago
+[submodule "packages/jquery-timeago"]
+	path = packages/jquery-timeago
 	url = git://github.com/rmm5t/jquery-timeago.git
