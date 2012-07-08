@@ -7,3 +7,6 @@ web1:
     - mcrypt
     - gd
     - mysql
+
+db1:
+  type: mysql
