@@ -17,10 +17,10 @@ return array
              *
              * Ports and sockets may be appended to the hostname.
              */
-            'hostname'   => $_SERVER['DB1_HOST'],
-            'database'   => $_SERVER['DB1_NAME'],
-            'username'   => $_SERVER['DB1_USER'],
-            'password'   => $_SERVER['DB1_PASS'],
+            'hostname'   => isset($_SERVER['DB1_HOST']) ? $_SERVER['DB1_HOST'] : '127.0.0.1',
+            'database'   => isset($_SERVER['DB1_NAME']) ? $_SERVER['DB1_NAME'] : 'kohana-modules',
+            'username'   => isset($_SERVER['DB1_USER']) ? $_SERVER['DB1_USER'] : 'kohana-modules',
+            'password'   => isset($_SERVER['DB1_PASS']) ? $_SERVER['DB1_PASS'] : 'kohana-modules',
             'persistent' => FALSE,
         ),
         'table_prefix' => '',

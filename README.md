@@ -5,23 +5,28 @@ This is the source for [kohana-modules.com](http://kohana-modules.com).
 ## Installing
 
 * Create a MySQL user and database to use with the application.
-* Create the database tables using the schema.sql file located in the project root.
 * Modify the application/config files to match your local environment.
-* Run available migrations with `./minion db:migrate`.
+* Create database tables with `./minion db:migrate`.
 * Configure your web server to serve the application.
 
 An example Apache VirtualHost entry
 
-    <VirtualHost *>
-    	ServerName kohana-modules.com
+    <VirtualHost *:80>
+        ServerName kohana-modules.localhost
+        DocumentRoot "/srv/www/kohana-modules.com"
 
-    	SetEnv KOHANA_ENV development
+        SetEnv KOHANA_ENV development
+        SetEnv DB1_HOST 127.0.0.1
+        SetEnv DB1_NAME kohana-modules
+        SetEnv DB1_USER kohana-modules
+        SetEnv DB1_PASS kohana-modules
 
-    	DocumentRoot /srv/www/kohana-modules.com/current/public
-
-    	<Directory "/srv/www/kohana-modules.com/current/public">
-    		Options FollowSymLinks
-    	</Directory>
+        <Directory "/srv/www/kohana-modules.com">
+            Order allow,deny
+            Allow from all
+            Options FollowSymLinks
+            AllowOverride All
+        </Directory>
     </VirtualHost>
 
 ## Using
