@@ -153,7 +153,7 @@
   var disqus_shortname = 'kohana-modules';
   (function () {
     var s = document.createElement('script'); s.async = true;
-    s.src = '//disqus.com/forums/kohana-modules/count.js';
+    s.src = '//kohana-modules.disqus.com/count.js';
     (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
   }());
 
