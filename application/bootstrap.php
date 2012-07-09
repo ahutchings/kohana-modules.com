@@ -97,28 +97,6 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
 Kohana::$config->attach(new Config_File);
 
 /**
- * Set the environment name since the environment constants are integers.
- */
-$environments = array(
-    Kohana::PRODUCTION  => 'production',
-    Kohana::STAGING     => 'staging',
-    Kohana::TESTING     => 'testing',
-    Kohana::DEVELOPMENT => 'development',
-    );
-
-$environment = $environments[Kohana::$environment];
-
-/**
- * Override config with environment-specific config.
- */
-Kohana::$config->attach(new Config_File('config/'.$environment));
-
-/**
- * Clean up environment variables.
- */
-unset($environments, $environment);
-
-/**
  * Register an exception handler for HTTP Exceptions in production and staging
  */
 if (in_array(Kohana::$environment, array(Kohana::PRODUCTION, Kohana::STAGING)))
