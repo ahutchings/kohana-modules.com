@@ -10,6 +10,16 @@ Order Deny,Allow
 Deny From All
 </Files>
 
+# Remove www subdomain for HTTP pages
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# Remove www subdomain for HTTPS pages
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
 # Protect application and system files from being viewed
 RewriteRule ^(?:application|modules|system)\b.* index.php/$0 [L]
 
