@@ -8,13 +8,13 @@
             <li>
                 <?php echo HTML::anchor(Arr::get($_SERVER, 'PATH_INFO').URL::query(array('compatibility' => $version->name)),
                     $version->name,
-                    array('class' => (Arr::get($_GET, 'compatibility', Model_Kohana_Version::latest()) === $version->name) ? 'selected' : NULL)) ?>
+                    array('class' => (Arr::get($_GET, 'compatibility', $default_version) === $version->name) ? 'selected' : NULL)) ?>
             </li>
             <?php endforeach ?>
 
             <li>
                 <?php echo HTML::anchor(Arr::get($_SERVER, 'PATH_INFO').URL::query(array('compatibility' => 'any')), 'Any',
-                    array('class' => (Arr::get($_GET, 'compatibility') === 'any') ? 'selected' : NULL)) ?>
+                    array('class' => (Arr::get($_GET, 'compatibility', $default_version) === 'any') ? 'selected' : NULL)) ?>
             </li>
         </ul>
     </div>

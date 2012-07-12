@@ -38,7 +38,9 @@ class Controller_Modules extends Controller_Website
                 array(':username' => $username));
         }
 
-        $compatibility = Arr::get($_GET, 'compatibility', Model_Kohana_Version::latest());
+        $default_version = 'any';
+
+        $compatibility = Arr::get($_GET, 'compatibility', $default_version);
 
         if ($compatibility !== 'any')
         {
@@ -54,6 +56,7 @@ class Controller_Modules extends Controller_Website
             ->set('username', $username)
             ->bind('modules', $modules)
             ->bind('pagination', $pagination)
+            ->bind('default_version', $default_version)
             ->bind('versions', $versions);
 
         $versions = ORM::factory('kohana_version')
@@ -77,7 +80,10 @@ class Controller_Modules extends Controller_Website
         $this->template->content = View::factory('modules/index')
             ->bind('modules', $modules)
             ->bind('pagination', $pagination)
+            ->bind('default_version', $default_version)
             ->bind('versions', $versions);
+
+        $default_version = Model_Kohana_Version::latest();
 
         $versions = ORM::factory('kohana_version')
                 ->order_by('name', 'DESC')
@@ -85,7 +91,7 @@ class Controller_Modules extends Controller_Website
 
         $query = ORM::factory('module');
 
-        $compatibility = Arr::get($_GET, 'compatibility', Model_Kohana_Version::latest());
+        $compatibility = Arr::get($_GET, 'compatibility', $default_version);
 
         if ($compatibility !== 'any')
         {
