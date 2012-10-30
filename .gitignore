@@ -1,3 +1,4 @@
 .project
+.vagrant
 build
 application/config/hoptoad.php
