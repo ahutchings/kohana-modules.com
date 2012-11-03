@@ -9,7 +9,7 @@
 	url = git://github.com/kohana/database.git
 [submodule "modules/pagination"]
 	path = modules/pagination
-	url = git://github.com/kohana/pagination.git
+	url = git://github.com/ahutchings/pagination.git
 [submodule "modules/auth"]
 	path = modules/auth
 	url = git://github.com/kohana/auth.git
