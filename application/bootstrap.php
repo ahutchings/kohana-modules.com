@@ -3,17 +3,17 @@
 // -- Environment setup --------------------------------------------------------
 
 // Load the core Kohana class
-require SYSPATH.'classes/kohana/core'.EXT;
+require SYSPATH.'classes/Kohana/Core'.EXT;
 
-if (is_file(APPPATH.'classes/kohana'.EXT))
+if (is_file(APPPATH.'classes/Kohana'.EXT))
 {
-	// Application extends the core
-	require APPPATH.'classes/kohana'.EXT;
+    // Application extends the core
+    require APPPATH.'classes/Kohana'.EXT;
 }
 else
 {
-	// Load empty core extension
-	require SYSPATH.'classes/kohana'.EXT;
+    // Load empty core extension
+    require SYSPATH.'classes/Kohana'.EXT;
 }
 
 /**
@@ -41,6 +41,14 @@ setlocale(LC_ALL, 'en_US.utf-8');
 spl_autoload_register(array('Kohana', 'auto_load'));
 
 /**
+ * Optionally, you can enable a compatibility auto-loader for use with
+ * older modules that have not been updated for PSR-0.
+ *
+ * It is recommended to not enable this unless absolutely necessary.
+ */
+//spl_autoload_register(array('Kohana', 'auto_load_lowercase'));
+
+/**
  * Enable the Kohana auto-loader for unserialization.
  *
  * @see  http://php.net/spl_autoload_call
@@ -54,6 +62,8 @@ ini_set('unserialize_callback_func', 'spl_autoload_call');
  * Set the default language
  */
 I18n::lang('en-us');
+
+Cookie::$salt = '12345';
 
 /**
  * Set Kohana::$environment if a 'KOHANA_ENV' environment variable has been supplied.
@@ -75,9 +85,11 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - string   index_file  name of your index file, usually "index.php"       index.php
  * - string   charset     internal character set used for input and output   utf-8
  * - string   cache_dir   set the internal cache directory                   APPPATH/cache
+ * - integer  cache_life  lifetime, in seconds, of items cached              60
  * - boolean  errors      enable or disable error handling                   TRUE
  * - boolean  profile     enable or disable internal profiling               TRUE
  * - boolean  caching     enable or disable internal caching                 FALSE
+ * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
 	'base_url'   => '/',
@@ -112,7 +124,6 @@ Kohana::modules(array(
     'cache'      => MODPATH.'cache',      // Caching with multiple backends
     'database'   => MODPATH.'database',   // Database access
     'github'     => MODPATH.'github',
-    // 'hoptoad'    => MODPATH.'hoptoad',    // Hoptoad error notifier
     'minion'     => MODPATH.'minion',
     'migrations' => MODPATH.'migrations',
     'notices'    => MODPATH.'notices',

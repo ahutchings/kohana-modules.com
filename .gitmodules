@@ -36,10 +36,7 @@
 	url = git://github.com/kohana-minion/tasks-migrations.git
 [submodule "modules/minion"]
 	path = modules/minion
-	url = git://github.com/kohana-minion/core.git
-[submodule "modules/hoptoad"]
-	path = modules/hoptoad
-	url = git://github.com/ahutchings/kohana-hoptoad.git
+	url = git://github.com/kohana/minion.git
 [submodule "packages/jquery-timeago"]
 	path = packages/jquery-timeago
 	url = git://github.com/rmm5t/jquery-timeago.git
