@@ -2,8 +2,11 @@
 
 class Controller_Modules extends Controller_Website
 {
-    public function action_show($username, $name)
+    public function action_show()
     {
+        $username = $this->request->param('username');
+        $name     = $this->request->param('name');
+
         $module = ORM::factory('module')
             ->where('username', '=', $username)
             ->where('name', '=', $name)
@@ -25,8 +28,10 @@ class Controller_Modules extends Controller_Website
         }
     }
 
-    public function action_by_username($username)
+    public function action_by_username()
     {
+        $username = $this->request->param('username');
+
         $query = ORM::factory('module')
             ->where('username', '=', $username);
 
