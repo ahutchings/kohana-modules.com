@@ -6,7 +6,7 @@ This is the source for [kohana-modules.com](http://kohana-modules.com).
 
 * Create a MySQL user and database to use with the application.
 * Modify the application/config files to match your local environment.
-* Create database tables with `./minion db:migrate`.
+* Create database tables with `./minion migrations:run`.
 * Configure your web server to serve the application.
 
 An example Apache VirtualHost entry
