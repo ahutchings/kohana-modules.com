@@ -8,7 +8,7 @@ web1:
     - gd
     - mysql
   before_deploy:
-    - "php index.php --uri=minion/db:migrate"
+    - "php index.php --uri=minion/migrations:run"
   cron:
     - "0 0 * * *": "php index.php --uri=minion/module:import"
     - "0 0 * * 0": "php index.php --uri=minion/module:discover"
