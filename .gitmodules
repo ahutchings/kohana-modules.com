@@ -21,7 +21,7 @@
 	url = git://github.com/Zeelot/kohana-yform.git
 [submodule "modules/github"]
 	path = modules/github
-	url = git://github.com/ahutchings/github_v3_api.git
+	url = git://github.com/acoulton/github_v3_api.git
 [submodule "modules/sitemap"]
 	path = modules/sitemap
 	url = git://github.com/ThePixelDeveloper/kohana-sitemap.git
