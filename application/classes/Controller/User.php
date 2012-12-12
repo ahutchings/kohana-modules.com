@@ -6,7 +6,7 @@ class Controller_User extends Controller_Website
     {
         Auth::instance()->logout(TRUE);
 
-        $this->request->redirect(url::site());
+        $this->redirect(url::site());
     }
 
     public function action_login()
@@ -21,12 +21,12 @@ class Controller_User extends Controller_Website
 
         if ($auth->login($_POST['username'], $_POST['password']))
         {
-            $this->request->redirect('admin');
+            $this->redirect('admin');
         }
         else
         {
             Notices::add('error', 'Incorrect username or password.');
-            $this->request->redirect('user/login');
+            $this->redirect('user/login');
         }
     }
 }
