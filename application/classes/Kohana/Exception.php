@@ -4,6 +4,11 @@ class Kohana_Exception extends Kohana_Kohana_Exception
 {
     public static function response(Exception $e)
     {
+        if (!in_array(Kohana::$environment, array(Kohana::PRODUCTION, Kohana::STAGING)))
+        {
+            return parent::response($e);
+        }
+
         $response = Response::factory();
 
         // Construct the response body
