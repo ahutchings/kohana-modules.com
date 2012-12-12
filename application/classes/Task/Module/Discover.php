@@ -7,7 +7,7 @@ class Task_Module_Discover extends Minion_Task
 	 *
 	 * @return boolean TRUE if task executed successfully, else FALSE
 	 */
-	public function _execute(array $params)
+	protected function _execute(array $params)
 	{
         $this->_import_from_search();
         $this->_import_from_universe();

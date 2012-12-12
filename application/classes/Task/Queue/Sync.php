@@ -10,7 +10,7 @@ class Task_Queue_Sync extends Minion_Task
      *
      * @return boolean TRUE if task executed successfully, else FALSE
      */
-    public function execute(array $params)
+    protected function _execute(array $params)
     {
         // Queue items that haven't been updated in the past day
         $queue = ORM::factory('queue')

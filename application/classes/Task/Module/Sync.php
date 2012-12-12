@@ -10,7 +10,7 @@ class Task_Module_Sync extends Minion_Task
 	 *
 	 * @return boolean TRUE if task executed successfully, else FALSE
 	 */
-	public function execute(array $params)
+	protected function _execute(array $params)
 	{
 	    // Modules that haven't been refreshed in the past week
         $modules = ORM::factory('module')

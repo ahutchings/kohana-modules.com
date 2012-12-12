@@ -10,7 +10,7 @@ class Task_Module_Import extends Minion_Task
      *
      * @return boolean TRUE if task executed successfully, else FALSE
      */
-    public function _execute(array $params)
+    protected function _execute(array $params)
     {
         $versions = $this->_fetch_kohana_versions();
 
