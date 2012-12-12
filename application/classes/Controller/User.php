@@ -8,14 +8,11 @@ class Controller_User extends Controller_Website
 
         $this->request->redirect(url::site());
     }
-    
+
     public function action_login()
     {
         $this->template->title   = 'Login - ';
-        $this->template->content = View::factory('user/login')
-            ->bind('form', $form);
-
-        $form = YForm::factory('login');
+        $this->template->content = View::factory('user/login');
     }
 
     public function action_process_login()

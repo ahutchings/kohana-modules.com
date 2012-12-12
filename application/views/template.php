@@ -56,12 +56,11 @@
                 </div>
 
                 <div id="search" class="span-7 last">
-                    <?php
-                        $form = YForm::factory();
-                        echo $form->open('search', array('method' => 'get')),
-                            $form->text('query')->set_label('')->set_value(Arr::get($_GET, 'query')),
-                            $form->close();
-                    ?>
+                    <form action="/search" method="get" accept-charset="utf-8">
+                        <div class="yform-item yform-text" id="query-container">
+                           <input type="text" id="query" name="query" value="<?php echo Arr::get($_GET, 'query') ?>">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div><!-- end #header -->

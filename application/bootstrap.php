@@ -122,7 +122,6 @@ Kohana::modules(array(
     'orm'        => MODPATH.'orm',        // Object Relationship Mapping
     'pagination' => MODPATH.'pagination', // Paging of results
     'sitemap'    => MODPATH.'sitemap',
-    'yform'      => MODPATH.'yform',
 	));
 
 /**

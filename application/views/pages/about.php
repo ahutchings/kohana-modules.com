@@ -29,5 +29,4 @@ Framework</a>, and the following modules.</p>
     <li><?php echo HTML::anchor('https://github.com/kohana/orm', 'orm') ?> - Kohana ORM</li>
     <li><?php echo HTML::anchor('https://github.com/kohana/pagination', 'pagination') ?> - A Kohana module for pagination</li>
     <li><?php echo HTML::anchor('https://github.com/ThePixelDeveloper/kohana-sitemap', 'sitemap') ?> - A Kohana 3 Sitemap Class. Includes support for Google™ Mobile, Video, News, Code and Geo XML Sitemaps</li>
-    <li><?php echo HTML::anchor('https://github.com/Zeelot/kohana-yform', 'yform') ?> - Form Generation</li>
 </ul>
