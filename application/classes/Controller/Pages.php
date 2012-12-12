@@ -17,4 +17,14 @@ class Controller_Pages extends Controller_Website
         $this->template->title   = $titles[$page].' - ';
         $this->template->content = View::factory("pages/$page");
     }
+
+    /**
+     * Demo action to generate a 500 error
+     *
+     * @return null
+     */
+    public function action_error()
+    {
+        throw new Kohana_Exception('This is an intentional exception');
+    }
 }

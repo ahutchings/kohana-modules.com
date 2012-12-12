@@ -109,14 +109,6 @@ Kohana::$log->attach(new Log_File(APPPATH.'logs'));
 Kohana::$config->attach(new Config_File);
 
 /**
- * Register an exception handler for HTTP Exceptions in production and staging
- */
-if (in_array(Kohana::$environment, array(Kohana::PRODUCTION, Kohana::STAGING)))
-{
-    set_exception_handler(array('HTTP_Exception_Handler', 'handle'));
-}
-
-/**
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
@@ -137,6 +129,12 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
+Route::set('error', 'error')
+    ->defaults(array(
+        'controller' => 'pages',
+        'action'     => 'error'
+    ));
+
 Route::set('admin', 'admin(/<controller>(/<action>(/<id>)))')
     ->defaults(array(
         'directory' => 'admin',
