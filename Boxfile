@@ -8,12 +8,12 @@ web1:
     - gd
     - mysql
   before_deploy:
-    - "php index.php --uri=minion/migrations:run"
+    - "php index.php --task=migrations:run"
   cron:
-    - "0 0 * * *": "php index.php --uri=minion/module:import"
-    - "0 0 * * 0": "php index.php --uri=minion/module:discover"
-    - "0 0 * * 1": "php index.php --uri=minion/module:sync"
-    - "0 0 * * 2": "php index.php --uri=minion/queue:sync"
+    - "0 0 * * *": "php index.php --task=module:import"
+    - "0 0 * * 0": "php index.php --task=module:discover"
+    - "0 0 * * 1": "php index.php --task=module:sync"
+    - "0 0 * * 2": "php index.php --task=queue:sync"
 
 db1:
   type: mysql
