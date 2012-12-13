@@ -1,7 +1,8 @@
 web1:
+  document_root: public
   shared_writable_dirs:
-    - /application/cache
-    - /application/logs
+    - application/cache
+    - application/logs
   php_extensions:
     - curl
     - mcrypt

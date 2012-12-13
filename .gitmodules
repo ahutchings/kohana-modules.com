@@ -34,6 +34,6 @@
 [submodule "modules/minion"]
 	path = modules/minion
 	url = git://github.com/kohana/minion.git
-[submodule "packages/jquery-timeago"]
-	path = packages/jquery-timeago
+[submodule "public/packages/jquery-timeago"]
+	path = public/packages/jquery-timeago
 	url = git://github.com/rmm5t/jquery-timeago.git
