@@ -6,7 +6,7 @@ web1:
     - curl
     - mcrypt
     - gd
-    - mysql
+    - pdo_mysql
   before_deploy:
     - "php index.php --task=migrations:run"
   cron:
