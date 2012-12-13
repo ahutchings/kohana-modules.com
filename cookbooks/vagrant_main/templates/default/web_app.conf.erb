@@ -13,6 +13,11 @@
   RewriteLog <%= node[:apache][:log_dir] %>/<%= @application_name %>-rewrite.log
   RewriteLogLevel 0
 
+  SetEnv DB1_HOST localhost
+  SetEnv DB1_NAME kohana-modules
+  SetEnv DB1_USER kohana-modules
+  SetEnv DB1_PASS kohana-modules
+
   <Directory <%= @params[:docroot] %>>
     php_admin_value upload_tmp_dir /tmp/<%= @params[:server_name] %>
     DirectoryIndex index.php

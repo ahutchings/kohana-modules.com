@@ -4,17 +4,22 @@ return array
 (
     'default' => array
     (
-        'type'       => 'PDO',
+        'type'       => 'MySQL',
         'connection' => array(
             /**
-             * The following options are available for PDO:
+             * The following options are available for MySQL:
              *
-             * string   dsn         Data Source Name
-             * string   username    database username
-             * string   password    database password
-             * boolean  persistent  use persistent connections?
+             * string   hostname     server hostname, or socket
+             * string   database     database name
+             * string   username     database username
+             * string   password     database password
+             * boolean  persistent   use persistent connections?
+             * array    variables    system variables as "key => value" pairs
+             *
+             * Ports and sockets may be appended to the hostname.
              */
-            'dsn'   => 'mysql:host='.$_SERVER['DB1_HOST'].';dbname='.$_SERVER['DB1_NAME'],
+            'hostname'   => $_SERVER['DB1_HOST'],
+            'database'   => $_SERVER['DB1_NAME'],
             'username'   => $_SERVER['DB1_USER'],
             'password'   => $_SERVER['DB1_PASS'],
             'persistent' => FALSE,

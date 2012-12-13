@@ -34,9 +34,20 @@ web_app "localhost" do
 end
 
 %w{ cache logs }.each do |path|
-  directory "#{node[:app][:docroot]}/application/#{path}" do
+  directory "#{node[:app][:docroot]}/../application/#{path}" do
   	mode 0755
   	owner "vagrant"
   	group "vagrant"
   end
+end
+
+template "/etc/environment" do
+  source "environment.erb"
+  mode 0644
+  owner "root"
+  group "root"
+end
+
+bash "source-etc-environment" do
+  code "source /etc/environment"
 end
