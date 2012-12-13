@@ -7,7 +7,7 @@ web1:
     - curl
     - mcrypt
     - gd
-    - mysqli
+    - mysql
   before_deploy:
     - "minion --task=migrations:run"
   cron:
