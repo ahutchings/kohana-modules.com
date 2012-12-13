@@ -6,7 +6,7 @@ class HTTP_Exception_404 extends Kohana_HTTP_Exception_404
     {
         if (!in_array(Kohana::$environment, array(Kohana::PRODUCTION, Kohana::STAGING)))
         {
-            return parent::response($e);
+            return parent::get_response($e);
         }
 
         $response = Response::factory();
