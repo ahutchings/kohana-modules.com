@@ -4,28 +4,23 @@ return array
 (
     'default' => array
     (
-        'type'       => 'MySQL',
+        'type'       => 'PDO',
         'connection' => array(
             /**
-             * The following options are available for MySQL:
+             * The following options are available for PDO:
              *
-             * string   hostname     server hostname, or socket
-             * string   database     database name
-             * string   username     database username
-             * string   password     database password
-             * boolean  persistent   use persistent connections?
-             *
-             * Ports and sockets may be appended to the hostname.
+             * string   dsn         Data Source Name
+             * string   username    database username
+             * string   password    database password
+             * boolean  persistent  use persistent connections?
              */
-            'hostname'   => isset($_SERVER['DB1_HOST']) ? $_SERVER['DB1_HOST'] : '127.0.0.1',
-            'database'   => isset($_SERVER['DB1_NAME']) ? $_SERVER['DB1_NAME'] : 'kohana-modules',
-            'username'   => isset($_SERVER['DB1_USER']) ? $_SERVER['DB1_USER'] : 'kohana-modules',
-            'password'   => isset($_SERVER['DB1_PASS']) ? $_SERVER['DB1_PASS'] : 'kohana-modules',
+            'dsn'   => 'mysql:host='.$_SERVER['DB1_HOST'].';dbname='.$_SERVER['DB1_NAME'],
+            'username'   => $_SERVER['DB1_USER'],
+            'password'   => $_SERVER['DB1_PASS'],
             'persistent' => FALSE,
         ),
         'table_prefix' => '',
         'charset'      => 'utf8',
         'caching'      => FALSE,
-        'profiling'    => Kohana::$environment !== Kohana::PRODUCTION,
     ),
 );
