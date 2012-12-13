@@ -21,7 +21,7 @@
 	url = git://github.com/acoulton/github_v3_api.git
 [submodule "modules/sitemap"]
 	path = modules/sitemap
-	url = git://github.com/ThePixelDeveloper/kohana-sitemap.git
+	url = git://github.com/ahutchings/kohana-sitemap.git
 [submodule "modules/cache"]
 	path = modules/cache
 	url = git://github.com/kohana/cache.git
