@@ -1,4 +1,5 @@
-DB1_HOST=<%= node[:mysql][:bind_address] %>
-DB1_NAME=<%= node[:mysql][:database] %>
-DB1_USER=<%= node[:mysql][:username] %>
-DB1_PASS=<%= node[:mysql][:password] %>
+DB1_HOST="<%= node[:mysql][:bind_address] %>"
+DB1_NAME="<%= node[:mysql][:database] %>"
+DB1_USER="<%= node[:mysql][:username] %>"
+DB1_PASS="<%= node[:mysql][:password] %>"
+KOHANA_ENV="<%= node[:app][:kohana_environment] %>"

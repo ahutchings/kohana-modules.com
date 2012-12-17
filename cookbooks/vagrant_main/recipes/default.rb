@@ -7,6 +7,22 @@ end
 node.set["apache"]["user"] = "vagrant"
 node.set["apache"]["group"] = "vagrant"
 
+# Set system-wide environment vars
+template "/etc/environment" do
+  source "environment.erb"
+  mode 0644
+  owner "root"
+  group "root"
+end
+
+# "source" the environment variables since /etc/environment won't be read until
+# the next login
+ENV['DB1_HOST'] = node[:mysql][:bind_address]
+ENV['DB1_NAME'] = node[:mysql][:database]
+ENV['DB1_USER'] = node[:mysql][:username]
+ENV['DB1_PASS'] = node[:mysql][:password]
+ENV['KOHANA_ENV'] = node[:app][:kohana_environment]
+
 include_recipe "apt"
 include_recipe "openssl"
 
@@ -39,15 +55,4 @@ end
   	owner "vagrant"
   	group "vagrant"
   end
-end
-
-template "/etc/environment" do
-  source "environment.erb"
-  mode 0644
-  owner "root"
-  group "root"
-end
-
-bash "source-etc-environment" do
-  code "source /etc/environment"
 end
