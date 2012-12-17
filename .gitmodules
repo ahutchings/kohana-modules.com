@@ -37,3 +37,6 @@
 [submodule "public/packages/jquery-timeago"]
 	path = public/packages/jquery-timeago
 	url = git://github.com/rmm5t/jquery-timeago.git
+[submodule "modules/minion-auth"]
+	path = modules/minion-auth
+	url = git@github.com:ahutchings/kohana-minion-auth.git
