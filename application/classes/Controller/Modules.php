@@ -7,7 +7,7 @@ class Controller_Modules extends Controller_Website
         $username = $this->request->param('username');
         $name     = $this->request->param('name');
 
-        $module = ORM::factory('module')
+        $module = ORM::factory('Module')
             ->where('username', '=', $username)
             ->where('name', '=', $name)
             ->find();
@@ -32,7 +32,7 @@ class Controller_Modules extends Controller_Website
     {
         $username = $this->request->param('username');
 
-        $query = ORM::factory('module')
+        $query = ORM::factory('Module')
             ->where('username', '=', $username);
 
         $count = $query->reset(FALSE)->count_all();
@@ -64,7 +64,7 @@ class Controller_Modules extends Controller_Website
             ->bind('default_version', $default_version)
             ->bind('versions', $versions);
 
-        $versions = ORM::factory('kohana_version')
+        $versions = ORM::factory('Kohana_Version')
                 ->order_by('name', 'DESC')
                 ->find_all();
 
@@ -90,11 +90,11 @@ class Controller_Modules extends Controller_Website
 
         $default_version = Model_Kohana_Version::latest();
 
-        $versions = ORM::factory('kohana_version')
+        $versions = ORM::factory('Kohana_Version')
                 ->order_by('name', 'DESC')
                 ->find_all();
 
-        $query = ORM::factory('module');
+        $query = ORM::factory('Module');
 
         $compatibility = Arr::get($_GET, 'compatibility', $default_version);
 
