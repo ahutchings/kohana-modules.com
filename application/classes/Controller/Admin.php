@@ -3,14 +3,14 @@
 abstract class Controller_Admin extends Controller_Template
 {
     public $template = 'admin/template';
-    
+
     public function before()
     {
         parent::before();
 
         if ( ! Auth::instance()->logged_in('admin'))
         {
-            $this->request->redirect('user/login');
+            $this->redirect('user/login');
         }
     }
 }

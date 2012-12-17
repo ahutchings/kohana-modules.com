@@ -36,6 +36,6 @@ class Controller_Admin_Queue extends Controller_Admin
         $queue->save();
 
         Notices::add('success', "Ignored repository $queue->username/$queue->name");
-        $this->request->redirect('admin/queue');
+        $this->redirect('admin/queue');
     }
 }
