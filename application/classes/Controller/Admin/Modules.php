@@ -8,7 +8,7 @@ class Controller_Admin_Modules extends Controller_Admin
         $this->template->content = View::factory('admin/modules/index')
             ->bind('modules', $modules);
 
-        $modules = ORM::factory('module')->find_all();
+        $modules = ORM::factory('Module')->find_all();
     }
 
     public function action_pending_deletion()
@@ -18,13 +18,13 @@ class Controller_Admin_Modules extends Controller_Admin
             ->bind('modules', $modules)
             ->bind('commands', $commands);
 
-        $modules = ORM::factory('module')
+        $modules = ORM::factory('Module')
             ->where('flagged_for_deletion_at', 'IS NOT', NULL)
             ->find_all();
 
         $repo     = new Git_Repository();
         $commands = array();
-        foreach (ORM::factory('kohana_version')->order_by('name', 'DESC')->find_all() as $version)
+        foreach (ORM::factory('Kohana_Version')->order_by('name', 'DESC')->find_all() as $version)
         {
             $commands[$version->name] = array();
 

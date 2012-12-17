@@ -36,7 +36,7 @@ class Task_Module_Discover extends Minion_Task
 
             foreach ($results as $result)
             {
-                $queue = ORM::factory('queue');
+                $queue = ORM::factory('Queue');
                 $queue->values($result);
                 $queue->source = Model_Queue::SOURCE_GITHUB_SEARCH;
 
@@ -63,7 +63,7 @@ class Task_Module_Discover extends Minion_Task
 
         for ($i = 0; $i < count($matches[0]); $i++)
         {
-            $queue = ORM::factory('queue');
+            $queue = ORM::factory('Queue');
             $queue->username = $matches['username'][$i];
             $queue->name     = $matches['name'][$i];
             $queue->source   = Model_Queue::SOURCE_KOHANA_UNIVERSE;

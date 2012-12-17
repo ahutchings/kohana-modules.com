@@ -104,7 +104,7 @@ class Model_Module extends ORM
                     'name'      => $tag->name,
                     );
 
-                $tag = ORM::factory('tag', $tag_values);
+                $tag = ORM::factory('Tag', $tag_values);
 
                 if ( ! $tag->loaded())
                 {
@@ -188,7 +188,7 @@ class Model_Module extends ORM
         if ( ! ($version instanceof Model_Kohana_Version))
         {
             // We have a version name
-            $version = ORM::factory('kohana_version',
+            $version = ORM::factory('Kohana_Version',
                 array('name' => $version));
         }
 

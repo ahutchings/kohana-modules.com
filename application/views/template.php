@@ -92,7 +92,7 @@
                 <h3>Recently Added</h3>
 
                 <ol>
-                <?php foreach (ORM::factory('module')->limit(7)->order_by('created_at', 'DESC')->find_all() as $module): ?>
+                <?php foreach (ORM::factory('Module')->limit(7)->order_by('created_at', 'DESC')->find_all() as $module): ?>
                     <li>
                         <h4>
                             <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>

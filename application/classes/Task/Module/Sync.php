@@ -13,7 +13,7 @@ class Task_Module_Sync extends Minion_Task
 	protected function _execute(array $params)
 	{
 	    // Modules that haven't been refreshed in the past week
-        $modules = ORM::factory('module')
+        $modules = ORM::factory('Module')
             ->where('updated_at', '<', time() - Date::WEEK)
             ->find_all();
 

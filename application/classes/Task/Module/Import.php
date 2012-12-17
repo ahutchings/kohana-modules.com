@@ -107,7 +107,7 @@ class Task_Module_Import extends Minion_Task
 
         foreach ($import as $values)
         {
-            $module = ORM::factory('module', $values);
+            $module = ORM::factory('Module', $values);
 
             if ( ! $module->loaded())
             {
@@ -136,7 +136,7 @@ class Task_Module_Import extends Minion_Task
 
         foreach ($delete as $values)
         {
-            $module = ORM::factory('module', $values);
+            $module = ORM::factory('Module', $values);
 
             DB::delete('module_compatibilities')
                 ->where('module_id', '=', $module->id)
@@ -183,11 +183,11 @@ class Task_Module_Import extends Minion_Task
      */
     private function _prune_queue()
     {
-        $modules = ORM::factory('module')->find_all();
+        $modules = ORM::factory('Module')->find_all();
 
         foreach ($modules as $module)
         {
-            $queue = ORM::factory('queue')
+            $queue = ORM::factory('Queue')
                 ->where('username', '=', $module->username)
                 ->where('name', '=', $module->name)
                 ->find();

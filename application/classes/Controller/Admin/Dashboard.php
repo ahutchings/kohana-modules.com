@@ -10,17 +10,17 @@ class Controller_Admin_Dashboard extends Controller_Admin
             ->bind('newest', $newest)
             ->bind('recently_updated', $recently_updated);
 
-        $newest = ORM::factory('module')
+        $newest = ORM::factory('Module')
             ->order_by('created_at', 'DESC')
             ->limit(5)
-            ->find_all();    
+            ->find_all();
 
-        $recently_updated = ORM::factory('module')
+        $recently_updated = ORM::factory('Module')
             ->order_by('updated_at', 'DESC')
             ->limit(5)
             ->find_all();
     }
-    
+
     private function _open_tickets()
     {
         $open_tickets = Kohana::cache('open_tickets');

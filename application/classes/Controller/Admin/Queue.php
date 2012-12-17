@@ -9,15 +9,15 @@ class Controller_Admin_Queue extends Controller_Admin
             ->bind('search', $search)
             ->bind('universe', $universe);
 
-        $search = ORM::factory('queue')
+        $search = ORM::factory('Queue')
             ->where('is_ignored', '=', FALSE)
             ->where('source', '=', Model_Queue::SOURCE_GITHUB_SEARCH)
             ->find_all();
 
-        $universe = ORM::factory('queue')
+        $universe = ORM::factory('Queue')
             ->where('is_ignored', '=', FALSE)
             ->where('source', '=', Model_Queue::SOURCE_KOHANA_UNIVERSE)
-            ->find_all();     
+            ->find_all();
     }
 
     public function action_ignored()
@@ -26,15 +26,15 @@ class Controller_Admin_Queue extends Controller_Admin
         $this->template->content = View::factory('admin/modules/ignored')
             ->bind('ignored', $ignored);
 
-        $ignored = ORM::factory('queue')->where('is_ignored', '=', TRUE)->find_all();
+        $ignored = ORM::factory('Queue')->where('is_ignored', '=', TRUE)->find_all();
     }
-    
+
     public function action_ignore($id)
     {
-        $queue = ORM::factory('queue', $id);
+        $queue = ORM::factory('Queue', $id);
         $queue->is_ignored = TRUE;
         $queue->save();
-            
+
         Notices::add('success', "Ignored repository $queue->username/$queue->name");
         $this->request->redirect('admin/queue');
     }

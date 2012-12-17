@@ -13,7 +13,7 @@ class Task_Queue_Sync extends Minion_Task
     protected function _execute(array $params)
     {
         // Queue items that haven't been updated in the past day
-        $queue = ORM::factory('queue')
+        $queue = ORM::factory('Queue')
             ->where('updated_at', '<', time() - Date::DAY)
             ->where('is_ignored', '=', FALSE)
             ->find_all();

@@ -12,7 +12,7 @@ class Controller_Search extends Controller_Website
             ->bind('modules', $modules)
             ->bind('versions', $versions);
 
-        $query = ORM::factory('module')
+        $query = ORM::factory('Module')
             ->where_open()
                 ->where('name', 'LIKE', "%$term%")
                 ->or_where('description', 'LIKE', "%$term%")
@@ -29,7 +29,7 @@ class Controller_Search extends Controller_Website
             ));
 
 
-        $versions = ORM::factory('kohana_version')
+        $versions = ORM::factory('Kohana_Version')
                 ->order_by('name', 'DESC')
                 ->find_all();
 

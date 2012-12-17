@@ -12,10 +12,10 @@ class Controller_Sitemap extends Controller
 
             $cache->set('sitemap', $response, Date::DAY);
         }
-        
+
         echo $response;
     }
-    
+
     private function _generate_sitemap()
     {
         $sitemap = new Sitemap;
@@ -43,16 +43,16 @@ class Controller_Sitemap extends Controller
             ->from('modules')->execute()->as_array() as $result)
         {
             $url = new Sitemap_URL;
-            
+
             $url->set_loc(url::site("modules/".$result['username'], TRUE))
                 ->set_change_frequency('monthly')
                 ->set_priority(0.5);
-            
+
             $sitemap->add($url);
         }
 
         // Add individual module pages
-        foreach (ORM::factory('module')->find_all() as $module)
+        foreach (ORM::factory('Module')->find_all() as $module)
         {
             $url = new Sitemap_URL;
 

@@ -25,7 +25,7 @@ class HTTP_Exception_404 extends Kohana_HTTP_Exception_404
 
         $tagline = __('Indexing <span>:modules</span> modules from <span>:developers</span> developers.',
             array(
-                ':modules' => ORM::factory('module')->count_all(),
+                ':modules' => ORM::factory('Module')->count_all(),
                 ':developers' => DB::query(Database::SELECT, 'SELECT DISTINCT username FROM modules')->execute()->count()
                 )
             );

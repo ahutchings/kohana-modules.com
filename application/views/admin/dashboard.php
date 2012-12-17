@@ -5,13 +5,13 @@
     <dl>
         <dt>Open Tickets</dt>
         <dd><?php echo $open_tickets ?></dd>
-        
+
         <dt>In Queue</dt>
-        <dd><?php echo ORM::factory('queue')->where('is_ignored', '=', FALSE)->count_all() ?></dd>
-        
+        <dd><?php echo ORM::factory('Queue')->where('is_ignored', '=', FALSE)->count_all() ?></dd>
+
         <dt>Pending Deletion</dt>
         <dd>
-            <?php echo ORM::factory('module')
+            <?php echo ORM::factory('Module')
                 ->where('flagged_for_deletion_at', 'IS NOT', NULL)
                 ->count_all() ?>
         </dd>

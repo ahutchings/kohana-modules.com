@@ -54,7 +54,7 @@ class Model_Queue extends ORM
      */
     public function not_in_modules(Validation $data, $field)
     {
-        $count = ORM::factory('module')
+        $count = ORM::factory('Module')
             ->where('username', '=', $data['username'])
             ->where('name', '=', $data['name'])
             ->count_all();
@@ -70,23 +70,23 @@ class Model_Queue extends ORM
      */
     public function not_in_queue(Validation $data, $field)
     {
-        $query = ORM::factory('queue')
+        $query = ORM::factory('Queue')
             ->where('username', '=', $data['username'])
             ->where('name', '=', $data['name']);
-            
+
         if ($this->loaded())
         {
             $query->where('id', '!=', $this->id);
         }
-            
+
         $count = $query->count_all();
-        
+
         if ($count > 0)
         {
             $data->error($field, 'exists_in_queue');
         }
     }
-    
+
     /**
      * Syncs the items's metadata from the GitHub repository.
      *
