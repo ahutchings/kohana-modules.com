@@ -98,13 +98,14 @@ class Model_Queue extends ORM
     {
         try
         {
-            $repo = Github::instance()->getRepoApi()
-                ->show($this->username, $this->name);
+            $github = new Github;
+            $repo = $github->get_repo($this->username, $this->name);
         }
-        catch (phpGitHubApiRequestException $e)
+        catch (Exception $e)
         {
             // If the module has been made private or deleted
-            if (in_array($e->getCode(), array(401, 404)))
+            if ($e instanceof Github_Exception_BadHTTPResponse OR
+                $e instanceof Github_Exception_Unauthorized)
             {
                 // Delete the item
                 $this->delete();
