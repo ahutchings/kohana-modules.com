@@ -45,12 +45,6 @@ class Git_Repository
 
             $request = Request::factory($url);
 
-            $client = $request->get_client()
-                ->options(array(
-                    CURLOPT_SSL_VERIFYPEER => FALSE,
-                    CURLOPT_SSL_VERIFYHOST => FALSE
-                    ));
-
             $gitmodules = $request
                 ->execute()
                 ->body();
