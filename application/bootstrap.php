@@ -116,6 +116,7 @@ Kohana::modules(array(
     'cache'      => MODPATH.'cache',      // Caching with multiple backends
     'database'   => MODPATH.'database',   // Database access
     'github'     => MODPATH.'github',
+    'loggly'     => MODPATH.'loggly',
     'minion'     => MODPATH.'minion',
     'migrations' => MODPATH.'migrations',
     'notices'    => MODPATH.'notices',
@@ -123,6 +124,11 @@ Kohana::modules(array(
     'pagination' => MODPATH.'pagination', // Paging of results
     'sitemap'    => MODPATH.'sitemap',
 	));
+
+if (isset($_SERVER['LOGGLY_KEY']))
+{
+    Kohana::$log->attach(new Log_Loggly($_SERVER['LOGGLY_KEY']));
+}
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of

@@ -37,3 +37,6 @@
 [submodule "public/packages/jquery-timeago"]
 	path = public/packages/jquery-timeago
 	url = git://github.com/rmm5t/jquery-timeago.git
+[submodule "modules/loggly"]
+	path = modules/loggly
+	url = git://github.com/ahutchings/kohana-loggly.git
