@@ -5,11 +5,13 @@ class Controller_Webhook extends Controller
     public function before()
     {
         Log::instance()->add(Log::INFO, 'Webhook action called: :action',
-            array(':action' => $this->request->action()));   
+            array(':action' => $this->request->action()));
     }
 
     public function action_import()
     {
-        Minion_Task::factory('module:import')->execute(array());
+        Minion_Task::factory(array(
+            'task' => 'module:import'
+            ))->execute();
     }
 }
