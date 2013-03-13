@@ -41,6 +41,11 @@ setlocale(LC_ALL, 'en_US.utf-8');
 spl_autoload_register(array('Kohana', 'auto_load'));
 
 /**
+ * Auto-load composer modules.
+ */
+require APPPATH.'vendor/autoload.php';
+
+/**
  * Optionally, you can enable a compatibility auto-loader for use with
  * older modules that have not been updated for PSR-0.
  *
@@ -115,7 +120,6 @@ Kohana::modules(array(
     'auth'       => MODPATH.'auth',       // Basic authentication
     'cache'      => MODPATH.'cache',      // Caching with multiple backends
     'database'   => MODPATH.'database',   // Database access
-    'github'     => MODPATH.'github',
     'loggly'     => MODPATH.'loggly',
     'minion'     => MODPATH.'minion',
     'migrations' => MODPATH.'migrations',

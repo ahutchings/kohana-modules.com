@@ -8,8 +8,12 @@ This is the source for [kohana-modules.com](http://kohana-modules.com).
 * Modify the application/config files to match your local environment.
 * Create database tables with `./minion migrations:run`.
 * Configure your web server to serve the application.
+* Generate an OAuth token so that the app can make more than 60 requests/hour:
 
-An example Apache VirtualHost entry
+`curl -u 'YOURUSERNAME' -d '{"scopes":[],"note":"YOURDEVHOSTNAME"}' \
+    https://api.github.com/authorizations`
+
+An example Apache VirtualHost entry:
 
     <VirtualHost *:80>
         ServerName kohana-modules.localhost
@@ -20,6 +24,7 @@ An example Apache VirtualHost entry
         SetEnv DB1_NAME kohana-modules
         SetEnv DB1_USER kohana-modules
         SetEnv DB1_PASS kohana-modules
+        SetEnv GITHUB_OAUTH_TOKEN YOUR_GENERATED_TOKEN
 
         <Directory "/srv/www/kohana-modules.com">
             Order allow,deny

@@ -60,23 +60,22 @@ class Model_Module extends ORM
      */
     public function sync()
     {
-        $github = new Github();
+        $client = new Github\Client(
+            new Github\HttpClient\CachedHttpClient(array('cache_dir' => APPPATH.'cache'.DIRECTORY_SEPARATOR.'php-github-api-cache'))
+        );
+        $client->authenticate($_SERVER['GITHUB_OAUTH_TOKEN'], null, Github\Client::AUTH_HTTP_TOKEN);
 
         try
         {
-            $repo = $github
-                ->get_repo($this->username, $this->name)
-                ->load();
-
-            $tags = $repo
-                ->get_tags()
-                ->load();
+            $repo = $client->api('repo')->show($this->username, $this->name);
+            $tags = $client->api('repo')->tags($this->username, $this->name);
         }
         catch (Exception $e)
         {
+            $deleted = $e instanceof Github\Exception\RuntimeException && $e->getCode() === 404;
+
             // If the module has been made private or deleted
-            if ($e instanceof Github_Exception_BadHTTPResponse OR
-                $e instanceof Github_Exception_Unauthorized)
+            if ($deleted)
             {
                 // Flag the module for deletion.
                 $this->flagged_for_deletion_at = time();
@@ -91,7 +90,7 @@ class Model_Module extends ORM
             }
         }
 
-        $values = Arr::extract($repo->as_array(), $this->_import_fields);
+        $values = Arr::extract($repo, $this->_import_fields);
 
         $this->values($values);
 
@@ -101,7 +100,7 @@ class Model_Module extends ORM
             {
                 $tag_values = array(
                     'module_id' => $this->id,
-                    'name'      => $tag->name,
+                    'name'      => $tag['name'],
                     );
 
                 $tag = ORM::factory('Tag', $tag_values);

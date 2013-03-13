@@ -17,6 +17,7 @@
   SetEnv DB1_NAME <%= node[:mysql][:database] %>
   SetEnv DB1_USER <%= node[:mysql][:username] %>
   SetEnv DB1_PASS <%= node[:mysql][:password] %>
+  SetEnv GITHUB_OAUTH_TOKEN <%= node[:app][:github_oauth_token] %>
 
   <Directory <%= @params[:docroot] %>>
     php_admin_value upload_tmp_dir /tmp/<%= @params[:server_name] %>

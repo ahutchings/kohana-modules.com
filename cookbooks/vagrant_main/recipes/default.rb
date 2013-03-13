@@ -22,6 +22,7 @@ ENV['DB1_NAME'] = node[:mysql][:database]
 ENV['DB1_USER'] = node[:mysql][:username]
 ENV['DB1_PASS'] = node[:mysql][:password]
 ENV['KOHANA_ENV'] = node[:app][:kohana_environment]
+ENV['GITHUB_OAUTH_TOKEN'] = node[:app][:github_oauth_token]
 
 include_recipe "apt"
 include_recipe "openssl"

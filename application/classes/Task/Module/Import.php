@@ -25,6 +25,15 @@ class Task_Module_Import extends Minion_Task
         $this->_prune_modules();
     }
 
+    private function _get_github_client()
+    {
+        $client = new Github\Client(
+            new Github\HttpClient\CachedHttpClient(array('cache_dir' => APPPATH.'cache'.DIRECTORY_SEPARATOR.'php-github-api-cache'))
+        );
+        $client->authenticate($_SERVER['GITHUB_OAUTH_TOKEN'], null, Github\Client::AUTH_HTTP_TOKEN);
+        return $client;
+    }
+
     /**
      * Retrieves Kohana versions (branch names) from the kohana-modules repository.
      *
@@ -32,16 +41,13 @@ class Task_Module_Import extends Minion_Task
      */
     private function _fetch_kohana_versions()
     {
-        $github = new Github();
-        $results = $github
-            ->get_repo('ahutchings', 'kohana-modules')
-            ->get_branches()
-            ->load();
+        $client = $this->_get_github_client();
+        $branches = $client->api('repo')->branches('ahutchings', 'kohana-modules');
 
         $versions = array();
-        foreach ($results as $branch)
+        foreach ($branches as $branch)
         {
-            $versions[] = $branch->name;
+            $versions[] = $branch['name'];
         }
 
         return $versions;
@@ -149,22 +155,14 @@ class Task_Module_Import extends Minion_Task
 
     private function _fetch_modules($branch)
     {
+        $client = $this->_get_github_client();
+        $response = $client->api('repo')->contents()
+            ->show('ahutchings', 'kohana-modules', '.gitmodules', $branch);
+
+        $content = base64_decode($response['content']);
+
         $pattern = "/(git|https):\/\/github\.com\/(?P<username>.*)\/(?P<name>.*)\.git/i";
-        $url     = "https://raw.github.com/ahutchings/kohana-modules/$branch/.gitmodules";
-
-        $request = Request::factory($url);
-
-        $request->client()
-            ->options(array(
-                CURLOPT_SSL_VERIFYPEER => FALSE,
-                CURLOPT_SSL_VERIFYHOST => FALSE
-                ));
-
-        $data = $request
-            ->execute()
-            ->body();
-
-        preg_match_all($pattern, $data, $matches);
+        preg_match_all($pattern, $content, $matches);
 
         $modules = array();
         for ($i = 0, $n = count($matches['name']); $i < $n; $i++)

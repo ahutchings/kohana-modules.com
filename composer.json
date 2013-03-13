@@ -1,0 +1,8 @@
+{
+    "require": {
+        "knplabs/github-api": "*"
+    },
+    "config": {
+    	"vendor-dir": "application/vendor"
+    }
+}
