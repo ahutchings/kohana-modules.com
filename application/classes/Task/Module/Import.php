@@ -25,15 +25,6 @@ class Task_Module_Import extends Minion_Task
         $this->_prune_modules();
     }
 
-    private function _get_github_client()
-    {
-        $client = new Github\Client(
-            new Github\HttpClient\CachedHttpClient(array('cache_dir' => APPPATH.'cache'.DIRECTORY_SEPARATOR.'php-github-api-cache'))
-        );
-        $client->authenticate($_SERVER['GITHUB_OAUTH_TOKEN'], null, Github\Client::AUTH_HTTP_TOKEN);
-        return $client;
-    }
-
     /**
      * Retrieves Kohana versions (branch names) from the kohana-modules repository.
      *
@@ -41,7 +32,7 @@ class Task_Module_Import extends Minion_Task
      */
     private function _fetch_kohana_versions()
     {
-        $client = $this->_get_github_client();
+        $client = AuthenticatedGithubClient::instance();
         $branches = $client->api('repo')->branches('ahutchings', 'kohana-modules');
 
         $versions = array();
@@ -155,7 +146,7 @@ class Task_Module_Import extends Minion_Task
 
     private function _fetch_modules($branch)
     {
-        $client = $this->_get_github_client();
+        $client = AuthenticatedGithubClient::instance();
         $response = $client->api('repo')->contents()
             ->show('ahutchings', 'kohana-modules', '.gitmodules', $branch);
 
