@@ -195,7 +195,7 @@ class Task_Module_Import extends Minion_Task
      */
     private function _prune_modules()
     {
-        $modules = DB::select('id', 'username', 'name', array(DB::expr('COUNT("module_compatibilities.kohana_version_id")'), 'num_compatibilities'))
+        $modules = DB::select('id', 'username', 'name', array(DB::expr('COUNT(module_compatibilities.kohana_version_id)'), 'num_compatibilities'))
             ->from('modules')
             ->join('module_compatibilities', 'left')
             ->on('modules.id', '=', 'module_compatibilities.module_id')
