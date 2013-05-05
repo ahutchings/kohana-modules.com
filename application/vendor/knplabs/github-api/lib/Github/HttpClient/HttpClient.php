@@ -9,6 +9,7 @@ use Buzz\Listener\ListenerInterface;
 
 use Github\Exception\ErrorException;
 use Github\Exception\RuntimeException;
+use Github\HttpClient\Listener\AuthListener;
 use Github\HttpClient\Listener\ErrorListener;
 use Github\HttpClient\Message\Request;
 use Github\HttpClient\Message\Response;
@@ -65,6 +66,19 @@ class HttpClient implements HttpClientInterface
         $this->clearHeaders();
     }
 
+    public function authenticate($tokenOrLogin, $password, $authMethod)
+    {
+         $this->addListener(
+            new AuthListener(
+                $authMethod,
+                array(
+                     'tokenOrLogin' => $tokenOrLogin,
+                     'password'     => $password
+                )
+            )
+        );
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -87,7 +101,8 @@ class HttpClient implements HttpClientInterface
     public function clearHeaders()
     {
         $this->headers = array(
-            sprintf('Accept: application/vnd.github.%s+json', $this->options['api_version'])
+            sprintf('Accept: application/vnd.github.%s+json', $this->options['api_version']),
+            sprintf('User-Agent: %s', $this->options['user_agent']),
         );
     }
 
@@ -152,7 +167,9 @@ class HttpClient implements HttpClientInterface
 
         $request = $this->createRequest($httpMethod, $path);
         $request->addHeaders($headers);
-        $request->setContent(json_encode($parameters));
+        if (count($parameters) > 0) {
+            $request->setContent(json_encode($parameters, JSON_FORCE_OBJECT));
+        }
 
         $hasListeners = 0 < count($this->listeners);
         if ($hasListeners) {

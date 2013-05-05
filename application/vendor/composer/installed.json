@@ -50,17 +50,17 @@
     },
     {
         "name": "knplabs/github-api",
-        "version": "1.1.3",
-        "version_normalized": "1.1.3.0",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/KnpLabs/php-github-api.git",
-            "reference": "1.1.3"
+            "reference": "8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2"
         },
         "dist": {
             "type": "zip",
-            "url": "https://github.com/KnpLabs/php-github-api/archive/1.1.3.zip",
-            "reference": "1.1.3",
+            "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2",
+            "reference": "8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2",
             "shasum": ""
         },
         "require": {
@@ -68,14 +68,14 @@
             "ext-curl": "*",
             "kriswallsmith/buzz": ">=0.7"
         },
-        "time": "2012-12-27 10:17:21",
+        "time": "2013-04-01 07:38:45",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "1.1.x-dev"
+                "dev-master": "1.2.x-dev"
             }
         },
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "psr-0": {
                 "Github\\": "lib/"

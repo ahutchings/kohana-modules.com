@@ -1,6 +1,6 @@
 {
     "require": {
-        "knplabs/github-api": "*"
+        "knplabs/github-api": "~1.2@dev"
     },
     "config": {
     	"vendor-dir": "application/vendor"
