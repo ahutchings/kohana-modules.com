@@ -22,3 +22,6 @@ web1:
 
 db1:
   type: mysql
+
+cache1:
+  type: redis
