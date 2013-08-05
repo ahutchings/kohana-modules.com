@@ -3,6 +3,7 @@ web1:
   shared_writable_dirs:
     - application/cache
     - application/logs
+  php_version: 5.4.14
   php_extensions:
     - curl
     - mcrypt
