@@ -1,42 +1,42 @@
 [submodule "system"]
 	path = system
-	url = git://github.com/kohana/core.git
+	url = https://github.com/kohana/core.git
 [submodule "modules/orm"]
 	path = modules/orm
-	url = git://github.com/kohana/orm.git
+	url = https://github.com/kohana/orm.git
 [submodule "modules/database"]
 	path = modules/database
-	url = git://github.com/kohana/database.git
+	url = https://github.com/kohana/database.git
 [submodule "modules/pagination"]
 	path = modules/pagination
-	url = git://github.com/ahutchings/pagination.git
+	url = https://github.com/ahutchings/pagination.git
 [submodule "modules/auth"]
 	path = modules/auth
-	url = git://github.com/kohana/auth.git
+	url = https://github.com/kohana/auth.git
 [submodule "modules/notices"]
 	path = modules/notices
-	url = git://github.com/synapsestudios/kohana-notices.git
+	url = https://github.com/synapsestudios/kohana-notices.git
 [submodule "modules/github"]
 	path = modules/github
-	url = git://github.com/ahutchings/github_v3_api.git
+	url = https://github.com/ahutchings/github_v3_api.git
 [submodule "modules/sitemap"]
 	path = modules/sitemap
-	url = git://github.com/ahutchings/kohana-sitemap.git
+	url = https://github.com/ahutchings/kohana-sitemap.git
 [submodule "modules/cache"]
 	path = modules/cache
-	url = git://github.com/kohana/cache.git
+	url = https://github.com/kohana/cache.git
 [submodule "modules/unittest"]
 	path = modules/unittest
-	url = git://github.com/kohana/unittest.git
+	url = https://github.com/kohana/unittest.git
 [submodule "modules/migrations"]
 	path = modules/migrations
-	url = git://github.com/kohana-minion/tasks-migrations.git
+	url = https://github.com/kohana-minion/tasks-migrations.git
 [submodule "modules/minion"]
 	path = modules/minion
-	url = git://github.com/kohana/minion.git
+	url = https://github.com/kohana/minion.git
 [submodule "modules/loggly"]
 	path = modules/loggly
-	url = git://github.com/ahutchings/kohana-loggly.git
+	url = https://github.com/ahutchings/kohana-loggly.git
 [submodule "modules/tasks-cache"]
 	path = modules/tasks-cache
 	url = https://github.com/samwilson/tasks-cache.git
