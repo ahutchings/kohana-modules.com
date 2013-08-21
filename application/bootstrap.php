@@ -117,16 +117,17 @@ Kohana::$config->attach(new Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-    'auth'       => MODPATH.'auth',       // Basic authentication
-    'cache'      => MODPATH.'cache',      // Caching with multiple backends
-    'database'   => MODPATH.'database',   // Database access
-    'loggly'     => MODPATH.'loggly',
-    'minion'     => MODPATH.'minion',
-    'migrations' => MODPATH.'migrations',
-    'notices'    => MODPATH.'notices',
-    'orm'        => MODPATH.'orm',        // Object Relationship Mapping
-    'pagination' => MODPATH.'pagination', // Paging of results
-    'sitemap'    => MODPATH.'sitemap',
+    'auth'        => MODPATH.'auth',       // Basic authentication
+    'cache'       => MODPATH.'cache',      // Caching with multiple backends
+    'database'    => MODPATH.'database',   // Database access
+    'loggly'      => MODPATH.'loggly',
+    'minion'      => MODPATH.'minion',
+    'migrations'  => MODPATH.'migrations',
+    'notices'     => MODPATH.'notices',
+    'orm'         => MODPATH.'orm',        // Object Relationship Mapping
+    'pagination'  => MODPATH.'pagination', // Paging of results
+    'sitemap'     => MODPATH.'sitemap',
+    'tasks-cache' => MODPATH.'tasks-cache',
 	));
 
 if (isset($_SERVER['LOGGLY_KEY']))
