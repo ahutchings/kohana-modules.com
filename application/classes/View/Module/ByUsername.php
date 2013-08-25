@@ -13,13 +13,8 @@ class View_Module_ByUsername extends View_Module_Index
 		return "$this->username's Profile";
 	}
 
-	public function count()
-	{
-		return $this->getTotalItems();
-	}
-
 	public function module_count_noun()
 	{
-		return Inflector::plural('Module', $this->getTotalItems());
+		return Inflector::plural('Module', $this->count());
 	}
 }

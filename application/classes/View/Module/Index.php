@@ -14,11 +14,11 @@ class View_Module_Index extends View_Layout
 	private function getPagination()
 	{
 		return Pagination::factory(array(
-            'total_items' => $this->getTotalItems()
+            'total_items' => $this->count()
             ));
 	}
 
-	protected function getTotalItems()
+	public function count()
 	{
 		return $this->query->reset(FALSE)->count_all();
 	}

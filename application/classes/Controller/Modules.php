@@ -73,7 +73,7 @@ class Controller_Modules extends Controller
             ->where_compatible_with($compatibility);
 
         $view = new View_Module_Search($this->query, $term);
-        $this->renderBody($view, 'partials/module/index');
+        $this->renderBody($view);
     }
 
     private function getRequestedCompatibility($default = 'any')
