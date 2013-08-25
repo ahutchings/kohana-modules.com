@@ -179,8 +179,13 @@ class Model_Module extends ORM
      * @param   ORM|string  Kohana version model or name
      * @return  $this
      */
-    public function where_compatible_with($version)
+    public function where_compatible_with($version = 'any')
     {
+        if ($version === 'any')
+        {
+            return $this;
+        }
+
         if ( ! ($version instanceof Model_Kohana_Version))
         {
             // We have a version name
@@ -195,5 +200,20 @@ class Model_Module extends ORM
             ->join('module_compatibilities')
             ->on('module_compatibilities.module_id', '=', 'id')
             ->where('module_compatibilities.kohana_version_id', '=', $version->id);
+    }
+
+    public function isCompatibleWithKohanaVersion($version)
+    {
+        return $this->kohana_versions->where('name', '=', $version)->count_all() > 0;
+    }
+
+    public function filterBySearchTerm($term)
+    {
+        return $this
+            ->where_open()
+                ->where('name', 'LIKE', "%$term%")
+                ->or_where('description', 'LIKE', "%$term%")
+                ->or_where('username', 'LIKE', "%$term%")
+            ->where_close();
     }
 }

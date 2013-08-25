@@ -1,7 +1,14 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_User extends Controller_Website
+class Controller_User extends Controller
 {
+    public function __construct($request, $response)
+    {
+        $this->renderer = Kostache_Layout::factory();
+
+        parent::__construct($request, $response);
+    }
+
     public function action_logout()
     {
         Auth::instance()->logout(TRUE);
@@ -11,8 +18,8 @@ class Controller_User extends Controller_Website
 
     public function action_login()
     {
-        $this->template->title   = 'Login - ';
-        $this->template->content = View::factory('user/login');
+        $view = new View_User_Login;
+        $this->response->body($this->renderer->render($view));
     }
 
     public function action_process_login()

@@ -1,13 +1,20 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Modules extends Controller_Website
+class Controller_Modules extends Controller
 {
+    public function __construct($request, $response)
+    {
+        $this->query = ORM::factory('Module');
+
+        parent::__construct($request, $response);
+    }
+
     public function action_show()
     {
         $username = $this->request->param('username');
         $name     = $this->request->param('name');
 
-        $module = ORM::factory('Module')
+        $module = $this->query
             ->where('username', '=', $username)
             ->where('name', '=', $name)
             ->find();
@@ -18,24 +25,17 @@ class Controller_Modules extends Controller_Website
                 array(':username' => $username, ':name' => $name));
         }
 
-        $this->template->title   = "$module->username/$module->name - ";
-        $this->template->content = View::factory('modules/show')
-            ->bind('module', $module);
-
-        if (Valid::not_empty($module->description))
-        {
-            $this->template->meta_description = $module->description;
-        }
+        $view = new View_Module_Show($module);
+        $this->renderBody($view);
     }
 
     public function action_by_username()
     {
         $username = $this->request->param('username');
 
-        $query = ORM::factory('Module')
-            ->where('username', '=', $username);
+        $this->query->where('username', '=', $username);
 
-        $count = $query->reset(FALSE)->count_all();
+        $count = $this->query->reset(FALSE)->count_all();
 
         if ($count == 0)
         {
@@ -43,74 +43,49 @@ class Controller_Modules extends Controller_Website
                 array(':username' => $username));
         }
 
-        $default_version = 'any';
+        $compatibility = $this->getRequestedCompatibility();
 
-        $compatibility = Arr::get($_GET, 'compatibility', $default_version);
+        $this->query->where_compatible_with($compatibility);
 
-        if ($compatibility !== 'any')
-        {
-            $query->where_compatible_with($compatibility);
-
-            // Perform another count for the active filter
-            $count = $query->reset(FALSE)->count_all();
-        }
-
-        $this->template->title = "$username's Profile - ";
-        $this->template->content = View::factory('modules/by_username')
-            ->bind('count', $count)
-            ->set('username', $username)
-            ->bind('modules', $modules)
-            ->bind('pagination', $pagination)
-            ->bind('default_version', $default_version)
-            ->bind('versions', $versions);
-
-        $versions = ORM::factory('Kohana_Version')
-                ->order_by('name', 'DESC')
-                ->find_all();
-
-        $pagination = Pagination::factory(array(
-            'total_items' => $count,
-            ));
-
-        $modules = $query
-            ->limit($pagination->items_per_page)
-            ->offset($pagination->offset)
-            ->set_order_by()
-            ->find_all();
+        $view = new View_Module_ByUsername($this->query, $username);
+        $this->renderBody($view, 'module/by-username');
     }
 
     public function action_index()
     {
-        $this->template->title = '';
-        $this->template->content = View::factory('modules/index')
-            ->bind('modules', $modules)
-            ->bind('pagination', $pagination)
-            ->bind('default_version', $default_version)
-            ->bind('versions', $versions);
+        $default_compatibility = Model_Kohana_Version::latest();
+        $compatibility         = $this->getRequestedCompatibility($default_compatibility);
 
-        $default_version = Model_Kohana_Version::latest();
+        $this->query->where_compatible_with($compatibility);
 
-        $versions = ORM::factory('Kohana_Version')
-                ->order_by('name', 'DESC')
-                ->find_all();
+        $view = new View_Module_Index($this->query);
+        $this->renderBody($view, 'partials/module/index');
+    }
 
-        $query = ORM::factory('Module');
+    public function action_search()
+    {
+        $term = $_GET['query'];
 
-        $compatibility = Arr::get($_GET, 'compatibility', $default_version);
+        $compatibility = $this->getRequestedCompatibility();
 
-        if ($compatibility !== 'any')
-        {
-            $query->where_compatible_with($compatibility);
-        }
+        $this->query
+            ->filterBySearchTerm($term)
+            ->where_compatible_with($compatibility);
 
-        $pagination = Pagination::factory(array(
-            'total_items' => $query->reset(FALSE)->count_all(),
-            ));
+        $view = new View_Module_Search($this->query, $term);
+        $this->renderBody($view, 'partials/module/index');
+    }
 
-        $modules = $query
-            ->limit($pagination->items_per_page)
-            ->offset($pagination->offset)
-            ->set_order_by()
-            ->find_all();
+    private function getRequestedCompatibility($default = 'any')
+    {
+        return Arr::get($_GET, 'compatibility', $default);
+    }
+
+    private function renderBody($view, $template = NULL)
+    {
+        $renderer = Kostache_Layout::factory();
+        $body     = $renderer->render($view, $template);
+
+        $this->response->body($body);
     }
 }

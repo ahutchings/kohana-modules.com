@@ -9,30 +9,12 @@ class Kohana_Exception extends Kohana_Kohana_Exception
             return parent::response($e);
         }
 
+        $view = new View_Error_500($e);
+        $body = Kostache_Layout::factory()->render($view, 'error');
+
         $response = Response::factory();
-
-        // Construct the response body
-        $body = View::factory('template')
-            ->bind('content', $content)
-            ->bind('title', $title)
-            ->bind('tagline', $tagline);
-
-        $content = View::factory('errors/http');
-        $content->code    = 500;
-        $content->message = 'Oops, there was a problem.';
-
-        $title = Response::$messages[500].' - ';
-
-        $tagline = __('Indexing <span>:modules</span> modules from <span>:developers</span> developers.',
-            array(
-                ':modules' => ORM::factory('Module')->count_all(),
-                ':developers' => DB::query(Database::SELECT, 'SELECT DISTINCT username FROM modules')->execute()->count()
-                )
-            );
-
         $response->status(500);
-
-        $response->body($body->render());
+        $response->body($body);
 
         return $response;
     }

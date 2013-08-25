@@ -120,6 +120,7 @@ Kohana::modules(array(
     'auth'        => MODPATH.'auth',       // Basic authentication
     'cache'       => MODPATH.'cache',      // Caching with multiple backends
     'database'    => MODPATH.'database',   // Database access
+    'kostache'    => MODPATH.'kostache',
     'loggly'      => MODPATH.'loggly',
     'minion'      => MODPATH.'minion',
     'migrations'  => MODPATH.'migrations',
@@ -180,6 +181,12 @@ Route::set('modules_show', 'modules/<username>/<name>',
     ->defaults(array(
         'controller' => 'modules',
         'action'     => 'show',
+    ));
+
+Route::set('modules_search', 'search')
+    ->defaults(array(
+        'controller' => 'modules',
+        'action'     => 'search'
     ));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')

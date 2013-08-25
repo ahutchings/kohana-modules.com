@@ -1,0 +1,26 @@
+{{{sorter}}}
+
+<div id="modules">
+{{#modules}}
+    <div class="module clearfix">
+
+        <div class="span-12">
+            <h2>
+                <a href="/modules/{{username}}/{{name}}">
+                    {{{identifier}}}
+                </a>
+            </h2>
+
+            <p>{{{description}}}</p>
+        </div>
+
+        <div class="span-4 last">
+            <div class="bubble span-2"><span>{{watchers}}</span> watchers</div>
+            <div class="bubble span-2 last"><span>{{forks}}</span> forks</div>
+        </div>
+
+    </div>
+{{/modules}}
+
+    {{{pagination}}}
+</div>

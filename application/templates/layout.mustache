@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title><?php echo HTML::chars($title), Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></title>
-    <?php if (isset($meta_description)): ?>
-    <meta name="description" content="<?php echo HTML::chars($meta_description) ?>">
-    <?php endif ?>
+    <title>{{page_title}}</title>
+  {{#meta_description}}
+    <meta name="description" content="{{{meta_description}}}">
+  {{/meta_description}}
 
     <link rel="stylesheet" href="/css/screen.css" media="screen, projection">
     <link rel="stylesheet" href="/css/print.css" media="print">
@@ -21,7 +21,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.1.0/jquery.timeago.min.js"></script>
     <script>window.jQuery.fn.timeago || document.write('<script src="/components/jquery-timeago/jquery.timeago.js">\x3C/script>')</script>
 
-    <?php if (Kohana::$environment === Kohana::PRODUCTION): ?>
+    {{#include_google_analytics}}
     <script>
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-3588987-13']);
@@ -34,11 +34,11 @@
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
-    <?php endif ?>
+    {{/include_google_analytics}}
 
-    <?php if (isset($_GET['query']) OR isset($_GET['page'])): ?>
+    {{#prevent_page_indexing}}
     <meta name="robots" content="noindex, follow">
-    <?php endif ?>
+    {{/prevent_page_indexing}}
   </head>
 
   <body>
@@ -48,14 +48,14 @@
           <div id="header" class="clearfix">
               <div class="container">
                   <div class="span-17">
-                      <h1><a href="/"><?php echo Arr::get($_SERVER, 'HTTP_HOST', $_SERVER['SERVER_NAME']) ?></a></h1>
-                      <p><?php echo $tagline ?></p>
+                      <h1><a href="/">{{site_name}}</a></h1>
+                      <p>{{{tagline}}}</p>
                   </div>
 
                   <div id="search" class="span-7 last">
                       <form action="/search" method="get" accept-charset="utf-8">
                           <div class="yform-item yform-text" id="query-container">
-                             <input type="text" id="query" name="query" placeholder="Search modules..." value="<?php echo Arr::get($_GET, 'query') ?>">
+                             <input type="text" id="query" name="query" placeholder="Search modules..." value="{{query}}">
                           </div>
                       </form>
                   </div>
@@ -65,7 +65,7 @@
         <div id="content" class="container">
 
           <div id="main" class="span-16 colborder">
-              <?php echo $content ?>
+              {{>content}}
           </div><!-- end #main -->
 
           <div id="sidebar" class="span-7 last">
@@ -89,22 +89,26 @@
                   <h3>Recently Added</h3>
 
                   <ol>
-                  <?php foreach (ORM::factory('Module')->limit(7)->order_by('created_at', 'DESC')->find_all() as $module): ?>
-                      <li>
-                          <h4>
-                              <span class="username"><?php echo HTML::anchor("modules/$module->username", $module->username) ?></span>
-                              /
-                              <span class="name"><?php echo HTML::anchor("modules/$module->username/$module->name", $module->name) ?></span>
-                          </h4>
-                          <p class="description"><?php echo HTML::chars($module->description) ?></p>
-                          <p class="added">
-                              Added
-                              <abbr class="timeago" title="<?php echo date(DATE_ISO8601, $module->created_at) ?>">
-                                  <?php echo date(DATE_ISO8601, $module->created_at) ?>
-                              </abbr>
-                          </p>
-                      </li>
-                  <?php endforeach ?>
+                  {{#recently_added}}
+                    <li>
+                        <h4>
+                            <span class="username">
+                              <a href="/modules/{{username}}">{{username}}</a>
+                            </span>
+                            /
+                            <span class="name">
+                              <a href="/modules/{{username}}/{{name}}">{{name}}</a>
+                            </span>
+                        </h4>
+                        <p class="description">{{description}}</p>
+                        <p class="added">
+                            Added
+                            <abbr class="timeago" title="{{created_at}}">
+                                {{created_at}}
+                            </abbr>
+                        </p>
+                    </li>
+                  {{/recently_added}}
                   </ol>
               </div>
 
@@ -112,14 +116,12 @@
                   <h3>Most Prolific Authors</h3>
 
                   <ol>
-                  <?php foreach (DB::select('username', DB::expr('COUNT(1) as module_count'))->
-                      from('modules')->limit(7)->order_by('module_count', 'DESC')->
-                      group_by('username')->as_object()->execute() as $module): ?>
-                      <li>
-                          <?php echo HTML::anchor("modules/$module->username", $module->username) ?>
-                          <span class="count"><?php echo $module->module_count ?> modules</span>
-                      </li>
-                  <?php endforeach ?>
+                  {{#prolific_authors}}
+                    <li>
+                      <a href="/modules/{{username}}">{{username}}</a>
+                      <span class="count">{{module_count}} modules</span>
+                    </li>
+                  {{/prolific_authors}}
                   </ol>
               </div>
 
@@ -138,7 +140,7 @@
             </ul>
 
             <p class="span-10 last" id="footnote">
-                Powered by <?php echo HTML::anchor('http://kohanaframework.org', 'Kohana') ?> v<?php echo Kohana::VERSION ?>
+                Powered by <a href="http://kohanaframework.org">Kohana</a> v{{kohana_version}}
             </p>
           </div>
         </div><!-- end #footer -->

@@ -1,0 +1,70 @@
+<h2>
+    <a href="/modules/{{username}}">
+        {{username}}
+    </a>
+    /
+    {{name}}
+</h2>
+
+<p class="description">{{description}}</p>
+<p class="stats"><b>{{watchers}}</b> watchers, <b>{{forks}}</b> forks</p>
+
+    <div class="links">
+        <h4>Links</h4>
+
+        <a href="{{url}}" class="github">GitHub</a>
+    {{#homepage_url}}
+        <a href="{{homepage_url}}" class="homepage">Homepage</a>
+    {{/homepage_url}}
+    {{#wiki_url}}
+        <a href="{{wiki_url}}" class="wiki">Wiki</a>
+    {{/wiki_url}}
+    {{#issues_url}}
+        <a href="{{issues_url}}" class="issues">Issues ({{open_issues}})</a>
+    {{/issues_url}}
+    </div>
+
+    <div class="compatibility">
+        <h4>Kohana Compatibility</h4>
+
+        <ul>
+        {{#kohana_versions}}
+            <li class="{{#compatible}}positive{{/compatible}}{{^compatible}}negative{{/compatible}}">
+                {{name}}
+            </li>
+        {{/kohana_versions}}
+        </ul>
+    </div>
+
+    <div class="versions">
+        <h4>Latest Versions</h4>
+
+    {{#has_tags}}
+        <ul>
+        {{#tags}}
+            <li>
+                <a href="{{url}}/tree/{{name}}">
+                    {{name}}
+                </a>
+            </li>
+        {{/tags}}
+        </ul>
+    {{/has_tags}}
+    </div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
+    */
+{{#not_production}}
+  var disqus_developer = true;
+{{/not_production}}
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://kohana-modules.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript><p>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=kohana-modules">comments powered by Disqus.</a></p></noscript>
+<a href="http://disqus.com" class="dsq-brlink">Comments powered by <span class="logo-disqus">Disqus</span></a>

@@ -1,0 +1,31 @@
+<div class="actions">
+
+    <div class="filter">
+        <span>Compatible with</span>
+
+        <ul>
+        {{#versions}}
+            <li>
+                <a href="{{url}}" class="{{#selected}}selected{{/selected}}">
+                    {{name}}
+                </a>
+            </li>
+        {{/versions}}
+        </ul>
+    </div>
+
+    <div class="sort">
+        <span>Sort by</span>
+
+        <ul>
+        {{#sorts}}
+            <li>
+                <a href="{{url}}" class="{{#selected}}selected{{/selected}}">
+                    {{name}}
+                </a>
+            </li>
+        {{/sorts}}
+        </ul>
+    </div>
+
+</div>
