@@ -2,5 +2,5 @@
 
 class View_Page_Feedback extends View_Layout
 {
-	protected $title = 'Feedback';
+    protected $title = 'Feedback';
 }

@@ -2,5 +2,5 @@
 
 class View_Page_AddAModule extends View_Layout
 {
-	protected $title = 'Add a module';
+    protected $title = 'Add a module';
 }

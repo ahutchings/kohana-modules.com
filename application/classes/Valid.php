@@ -3,11 +3,11 @@
 class Valid extends Kohana_Valid
 {
     /**
-	 * Validate that a URL is external.
-	 *
-	 * @param   string   URL
-	 * @return  boolean
-	 */
+     * Validate that a URL is external.
+     *
+     * @param   string   URL
+     * @return  boolean
+     */
     public static function external_url($url)
     {
         if ( ! Valid::url($url))

@@ -2,5 +2,5 @@
 
 class View_Error_404 extends View_Error
 {
-	public $code = 404;
+    public $code = 404;
 }

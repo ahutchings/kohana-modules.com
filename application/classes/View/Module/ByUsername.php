@@ -2,19 +2,19 @@
 
 class View_Module_ByUsername extends View_Module_Index
 {
-	public function __construct($query, $username)
-	{
-		$this->username = $username;
-		parent::__construct($query);
-	}
+    public function __construct($query, $username)
+    {
+        $this->username = $username;
+        parent::__construct($query);
+    }
 
-	public function title()
-	{
-		return "$this->username's Profile";
-	}
+    public function title()
+    {
+        return "$this->username's Profile";
+    }
 
-	public function module_count_noun()
-	{
-		return Inflector::plural('Module', $this->count());
-	}
+    public function module_count_noun()
+    {
+        return Inflector::plural('Module', $this->count());
+    }
 }
