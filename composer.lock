@@ -1,4 +1,8 @@
 {
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
     "hash": "2b52761a4fe02ad2af2257a06d43e440",
     "packages": [
         {
@@ -7,32 +11,31 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2"
+                "reference": "8a8f304e91a5dbd5ca86fb703675dd060cc5d560"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2",
-                "reference": "8eafe2ec512a0cbcdf5accc85f6a8cf01df787a2",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/8a8f304e91a5dbd5ca86fb703675dd060cc5d560",
+                "reference": "8a8f304e91a5dbd5ca86fb703675dd060cc5d560",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2",
                 "ext-curl": "*",
-                "kriswallsmith/buzz": ">=0.7"
+                "kriswallsmith/buzz": ">=0.7",
+                "php": ">=5.3.2"
             },
-            "time": "1364801925",
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-master": "1.2.x-dev"
                 }
             },
-            "installation-source": "source",
             "autoload": {
                 "psr-0": {
                     "Github\\": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -51,23 +54,24 @@
             "homepage": "https://github.com/KnpLabs/php-github-api",
             "keywords": [
                 "api",
-                "github",
+                "gh",
                 "gist",
-                "gh"
-            ]
+                "github"
+            ],
+            "time": "2013-07-31 13:28:53"
         },
         {
             "name": "kriswallsmith/buzz",
-            "version": "v0.9",
+            "version": "v0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kriswallsmith/Buzz.git",
-                "reference": "v0.9"
+                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/v0.9",
-                "reference": "v0.9",
+                "url": "https://api.github.com/repos/kriswallsmith/Buzz/zipball/759432d66387e3433d3b06cb6f773b97225b9b17",
+                "reference": "759432d66387e3433d3b06cb6f773b97225b9b17",
                 "shasum": ""
             },
             "require": {
@@ -79,14 +83,13 @@
             "suggest": {
                 "ext-curl": "*"
             },
-            "time": "2013-02-19 00:26:38",
             "type": "library",
-            "installation-source": "dist",
             "autoload": {
                 "psr-0": {
                     "Buzz": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -102,15 +105,24 @@
             "keywords": [
                 "curl",
                 "http client"
-            ]
+            ],
+            "time": "2013-05-19 03:41:15"
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],
     "minimum-stability": "stable",
     "stability-flags": {
         "knplabs/github-api": 20
-    }
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
 }
