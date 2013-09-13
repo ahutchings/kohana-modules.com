@@ -2,7 +2,7 @@
 
 class View_Module_Sort
 {
-    private $sortKeys = array('watchers', 'forks', 'added');
+    private $sortKeys = array('watchers', 'stars', 'forks', 'added');
     private $defaultSortKey = 'watchers';
 
     public function __construct($defaultVersion = 'any')

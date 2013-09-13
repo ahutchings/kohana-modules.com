@@ -43,7 +43,6 @@ class Model_Module extends ORM
         'homepage',
         'fork',
         'forks',
-        'watchers',
         'has_wiki',
         'has_issues',
         'has_downloads',
@@ -89,6 +88,42 @@ class Model_Module extends ORM
 
         $values = Arr::extract($repo, $this->_import_fields);
 
+	    //bookmarks AKA stars are named watchers in the repo
+	    $values['stars'] = $repo['watchers'];
+
+	    //get the watch count
+	    $subs = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/subscribers?per_page=30');
+
+	    //get the Link header
+	    $link = $subs->getHeader('Link');
+
+	    if($link == null)
+	    {
+		    $values['watchers'] = count($subs->getContent());
+	    }
+	    else
+	    {
+		    //A link was supplied
+		    $links = explode(',', $link);
+
+		    $pattern = '/&page=(?P<pages>[0-9]*)/';
+		    preg_match_all($pattern, end($links), $m);
+
+		    $extra = count($client->getHttpClient()->get('repos/kohana/kohana/subscribers?page='.$m['pages'][0].'&per_page=30')->getContent());
+		    $values['watchers'] = (($m['pages'][0] - 1) * 30) + $extra;
+	    }
+
+	    //check if composer is supported
+	    try {
+		    $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json')->getContent();
+		    $composer = true;
+	    }
+	    catch(Exception $e)
+	    {
+		    $composer = false;
+	    }
+
+	    $values['has_composer'] = $composer;
         $this->values($values);
 
         if (count($tags))
@@ -148,13 +183,14 @@ class Model_Module extends ORM
     public function set_order_by()
     {
         // Get the selected sort method
-        $order_by = Arr::get($_GET, 'sort', 'watchers');
+        $order_by = Arr::get($_GET, 'sort', 'watchers', 'stars');
 
         // Valid sort methods
         $sort_methods = array
         (
             'watchers' => 'watchers',
-            'forks'    => 'forks',
+	        'forks'    => 'forks',
+	        'stars'    => 'stars',
             'added'    => 'created_at',
         );
 

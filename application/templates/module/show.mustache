@@ -7,7 +7,7 @@
 </h2>
 
 <p class="description">{{description}}</p>
-<p class="stats"><b>{{watchers}}</b> watchers, <b>{{forks}}</b> forks</p>
+<p class="stats"><b>{{watchers}}</b> watchers, <b>{{forks}}</b> forks, <b>{{stars}}</b> stars</p>
 
     <div class="links">
         <h4>Links</h4>
@@ -51,6 +51,24 @@
         </ul>
     {{/has_tags}}
     </div>
+
+    {{#supports_composer}}
+	    <div class="composer">
+	        <h4>Install through composer</h4>
+
+	        <i>"{{composer_name}}": "dev-master"</i>
+
+	        {{#has_tags}}
+	            <ul>
+	                {{#tags}}
+	                    <li>
+	                        "{{composer_name}}": "{{name}}"
+	                    </li>
+	                {{/tags}}
+	            </ul>
+	        {{/has_tags}}
+	    </div>
+    {{/supports_composer}}
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
