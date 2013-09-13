@@ -96,25 +96,21 @@ class Model_Queue extends ORM
      */
     public function sync()
     {
+        $client = AuthenticatedGithubClient::instance();
+
         try
         {
-            $github = new Github;
-            $repo = $github->get_repo($this->username, $this->name);
+            $repo = $client->api('repo')->show($this->username, $this->name);
         }
         catch (Exception $e)
         {
-            // If the module has been made private or deleted
-            if ($e instanceof Github_Exception_BadHTTPResponse OR
-                $e instanceof Github_Exception_Unauthorized)
-            {
-                // Delete the item
-                $this->delete();
+            $deleted = $e instanceof Github\Exception\RuntimeException && $e->getCode() === 404;
 
-                return FALSE;
-            }
-            else
-            {
-                // Rethrow the exception.
+            // If the module has been made private or deleted
+            if ($deleted) {
+                $this->delete();
+                return false;
+            } else {
                 throw $e;
             }
         }
@@ -126,6 +122,6 @@ class Model_Queue extends ORM
             ->values($values)
             ->save();
 
-        return TRUE;
+        return true;
     }
 }
