@@ -122,4 +122,9 @@ class View_Module_Show extends View_Layout
 	{
 		return $this->module->has_composer;
 	}
+
+	public function composer_name()
+	{
+		return strtolower($this->module->username.'/'.$this->module->name);
+	}
 }
