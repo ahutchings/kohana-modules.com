@@ -49,7 +49,8 @@ class View_Module_Index extends View_Layout
             'username'    => $module->username,
             'identifier'  => $this->formatModuleIdentifier($module),
             'description' => $this->formatModuleDescription($module),
-            'watchers'    => $module->watchers,
+	        'watchers'    => $module->watchers,
+	        'stars'       => $module->stars,
             'forks'       => $module->forks
             );
     }
