@@ -42,10 +42,15 @@ class View_Module_Show extends View_Layout
         return $this->module->watchers;
     }
 
-    public function forks()
-    {
-        return $this->module->forks;
-    }
+	public function forks()
+	{
+		return $this->module->forks;
+	}
+
+	public function stars()
+	{
+		return $this->module->stars;
+	}
 
     public function url()
     {
@@ -112,4 +117,14 @@ class View_Module_Show extends View_Layout
             ->limit(5)
             ->find_all();
     }
+
+	public function supports_composer()
+	{
+		return $this->module->has_composer;
+	}
+
+	public function composer_name()
+	{
+		return strtolower($this->module->username.'/'.$this->module->name);
+	}
 }
