@@ -1,8 +1,10 @@
 {
     "require": {
-        "knplabs/github-api": "~1.2@dev"
+        "knplabs/github-api": "~1.2@dev",
+	    "composer/satis": "dev-master"
     },
     "config": {
     	"vendor-dir": "application/vendor"
-    }
+    },
+	"minimum-stability": "dev"
 }

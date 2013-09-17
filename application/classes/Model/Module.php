@@ -47,6 +47,7 @@ class Model_Module extends ORM
         'has_issues',
         'has_downloads',
         'open_issues',
+	    'master_branch'
     );
 
     /**
@@ -115,15 +116,23 @@ class Model_Module extends ORM
 
 	    //check if composer is supported
 	    try {
-		    $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json')->getContent();
+		    $json_file = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json')->getContent();
+
+		    //seems to be supported, get the package name
+		    $package = json_decode(base64_decode($json_file['content']));
+
+		    $values['package_name'] = $package->name;
 		    $composer = true;
 	    }
 	    catch(Exception $e)
 	    {
+		    //no composer.json found, set defaults
 		    $composer = false;
+		    $values['package_name'] = strtolower($this->username.'/'.$this->name);
 	    }
 
 	    $values['has_composer'] = $composer;
+
         $this->values($values);
 
         if (count($tags))
