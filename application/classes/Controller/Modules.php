@@ -64,7 +64,7 @@ class Controller_Modules extends Controller
 
     public function action_search()
     {
-        $term = $_GET['query'];
+        $term = Arr::get($_GET, 'query', '');
 
         $compatibility = $this->getRequestedCompatibility();
 
