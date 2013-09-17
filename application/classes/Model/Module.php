@@ -11,6 +11,7 @@ class Model_Module extends ORM
     (
         'kohana_versions' => array('through' => 'module_compatibilities'),
         'tags'            => array(),
+	    'refs'            => array('model' => 'Module_Ref')
     );
 
     public function rules()
@@ -110,18 +111,21 @@ class Model_Module extends ORM
 		    $pattern = '/&page=(?P<pages>[0-9]*)/';
 		    preg_match_all($pattern, end($links), $m);
 
-		    $extra = count($client->getHttpClient()->get('repos/kohana/kohana/subscribers?page='.$m['pages'][0].'&per_page=30')->getContent());
+		    $extra = count($client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/subscribers?page='.$m['pages'][0].'&per_page=30')->getContent());
 		    $values['watchers'] = (($m['pages'][0] - 1) * 30) + $extra;
 	    }
 
 	    //check if composer is supported
 	    try {
-		    $json_file = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json')->getContent();
+		    if($this->has_composer !== true)
+		    {
+			    $json_file = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json')->getContent();
 
-		    //seems to be supported, get the package name
-		    $package = json_decode(base64_decode($json_file['content']));
+			    //seems to be supported, get the package name
+			    $package = json_decode(base64_decode($json_file['content']));
 
-		    $values['package_name'] = $package->name;
+			    $values['package_name'] = $package->name;
+		    }
 		    $composer = true;
 	    }
 	    catch(Exception $e)
@@ -154,6 +158,25 @@ class Model_Module extends ORM
         }
 
         $this->save();
+
+	    if(!$this->has_composer)
+	    {
+		    $ref = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/git/refs/heads/'.$this->master_branch)->getContent();
+		    $ref_ob = $ref;
+
+		    $commit = $ref_ob['object']['sha'];
+
+		    if(!$this->refs->where('sha', '=', $commit)->find()->loaded())
+		    {
+			    ORM::factory('Module_Ref')
+				    ->values(array(
+				        'sha' => $commit,
+				        'version' => $this->refs->count_all(),
+				        'module_id' => $this->id
+			        ))
+			        ->save();
+		    }
+	    }
 
         return TRUE;
     }

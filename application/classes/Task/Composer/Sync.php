@@ -30,19 +30,24 @@ class Task_Composer_Sync extends Minion_Task
 
 		foreach($modules as $module)
 		{
-			$satis['repositories'][] = array(
-				'type' => 'package',
-				'package' => array(
-					'name' => $module->package_name,
-					'type' => 'kohana-module',
-					'version' => '1.0.0',
-					'source' => array(
-						'url' => $module->url().'.git',
-						'type' => 'git',
-						'reference' => $module->master_branch
+			$refs = $module->refs->find_all();
+
+			foreach($refs as $ref)
+			{
+				$satis['repositories'][] = array(
+					'type' => 'package',
+					'package' => array(
+						'name' => $module->package_name,
+						'type' => 'kohana-module',
+						'version' => '1.0.'.$ref->version,
+						'source' => array(
+							'url' => $module->url().'.git',
+							'type' => 'git',
+							'reference' => $ref->sha
+						)
 					)
-				)
-			);
+				);
+			}
 		}
 
 		//save the satis file

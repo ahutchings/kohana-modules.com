@@ -28,5 +28,9 @@ class Task_Module_Sync extends Minion_Task
             // throttle API requests
             sleep(2);
         }
+
+		Minion_Task::factory(array(
+			'task' => 'composer:sync'
+		))->execute();
 	}
 }

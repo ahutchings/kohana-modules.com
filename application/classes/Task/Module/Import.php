@@ -23,6 +23,10 @@ class Task_Module_Import extends Minion_Task
 
         $this->_prune_queue();
         $this->_prune_modules();
+
+	    Minion_Task::factory(array(
+		    'task' => 'composer:sync'
+	    ))->execute();
     }
 
     /**
