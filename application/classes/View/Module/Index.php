@@ -37,7 +37,6 @@ class View_Module_Index extends View_Layout
         return $this->query
             ->limit($this->pagination->items_per_page)
             ->offset($this->pagination->offset)
-            ->set_order_by()
             ->find_all()
             ->as_array();
     }

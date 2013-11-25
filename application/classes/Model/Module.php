@@ -178,39 +178,6 @@ class Model_Module extends ORM
     }
 
     /**
-     * Sets the column name to order by from the query string.
-     *
-     * @return  $this
-     */
-    public function set_order_by()
-    {
-        // Get the selected sort method
-        $order_by = Arr::get($_GET, 'sort', 'watchers', 'stars');
-
-        // Valid sort methods
-        $sort_methods = array
-        (
-            'watchers' => 'watchers',
-            'forks'    => 'forks',
-            'stars'    => 'stars',
-            'added'    => 'created_at',
-        );
-
-        if ( ! in_array($order_by, array_keys($sort_methods)))
-        {
-            // Order by watchers if the selected sorting is not valid.
-            $sort_column = 'watchers';
-        }
-        else
-        {
-            // Map the sort method to the database column name
-            $sort_column = $sort_methods[$order_by];
-        }
-
-        return $this->order_by($sort_column, 'DESC');
-    }
-
-    /**
      * Query builder method to select modules that are compatible with a
      * particular Kohana version.
      *

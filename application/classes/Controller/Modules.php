@@ -2,11 +2,39 @@
 
 class Controller_Modules extends Controller
 {
+    const DEFAULT_SORT_PARAM = 'watchers';
+
+    private $_sort_columns_by_param = array
+    (
+        'watchers' => 'watchers',
+        'forks'    => 'forks',
+        'stars'    => 'stars',
+        'added'    => 'created_at',
+    );
+
     public function __construct($request, $response)
     {
-        $this->query = ORM::factory('Module');
-
         parent::__construct($request, $response);
+
+        $this->query = ORM::factory('Module');
+        $this->_setQueryOrderBy();
+    }
+
+    private function _setQueryOrderBy()
+    {
+        $column = $this->_getOrderByColumn();
+        return $this->query->order_by($column, 'DESC');
+    }
+
+    private function _getOrderByColumn()
+    {
+        $sort_param = $this->request->query('sort');
+
+        if ( ! isset($this->_sort_columns_by_param[$sort_param])) {
+            $sort_param = self::DEFAULT_SORT_PARAM;
+        }
+
+        return $this->_sort_columns_by_param[$sort_param];
     }
 
     public function action_show()
@@ -19,14 +47,15 @@ class Controller_Modules extends Controller
             ->where('name', '=', $name)
             ->find();
 
-        if ( ! $module->loaded())
-        {
-            throw new HTTP_Exception_404('Module :username/:name not found',
-                array(':username' => $username, ':name' => $name));
+        if ( ! $module->loaded()) {
+            throw new HTTP_Exception_404(
+                'Module :username/:name not found',
+                array(':username' => $username, ':name' => $name)
+            );
         }
 
         $view = new View_Module_Show($module);
-        $this->renderBody($view);
+        $this->_renderBody($view);
     }
 
     public function action_by_username()
@@ -35,53 +64,54 @@ class Controller_Modules extends Controller
 
         $this->query->where('username', '=', $username);
 
-        $count = $this->query->reset(FALSE)->count_all();
+        $count = $this->query->reset(false)->count_all();
 
-        if ($count == 0)
-        {
-            throw new HTTP_Exception_404('No modules found for :username',
-                array(':username' => $username));
+        if ($count == 0) {
+            throw new HTTP_Exception_404(
+                'No modules found for :username',
+                array(':username' => $username)
+            );
         }
 
-        $compatibility = $this->getRequestedCompatibility();
+        $compatibility = $this->_getRequestedCompatibility();
 
         $this->query->where_compatible_with($compatibility);
 
         $view = new View_Module_ByUsername($this->query, $username);
-        $this->renderBody($view);
+        $this->_renderBody($view);
     }
 
     public function action_index()
     {
         $default_compatibility = Model_Kohana_Version::latest();
-        $compatibility         = $this->getRequestedCompatibility($default_compatibility);
+        $compatibility         = $this->_getRequestedCompatibility($default_compatibility);
 
         $this->query->where_compatible_with($compatibility);
 
         $view = new View_Module_Index($this->query);
-        $this->renderBody($view);
+        $this->_renderBody($view);
     }
 
     public function action_search()
     {
         $term = Arr::get($_GET, 'query', '');
 
-        $compatibility = $this->getRequestedCompatibility();
+        $compatibility = $this->_getRequestedCompatibility();
 
         $this->query
             ->filterBySearchTerm($term)
             ->where_compatible_with($compatibility);
 
         $view = new View_Module_Search($this->query, $term);
-        $this->renderBody($view);
+        $this->_renderBody($view);
     }
 
-    private function getRequestedCompatibility($default = 'any')
+    private function _getRequestedCompatibility($default = 'any')
     {
         return Arr::get($_GET, 'compatibility', $default);
     }
 
-    private function renderBody($view)
+    private function _renderBody($view)
     {
         $renderer = Kostache_Layout::factory();
         $body     = $renderer->render($view);
