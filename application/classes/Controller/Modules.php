@@ -94,7 +94,7 @@ class Controller_Modules extends Controller
 
     public function action_search()
     {
-        $term = Arr::get($_GET, 'query', '');
+        $term = $this->request->query('query');
 
         $compatibility = $this->_getRequestedCompatibility();
 
@@ -108,7 +108,13 @@ class Controller_Modules extends Controller
 
     private function _getRequestedCompatibility($default = 'any')
     {
-        return Arr::get($_GET, 'compatibility', $default);
+        $compatibility = $this->request->query('compatibility');
+
+        if ( ! $compatibility) {
+            $compatibility = $default;
+        }
+
+        return $compatibility;
     }
 
     private function _renderBody($view)
