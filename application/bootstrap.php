@@ -106,7 +106,19 @@ Kohana::init(array(
 /**
  * Attach the file write to logging. Multiple writers are supported.
  */
-Kohana::$log->attach(new Log_File(APPPATH.'logs'));
+Kohana::$log->attach(new Log_StdOut(), array(
+  Log::NOTICE,
+  Log::INFO,
+  Log::DEBUG
+  ));
+
+Kohana::$log->attach(new Log_StdErr(), array(
+  Log::EMERGENCY,
+  Log::ALERT,
+  Log::CRITICAL,
+  Log::ERROR,
+  Log::WARNING
+  ));
 
 /**
  * Attach a file reader to config. Multiple readers are supported.
