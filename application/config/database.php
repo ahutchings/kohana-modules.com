@@ -18,10 +18,10 @@ return array
              *
              * Ports and sockets may be appended to the hostname.
              */
-            'hostname'   => $_SERVER['DB1_HOST'],
-            'database'   => $_SERVER['DB1_NAME'],
-            'username'   => $_SERVER['DB1_USER'],
-            'password'   => $_SERVER['DB1_PASS'],
+            'hostname'   => getenv('DB1_HOST'),
+            'database'   => getenv('DB1_NAME'),
+            'username'   => getenv('DB1_USER'),
+            'password'   => getenv('DB1_PASS'),
             'persistent' => FALSE,
         ),
         'table_prefix' => '',
