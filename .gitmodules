@@ -10,9 +10,6 @@
 [submodule "modules/notices"]
 	path = modules/notices
 	url = https://github.com/synapsestudios/kohana-notices.git
-[submodule "modules/github"]
-	path = modules/github
-	url = https://github.com/ahutchings/github_v3_api.git
 [submodule "modules/sitemap"]
 	path = modules/sitemap
 	url = https://github.com/ahutchings/kohana-sitemap.git
