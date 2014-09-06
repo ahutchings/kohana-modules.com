@@ -48,7 +48,7 @@ class Controller_Modules extends Controller
         $this->query->where_compatible_with($compatibility);
 
         $view = new View_Module_ByUsername($this->query, $username);
-        $this->renderBody($view, 'module/by-username');
+        $this->renderBody($view);
     }
 
     public function action_index()
