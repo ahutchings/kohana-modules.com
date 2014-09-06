@@ -4,9 +4,6 @@
 [submodule "modules/orm"]
 	path = modules/orm
 	url = https://github.com/kohana/orm.git
-[submodule "modules/database"]
-	path = modules/database
-	url = https://github.com/kohana/database.git
 [submodule "modules/pagination"]
 	path = modules/pagination
 	url = https://github.com/ahutchings/pagination.git
@@ -25,9 +22,6 @@
 [submodule "modules/cache"]
 	path = modules/cache
 	url = https://github.com/kohana/cache.git
-[submodule "modules/unittest"]
-	path = modules/unittest
-	url = https://github.com/kohana/unittest.git
 [submodule "modules/migrations"]
 	path = modules/migrations
 	url = https://github.com/kohana-minion/tasks-migrations.git
