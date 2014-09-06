@@ -3,7 +3,8 @@
         "vendor-dir": "application/vendor"
     },
     "require": {
-        "knplabs/github-api": "~1.2@dev"
+        "knplabs/github-api": "~1.2@dev",
+        "kohana/database": "3.4.x-dev"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*"
