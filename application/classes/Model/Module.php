@@ -121,8 +121,21 @@ class Model_Module extends ORM
         }
 
         //check if composer is supported
-        $res = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json');
-        $composer = $res->getStatusCode() === 200;
+        try
+        {
+          $res = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json');
+          $composer = true;
+        }
+        catch (Exception $e)
+        {
+          Log::instance()->add(Log::DEBUG, 'Exception checking for composer.json: (:status_code) :message',
+              array(
+                ':status_code' => $res->getStatusCode(),
+                ':message' => $e->getMessage()
+                ));
+
+          $composer = false;
+        }
 
         Log::instance()->add(Log::DEBUG, 'composer.json response status code: :status_code',
             array(':status_code' => $res->getStatusCode()));
