@@ -59,7 +59,7 @@ class Controller_Modules extends Controller
         $this->query->where_compatible_with($compatibility);
 
         $view = new View_Module_Index($this->query);
-        $this->renderBody($view, 'partials/module/index');
+        $this->renderBody($view);
     }
 
     public function action_search()
@@ -81,10 +81,10 @@ class Controller_Modules extends Controller
         return Arr::get($_GET, 'compatibility', $default);
     }
 
-    private function renderBody($view, $template = NULL)
+    private function renderBody($view)
     {
         $renderer = Kostache_Layout::factory();
-        $body     = $renderer->render($view, $template);
+        $body     = $renderer->render($view);
 
         $this->response->body($body);
     }
