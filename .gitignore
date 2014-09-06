@@ -1,5 +1,6 @@
 .DS_Store
 .project
 .vagrant
+.c9
 build
 /application/vendor/
