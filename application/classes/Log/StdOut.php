@@ -12,7 +12,7 @@ class Log_StdOut extends Log_Writer
 {
   public function __construct ()
   {
-    $this->_stream = defined(STDOUT) ? STDOUT : fopen('php://stdout', 'w');
+    $this->_stream = defined('STDOUT') ? STDOUT : fopen('php://stdout', 'w');
   }
 
   /**

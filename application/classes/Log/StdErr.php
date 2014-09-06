@@ -12,7 +12,7 @@ class Log_StdErr extends Log_Writer
 {
   public function __construct ()
   {
-    $this->_stream = defined(STDERR) ? STDERR : fopen('php://stderr', 'w');
+    $this->_stream = defined('STDERR') ? STDERR : fopen('php://stderr', 'w');
   }
 
   /**
