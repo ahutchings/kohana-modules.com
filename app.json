@@ -1,5 +1,9 @@
 {
   "name": "kohana-modules.com",
+  "addons": [
+    "cleardb:ignite",
+    "scheduler"
+  ],
   "scripts": {
     "postdeploy": "minion --task=cache:purge && minion --task=migrations:run"
   }
