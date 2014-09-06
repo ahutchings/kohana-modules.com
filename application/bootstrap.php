@@ -132,6 +132,7 @@ Kohana::modules(array(
     'auth'        => MODPATH.'auth',       // Basic authentication
     'cache'       => MODPATH.'cache',      // Caching with multiple backends
     'database'    => MODPATH.'database',   // Database access
+    'kostache'    => APPPATH.'vendor/zombor/kostache',
     'loggly'      => MODPATH.'loggly',
     'minion'      => MODPATH.'minion',
     'migrations'  => MODPATH.'migrations',
