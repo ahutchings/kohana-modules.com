@@ -124,18 +124,19 @@ class Model_Module extends ORM
         try
         {
           $res = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json');
+
+          Log::instance()->add(Log::DEBUG, 'composer.json response status code: :status_code',
+              array(':status_code' => $res->getStatusCode()));
+
           $composer = true;
         }
         catch (Exception $e)
         {
-          Log::instance()->add(Log::DEBUG, 'Exception checking for composer.json: (:status_code) :message',
+          Log::instance()->add(Log::DEBUG, 'Exception checking for composer.json: :message',
               array(':message' => $e->getMessage()));
 
           $composer = false;
         }
-
-        Log::instance()->add(Log::DEBUG, 'composer.json response status code: :status_code',
-            array(':status_code' => $res->getStatusCode()));
 
         $values['has_composer'] = $composer;
         $this->values($values);
