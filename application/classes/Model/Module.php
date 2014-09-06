@@ -129,10 +129,7 @@ class Model_Module extends ORM
         catch (Exception $e)
         {
           Log::instance()->add(Log::DEBUG, 'Exception checking for composer.json: (:status_code) :message',
-              array(
-                ':status_code' => $res->getStatusCode(),
-                ':message' => $e->getMessage()
-                ));
+              array(':message' => $e->getMessage()));
 
           $composer = false;
         }
