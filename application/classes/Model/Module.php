@@ -100,7 +100,7 @@ class Model_Module extends ORM
         if ($link == null)
         {
             Log::instance()->add(Log::DEBUG, 'subscribers response json: :json',
-                array(':json' => $subs->json()));
+                array(':json' => serialize($subs->json())));
 
             $values['watchers'] = count($subs->json());
         }
@@ -115,7 +115,7 @@ class Model_Module extends ORM
             $subs = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/subscribers?page='.$m['pages'][0].'&per_page=30');
 
             Log::instance()->add(Log::DEBUG, 'paginated subscribers response json: :json',
-                array(':json' => $subs->json()));
+                array(':json' => serialize($subs->json())));
 
             $values['watchers'] = (($m['pages'][0] - 1) * 30) + count($subs->json());
         }
