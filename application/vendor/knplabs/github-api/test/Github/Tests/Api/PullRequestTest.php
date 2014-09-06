@@ -33,7 +33,7 @@ class PullRequestTest extends TestCase
             ->with('repos/ezsystems/ezpublish/pulls', array('state' => 'open', 'per_page' => 30, 'page' => 1))
             ->will($this->returnValue($expectedArray));
 
-        $this->assertEquals($expectedArray, $api->all('ezsystems', 'ezpublish', 'open'));
+        $this->assertEquals($expectedArray, $api->all('ezsystems', 'ezpublish', array('state' => 'open')));
     }
 
     /**
@@ -49,7 +49,7 @@ class PullRequestTest extends TestCase
             ->with('repos/ezsystems/ezpublish/pulls', array('state' => 'closed', 'per_page' => 30, 'page' => 1))
             ->will($this->returnValue($expectedArray));
 
-        $this->assertEquals($expectedArray, $api->all('ezsystems', 'ezpublish', 'closed'));
+        $this->assertEquals($expectedArray, $api->all('ezsystems', 'ezpublish', array('state' => 'closed')));
     }
 
     /**
@@ -106,15 +106,15 @@ class PullRequestTest extends TestCase
      */
     public function shouldUpdatePullRequests()
     {
-        $expectedArray = array('id' => 'id', 'sha' => '123123');
+        $expectedArray = array('id' => 15, 'sha' => '123123');
 
         $api = $this->getApiMock();
         $api->expects($this->once())
             ->method('patch')
-            ->with('repos/ezsystems/ezpublish/pulls', array('state' => 'open', 'some' => 'param'))
+            ->with('repos/ezsystems/ezpublish/pulls/15', array('state' => 'open', 'some' => 'param'))
             ->will($this->returnValue($expectedArray));
 
-        $this->assertEquals($expectedArray, $api->update('ezsystems', 'ezpublish', array('state' => 'aa', 'some' => 'param')));
+        $this->assertEquals($expectedArray, $api->update('ezsystems', 'ezpublish', 15, array('state' => 'aa', 'some' => 'param')));
     }
 
     /**

@@ -1,8 +1,11 @@
 {
+    "config": {
+        "vendor-dir": "application/vendor"
+    },
     "require": {
         "knplabs/github-api": "~1.2@dev"
     },
-    "config": {
-    	"vendor-dir": "application/vendor"
+    "require-dev": {
+        "heroku/heroku-buildpack-php": "*"
     }
 }

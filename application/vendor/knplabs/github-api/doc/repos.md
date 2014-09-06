@@ -76,7 +76,7 @@ Updates and returns the repository named 'my-new-repo' that is owned by 'usernam
 > Requires [authentication](security.md).
 
 ```php
-$client->api('repo')->delete('username', 'my-new-repo'); // Get the deletion token
+$client->api('repo')->remove('username', 'my-new-repo'); // Get the deletion token
 ```
 
 Deletes the my-new-repo repository.
@@ -230,3 +230,11 @@ To include non GitHub users, add a third parameter to true:
 ```php
 $contributors = $client->api('repo')->contributors('ornicar', 'php-github-api', true);
 ```
+
+### Get the commit activity of a repository
+
+```php
+$activity = $client->api('repo')->activity('ornicar', 'php-github-api');
+```
+
+Returns an array of commit activity group by week.
