@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "eed56ac11cc2f19e79f1ecef64c6cbaa",
+    "hash": "efb75cc5560c3804941715ebfb3a6142",
     "packages": [
         {
             "name": "composer/installers",
@@ -492,6 +492,51 @@
             "time": "2014-04-10 23:31:05"
         },
         {
+            "name": "mustache/mustache",
+            "version": "v2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bobthecow/mustache.php.git",
+                "reference": "1430ca884912eaba2b3830856b45685733b16789"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bobthecow/mustache.php/zipball/1430ca884912eaba2b3830856b45685733b16789",
+                "reference": "1430ca884912eaba2b3830856b45685733b16789",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mustache": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Hileman",
+                    "email": "justin@justinhileman.info",
+                    "homepage": "http://justinhileman.com"
+                }
+            ],
+            "description": "A Mustache implementation in PHP.",
+            "homepage": "https://github.com/bobthecow/mustache.php",
+            "keywords": [
+                "mustache",
+                "templating"
+            ],
+            "time": "2014-06-20 19:34:49"
+        },
+        {
             "name": "symfony/event-dispatcher",
             "version": "v2.5.4",
             "target-dir": "Symfony/Component/EventDispatcher",
@@ -547,6 +592,49 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
             "time": "2014-07-28 13:20:46"
+        },
+        {
+            "name": "zombor/kostache",
+            "version": "v4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zombor/KOstache.git",
+                "reference": "e9b1c79f0004c16f935f2f0a0278de2ccdf1ab07"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zombor/KOstache/zipball/e9b1c79f0004c16f935f2f0a0278de2ccdf1ab07",
+                "reference": "e9b1c79f0004c16f935f2f0a0278de2ccdf1ab07",
+                "shasum": ""
+            },
+            "require": {
+                "mustache/mustache": "~2.6.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Bush",
+                    "email": "jeremy.bush@kohanaframework.org"
+                },
+                {
+                    "name": "Woody Gilk",
+                    "email": "woody.gilk@kohanaframework.org"
+                }
+            ],
+            "description": "Logic-less View/Mustache Module for the Kohana Framework",
+            "homepage": "https://github.com/zombor/KOstache",
+            "keywords": [
+                "kohana",
+                "mustache",
+                "templating",
+                "view"
+            ],
+            "time": "2014-05-08 14:53:33"
         }
     ],
     "packages-dev": [
