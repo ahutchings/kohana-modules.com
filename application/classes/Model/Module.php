@@ -97,9 +97,12 @@ class Model_Module extends ORM
         //get the Link header
         $link = $subs->getHeader('Link');
 
-        if($link == null)
+        if ($link == null)
         {
-            $values['watchers'] = count($subs->getContent());
+            Log::instance()->add(Log::DEBUG, 'subscribers response json: :json',
+                array(':json' => $subs->json()));
+
+            $values['watchers'] = count($subs->json());
         }
         else
         {
@@ -109,19 +112,20 @@ class Model_Module extends ORM
             $pattern = '/&page=(?P<pages>[0-9]*)/';
             preg_match_all($pattern, end($links), $m);
 
-            $extra = count($client->getHttpClient()->get('repos/kohana/kohana/subscribers?page='.$m['pages'][0].'&per_page=30')->getContent());
-            $values['watchers'] = (($m['pages'][0] - 1) * 30) + $extra;
+            $subs = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/subscribers?page='.$m['pages'][0].'&per_page=30');
+
+            Log::instance()->add(Log::DEBUG, 'paginated subscribers response json: :json',
+                array(':json' => $subs->json()));
+
+            $values['watchers'] = (($m['pages'][0] - 1) * 30) + count($subs->json());
         }
 
         //check if composer is supported
-        try {
-            $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json')->getContent();
-            $composer = true;
-        }
-        catch(Exception $e)
-        {
-            $composer = false;
-        }
+        $res = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json');
+        $composer = $res->getStatusCode() === 200;
+
+        Log::instance()->add(Log::DEBUG, 'composer.json response status code: :status_code',
+            array(':status_code' => $res->getStatusCode()));
 
         $values['has_composer'] = $composer;
         $this->values($values);
