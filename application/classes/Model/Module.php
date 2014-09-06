@@ -99,9 +99,6 @@ class Model_Module extends ORM
 
         if ($link == null)
         {
-            Log::instance()->add(Log::DEBUG, 'subscribers response json: :json',
-                array(':json' => serialize($subs->json())));
-
             $values['watchers'] = count($subs->json());
         }
         else
@@ -114,9 +111,6 @@ class Model_Module extends ORM
 
             $subs = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/subscribers?page='.$m['pages'][0].'&per_page=30');
 
-            Log::instance()->add(Log::DEBUG, 'paginated subscribers response json: :json',
-                array(':json' => serialize($subs->json())));
-
             $values['watchers'] = (($m['pages'][0] - 1) * 30) + count($subs->json());
         }
 
@@ -124,17 +118,10 @@ class Model_Module extends ORM
         try
         {
           $res = $client->getHttpClient()->get('repos/'.$this->username.'/'.$this->name.'/contents/composer.json');
-
-          Log::instance()->add(Log::DEBUG, 'composer.json response status code: :status_code',
-              array(':status_code' => $res->getStatusCode()));
-
           $composer = true;
         }
         catch (Exception $e)
         {
-          Log::instance()->add(Log::DEBUG, 'Exception checking for composer.json: :message',
-              array(':message' => $e->getMessage()));
-
           $composer = false;
         }
 

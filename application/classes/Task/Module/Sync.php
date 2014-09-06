@@ -24,9 +24,6 @@ class Task_Module_Sync extends Minion_Task
             {
                 Minion_CLI::write("$module->username/$module->name flagged for deletion.", 'red');
             }
-
-            // throttle API requests
-            // sleep(2);
         }
 	}
 }

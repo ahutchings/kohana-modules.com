@@ -113,9 +113,6 @@ class Task_Module_Import extends Minion_Task
                 $this->log("Created $module->username/$module->name");
 
                 $module->sync();
-
-                // throttle API requests
-                // sleep(2);
             }
 
             // Create a compatibility entry for the version
