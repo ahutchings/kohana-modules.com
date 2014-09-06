@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bd0ec08384e30e93a6a657ad37ce876c",
+    "hash": "eed56ac11cc2f19e79f1ecef64c6cbaa",
     "packages": [
         {
             "name": "composer/installers",
@@ -396,6 +396,53 @@
             "time": "2014-02-04 18:05:55"
         },
         {
+            "name": "kohana/minion",
+            "version": "dev-3.3/develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kohana/minion.git",
+                "reference": "6ea498b728f8f094e05c3907ab018fca94aec16c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kohana/minion/zipball/6ea498b728f8f094e05c3907ab018fca94aec16c",
+                "reference": "6ea498b728f8f094e05c3907ab018fca94aec16c",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "kohana/core": ">=3.3",
+                "php": ">=5.3.3"
+            },
+            "type": "kohana-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.3/develop": "3.3.x-dev",
+                    "dev-3.4/develop": "3.4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kohana Team",
+                    "email": "team@kohanaframework.org",
+                    "homepage": "http://kohanaframework.org/team",
+                    "role": "developer"
+                }
+            ],
+            "description": "The official kohana module for running tasks via the CLI",
+            "homepage": "http://kohanaframework.org",
+            "keywords": [
+                "framework",
+                "kohana",
+                "task"
+            ],
+            "time": "2014-07-22 11:55:09"
+        },
+        {
             "name": "kohana/orm",
             "version": "dev-3.3/develop",
             "source": {
@@ -554,7 +601,8 @@
         "knplabs/github-api": 20,
         "kohana/database": 20,
         "kohana/orm": 20,
-        "kohana/cache": 20
+        "kohana/cache": 20,
+        "kohana/minion": 20
     },
     "platform": [],
     "platform-dev": []

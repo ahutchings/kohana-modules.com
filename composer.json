@@ -6,7 +6,8 @@
         "knplabs/github-api": "~1.2@dev",
         "kohana/database": "3.4.x-dev",
         "kohana/orm": "3.3.x-dev",
-        "kohana/cache": "3.3.x-dev"
+        "kohana/cache": "3.3.x-dev",
+        "kohana/minion": "3.3.x-dev"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*"
