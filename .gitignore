@@ -2,3 +2,4 @@
 .project
 .vagrant
 build
+/application/vendor/
