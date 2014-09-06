@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6e968b875024311cfea7a4c273d8d5fd",
+    "hash": "bd0ec08384e30e93a6a657ad37ce876c",
     "packages": [
         {
             "name": "composer/installers",
@@ -249,6 +249,53 @@
             "time": "2014-09-03 09:13:39"
         },
         {
+            "name": "kohana/cache",
+            "version": "dev-3.3/develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kohana/cache.git",
+                "reference": "98c4e5648b58b14cce6a005a06485944e2f31777"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kohana/cache/zipball/98c4e5648b58b14cce6a005a06485944e2f31777",
+                "reference": "98c4e5648b58b14cce6a005a06485944e2f31777",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "kohana/core": ">=3.3",
+                "php": ">=5.3.3"
+            },
+            "type": "kohana-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.3/develop": "3.3.x-dev",
+                    "dev-3.4/develop": "3.4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kohana Team",
+                    "email": "team@kohanaframework.org",
+                    "homepage": "http://kohanaframework.org/team",
+                    "role": "developer"
+                }
+            ],
+            "description": "The official Kohana cache management module",
+            "homepage": "http://kohanaframework.org",
+            "keywords": [
+                "cache",
+                "framework",
+                "kohana"
+            ],
+            "time": "2014-09-04 08:56:49"
+        },
+        {
             "name": "kohana/core",
             "version": "v3.3.2",
             "source": {
@@ -347,6 +394,55 @@
                 "kohana"
             ],
             "time": "2014-02-04 18:05:55"
+        },
+        {
+            "name": "kohana/orm",
+            "version": "dev-3.3/develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kohana/orm.git",
+                "reference": "f050f9d8e8b9500962158569b34f12c93438b601"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kohana/orm/zipball/f050f9d8e8b9500962158569b34f12c93438b601",
+                "reference": "f050f9d8e8b9500962158569b34f12c93438b601",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "kohana/core": ">=3.3",
+                "kohana/database": ">=3.3",
+                "php": ">=5.3.3"
+            },
+            "type": "kohana-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.3/develop": "3.3.x-dev",
+                    "dev-3.4/develop": "3.4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kohana Team",
+                    "email": "team@kohanaframework.org",
+                    "homepage": "http://www.kohanaframework.org",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "The official Kohana ORM module",
+            "homepage": "http://kohanaframework.org",
+            "keywords": [
+                "database",
+                "framework",
+                "kohana",
+                "orm"
+            ],
+            "time": "2014-04-10 23:31:05"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -456,7 +552,9 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "knplabs/github-api": 20,
-        "kohana/database": 20
+        "kohana/database": 20,
+        "kohana/orm": 20,
+        "kohana/cache": 20
     },
     "platform": [],
     "platform-dev": []

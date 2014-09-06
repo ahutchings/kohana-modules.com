@@ -1,9 +1,6 @@
 [submodule "system"]
 	path = system
 	url = https://github.com/kohana/core.git
-[submodule "modules/orm"]
-	path = modules/orm
-	url = https://github.com/kohana/orm.git
 [submodule "modules/pagination"]
 	path = modules/pagination
 	url = https://github.com/ahutchings/pagination.git
@@ -19,9 +16,6 @@
 [submodule "modules/sitemap"]
 	path = modules/sitemap
 	url = https://github.com/ahutchings/kohana-sitemap.git
-[submodule "modules/cache"]
-	path = modules/cache
-	url = https://github.com/kohana/cache.git
 [submodule "modules/migrations"]
 	path = modules/migrations
 	url = https://github.com/kohana-minion/tasks-migrations.git
