@@ -134,7 +134,7 @@ Kohana::modules(array(
     'database'    => MODPATH.'database',   // Database access
     'kostache'    => APPPATH.'vendor/zombor/kostache',
     'minion'      => MODPATH.'minion',
-    'migrations'  => MODPATH.'vendor/kohana-minion/tasks-migrations',
+    'migrations'  => APPPATH.'vendor/kohana-minion/tasks-migrations',
     'notices'     => MODPATH.'notices',
     'orm'         => MODPATH.'orm',        // Object Relationship Mapping
     'pagination'  => MODPATH.'pagination', // Paging of results
