@@ -133,7 +133,6 @@ Kohana::modules(array(
     'cache'       => MODPATH.'cache',      // Caching with multiple backends
     'database'    => MODPATH.'database',   // Database access
     'kostache'    => APPPATH.'vendor/zombor/kostache',
-    'loggly'      => MODPATH.'loggly',
     'minion'      => MODPATH.'minion',
     'migrations'  => MODPATH.'migrations',
     'notices'     => MODPATH.'notices',
@@ -142,11 +141,6 @@ Kohana::modules(array(
     'sitemap'     => MODPATH.'sitemap',
     'tasks-cache' => MODPATH.'tasks-cache',
 	));
-
-if (isset($_SERVER['LOGGLY_KEY']))
-{
-    Kohana::$log->attach(new Log_Loggly($_SERVER['LOGGLY_KEY']));
-}
 
 /**
  * Set the routes. Each route must have a minimum of a name, a URI and a set of

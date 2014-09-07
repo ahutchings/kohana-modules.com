@@ -16,9 +16,6 @@
 [submodule "modules/migrations"]
 	path = modules/migrations
 	url = https://github.com/kohana-minion/tasks-migrations.git
-[submodule "modules/loggly"]
-	path = modules/loggly
-	url = https://github.com/ahutchings/kohana-loggly.git
 [submodule "modules/tasks-cache"]
 	path = modules/tasks-cache
 	url = https://github.com/samwilson/tasks-cache.git
