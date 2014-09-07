@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "28153c640014b5e6e03e6c2770b69ae2",
+    "hash": "02770d14c2e177408cdd309d548d70b9",
     "packages": [
         {
             "name": "composer/installers",
@@ -189,16 +189,16 @@
         },
         {
             "name": "knplabs/github-api",
-            "version": "dev-master",
+            "version": "1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KnpLabs/php-github-api.git",
-                "reference": "7574e92bdb4869a3193243ee794749b669be318c"
+                "reference": "39dc9b4be0378c57279aa693f597cda5deb97c8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/7574e92bdb4869a3193243ee794749b669be318c",
-                "reference": "7574e92bdb4869a3193243ee794749b669be318c",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/39dc9b4be0378c57279aa693f597cda5deb97c8f",
+                "reference": "39dc9b4be0378c57279aa693f597cda5deb97c8f",
                 "shasum": ""
             },
             "require": {
@@ -246,7 +246,7 @@
                 "gist",
                 "github"
             ],
-            "time": "2014-09-03 09:13:39"
+            "time": "2014-07-31 23:03:14"
         },
         {
             "name": "kohana/auth",
@@ -297,16 +297,16 @@
         },
         {
             "name": "kohana/cache",
-            "version": "dev-3.3/develop",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kohana/cache.git",
-                "reference": "98c4e5648b58b14cce6a005a06485944e2f31777"
+                "reference": "dd846582f50526964426a8a5106248acc0b63cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kohana/cache/zipball/98c4e5648b58b14cce6a005a06485944e2f31777",
-                "reference": "98c4e5648b58b14cce6a005a06485944e2f31777",
+                "url": "https://api.github.com/repos/kohana/cache/zipball/dd846582f50526964426a8a5106248acc0b63cfa",
+                "reference": "dd846582f50526964426a8a5106248acc0b63cfa",
                 "shasum": ""
             },
             "require": {
@@ -329,8 +329,8 @@
                 {
                     "name": "Kohana Team",
                     "email": "team@kohanaframework.org",
-                    "homepage": "http://kohanaframework.org/team",
-                    "role": "developer"
+                    "homepage": "http://www.kohanaframework.org",
+                    "role": "Maintainer"
                 }
             ],
             "description": "The official Kohana cache management module",
@@ -340,7 +340,7 @@
                 "framework",
                 "kohana"
             ],
-            "time": "2014-09-04 08:56:49"
+            "time": "2013-08-26 02:05:24"
         },
         {
             "name": "kohana/core",
@@ -444,16 +444,16 @@
         },
         {
             "name": "kohana/minion",
-            "version": "dev-3.3/develop",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kohana/minion.git",
-                "reference": "6ea498b728f8f094e05c3907ab018fca94aec16c"
+                "reference": "d07002de0d749f7cd77c7a400be2e0fe0592821d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kohana/minion/zipball/6ea498b728f8f094e05c3907ab018fca94aec16c",
-                "reference": "6ea498b728f8f094e05c3907ab018fca94aec16c",
+                "url": "https://api.github.com/repos/kohana/minion/zipball/d07002de0d749f7cd77c7a400be2e0fe0592821d",
+                "reference": "d07002de0d749f7cd77c7a400be2e0fe0592821d",
                 "shasum": ""
             },
             "require": {
@@ -476,8 +476,8 @@
                 {
                     "name": "Kohana Team",
                     "email": "team@kohanaframework.org",
-                    "homepage": "http://kohanaframework.org/team",
-                    "role": "developer"
+                    "homepage": "http://www.kohanaframework.org",
+                    "role": "Maintainer"
                 }
             ],
             "description": "The official kohana module for running tasks via the CLI",
@@ -487,20 +487,20 @@
                 "kohana",
                 "task"
             ],
-            "time": "2014-07-22 11:55:09"
+            "time": "2014-03-27 15:30:14"
         },
         {
             "name": "kohana/orm",
-            "version": "dev-3.3/develop",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kohana/orm.git",
-                "reference": "f050f9d8e8b9500962158569b34f12c93438b601"
+                "reference": "a2d02bb9f6b367cab971c9a775a63c7b11d3191a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kohana/orm/zipball/f050f9d8e8b9500962158569b34f12c93438b601",
-                "reference": "f050f9d8e8b9500962158569b34f12c93438b601",
+                "url": "https://api.github.com/repos/kohana/orm/zipball/a2d02bb9f6b367cab971c9a775a63c7b11d3191a",
+                "reference": "a2d02bb9f6b367cab971c9a775a63c7b11d3191a",
                 "shasum": ""
             },
             "require": {
@@ -536,7 +536,7 @@
                 "kohana",
                 "orm"
             ],
-            "time": "2014-04-10 23:31:05"
+            "time": "2013-08-26 02:10:46"
         },
         {
             "name": "mustache/mustache",
@@ -733,11 +733,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "knplabs/github-api": 20,
-        "kohana/database": 20,
-        "kohana/orm": 20,
-        "kohana/cache": 20,
-        "kohana/minion": 20
+        "kohana/database": 20
     },
     "platform": [],
     "platform-dev": []

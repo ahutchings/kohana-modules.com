@@ -3,11 +3,11 @@
         "vendor-dir": "application/vendor"
     },
     "require": {
-        "knplabs/github-api": "~1.2@dev",
+        "knplabs/github-api": "1.2.7",
         "kohana/database": "3.4.x-dev",
-        "kohana/orm": "3.3.x-dev",
-        "kohana/cache": "3.3.x-dev",
-        "kohana/minion": "3.3.x-dev",
+        "kohana/orm": "v3.3.2",
+        "kohana/cache": "v3.3.2",
+        "kohana/minion": "v3.3.2",
         "zombor/kostache": "v4.0.3",
         "kohana/core": "v3.3.2",
         "kohana/auth": "v3.3.2"
