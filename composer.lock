@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6cb6bb5929dfdb779483a581b15d489b",
+    "hash": "28153c640014b5e6e03e6c2770b69ae2",
     "packages": [
         {
             "name": "composer/installers",
@@ -247,6 +247,53 @@
                 "github"
             ],
             "time": "2014-09-03 09:13:39"
+        },
+        {
+            "name": "kohana/auth",
+            "version": "v3.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kohana/auth.git",
+                "reference": "4ebae51874fe1be24b64d14b4d9691d3dbf6d043"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kohana/auth/zipball/4ebae51874fe1be24b64d14b4d9691d3dbf6d043",
+                "reference": "4ebae51874fe1be24b64d14b4d9691d3dbf6d043",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.0",
+                "kohana/core": ">=3.3",
+                "php": ">=5.3.3"
+            },
+            "type": "kohana-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.3/develop": "3.3.x-dev",
+                    "dev-3.4/develop": "3.4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kohana Team",
+                    "email": "team@kohanaframework.org",
+                    "homepage": "http://www.kohanaframework.org",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "The official Kohana auth module",
+            "homepage": "http://kohanaframework.org",
+            "keywords": [
+                "Authentication",
+                "framework",
+                "kohana"
+            ],
+            "time": "2013-08-26 02:03:17"
         },
         {
             "name": "kohana/cache",

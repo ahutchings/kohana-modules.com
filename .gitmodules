@@ -1,9 +1,6 @@
 [submodule "modules/pagination"]
 	path = modules/pagination
 	url = https://github.com/ahutchings/pagination.git
-[submodule "modules/auth"]
-	path = modules/auth
-	url = https://github.com/kohana/auth.git
 [submodule "modules/notices"]
 	path = modules/notices
 	url = https://github.com/synapsestudios/kohana-notices.git

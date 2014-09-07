@@ -4,3 +4,4 @@
 .c9
 build
 /application/vendor/
+/modules/auth/
