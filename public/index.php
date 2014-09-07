@@ -21,7 +21,7 @@ $modules = '../modules';
  *
  * @see  http://kohanaframework.org/guide/about.install#system
  */
-$system = '../system';
+$system = '../application/vendor/kohana/core';
 
 /**
  * The default extension of resource files. If you change this, all resources
