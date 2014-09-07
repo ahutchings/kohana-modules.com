@@ -7,9 +7,6 @@
 [submodule "modules/sitemap"]
 	path = modules/sitemap
 	url = https://github.com/ahutchings/kohana-sitemap.git
-[submodule "modules/migrations"]
-	path = modules/migrations
-	url = https://github.com/kohana-minion/tasks-migrations.git
 [submodule "modules/tasks-cache"]
 	path = modules/tasks-cache
 	url = https://github.com/samwilson/tasks-cache.git

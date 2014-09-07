@@ -10,7 +10,8 @@
         "kohana/minion": "v3.3.2",
         "zombor/kostache": "v4.0.3",
         "kohana/core": "v3.3.2",
-        "kohana/auth": "v3.3.2"
+        "kohana/auth": "v3.3.2",
+        "kohana-minion/tasks-migrations": "3.3.x-dev"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "*"
