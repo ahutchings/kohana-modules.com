@@ -1,5 +1,12 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
+$url = parse_url(getenv('CLEARDB_DATABASE_URL'));
+
+$database = substr($url['path'], 1);
+$hostname = $url['host'];
+$username = $url['user'];
+$password = $url['pass'];
+
 return array
 (
     'default' => array
@@ -18,10 +25,10 @@ return array
              *
              * Ports and sockets may be appended to the hostname.
              */
-            'hostname'   => getenv('DB1_HOST'),
-            'database'   => getenv('DB1_NAME'),
-            'username'   => getenv('DB1_USER'),
-            'password'   => getenv('DB1_PASS'),
+            'hostname'   => $hostname,
+            'database'   => $database,
+            'username'   => $username,
+            'password'   => $password,
             'persistent' => FALSE,
         ),
         'table_prefix' => '',
