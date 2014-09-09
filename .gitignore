@@ -5,3 +5,8 @@
 build
 /application/vendor/
 /modules/auth/
+/modules/cache/
+/modules/database/
+/modules/migrations/
+/modules/minion/
+/modules/orm/
