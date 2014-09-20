@@ -10,7 +10,7 @@ class HTTP_Exception_404 extends Kohana_HTTP_Exception_404
         }
 
         $view = new View_Error_404($this);
-        $body = Kostache_Layout::factory()->render($view, 'error');
+        $body = Kostache_Layout::factory()->render($view);
 
         $response = Response::factory();
         $response->status(404);

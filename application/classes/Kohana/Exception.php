@@ -10,7 +10,7 @@ class Kohana_Exception extends Kohana_Kohana_Exception
         }
 
         $view = new View_Error_500($e);
-        $body = Kostache_Layout::factory()->render($view, 'error');
+        $body = Kostache_Layout::factory()->render($view);
 
         $response = Response::factory();
         $response->status(500);
