@@ -16,6 +16,6 @@ class HTTP_Exception_404 extends Kohana_HTTP_Exception_404
         $response->status(404);
         $response->body($body);
 
-		return $response;
+        return $response;
     }
 }
