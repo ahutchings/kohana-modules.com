@@ -51,7 +51,7 @@ class View_Module_Sort
 
     private function getVersionURL($version)
     {
-        return Arr::get($_SERVER, 'PATH_INFO').URL::query(array('compatibility' => strtolower($version->name)));
+        return '/'.URL::query(array('compatibility' => strtolower($version->name)));
     }
 
     public function sorts()
@@ -76,6 +76,6 @@ class View_Module_Sort
 
     private function getSortURL($key)
     {
-        return Arr::get($_SERVER, 'PATH_INFO').URL::query(array('sort' => $key));
+        return '/'.URL::query(array('sort' => $key));
     }
 }
