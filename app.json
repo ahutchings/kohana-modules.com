@@ -2,7 +2,8 @@
   "name": "kohana-modules.com",
   "addons": [
     "cleardb:ignite",
-    "scheduler"
+    "scheduler",
+    "newrelic:stark"
   ],
   "scripts": {
     "postdeploy": "minion --task=cache:purge && minion --task=migrations:run"
