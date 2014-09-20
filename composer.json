@@ -3,6 +3,7 @@
         "vendor-dir": "application/vendor"
     },
     "require": {
+        "php": "5.6.0",
         "knplabs/github-api": "1.2.7",
         "kohana/database": "3.4.x-dev",
         "kohana/orm": "v3.3.2",
